@@ -47,10 +47,10 @@
                     class="text-6xl font-bold text-primary leading-tight bg-background-normal p-4 rounded-lg backdrop-blur-sm">
                     Hi, I'm <span class="text-secondary">Astrid Coenrad</span>
                 </h1>
-                <h4 class="text-2xl text-primary max-w-2xl font-code bg-background-normal p-4 rounded-lg backdrop-blur-sm">
+                <h4 class="header-text text-2xl text-primary max-w-2xl font-code bg-background-normal p-4 rounded-lg backdrop-blur-sm">
                     I build <span class="typing-text"></span>
                 </h4>
-                <div class="mt-8">
+                <div class="mt-8 header-text">
                     <img id="scroll-down-arrow" src="src/assets/hero-arrow.svg" alt="Scroll Down"
                         class="w-6 h-6 animate-bounce cursor-pointer" />
                 </div>
@@ -343,6 +343,13 @@
             </div>
         </div>
     </div>
+
+    <div id="gravityWords" class="absolute inset-0 z-20 pointer-events-none h-screen overflow-hidden">
+        <canvas id="gravityCanvas" class="w-full h-full pointer-events-auto hover:cursor-grab active:cursor-grabbing"></canvas>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+    <script src="src/js/gravity-words.js"></script>
 </body>
 
 </html>

@@ -259,6 +259,19 @@
   form.glass-container:hover .glass-blur {
     @apply opacity-50;
   }
+
+  .gravity-word {
+    @apply font-code text-lg text-primary;
+    text-shadow: 0 0 10px rgba(137, 182, 165, 0.5);
+  }
+
+  .particle {
+    @apply absolute rounded-full pointer-events-none;
+    background: radial-gradient(circle at center,
+      rgba(137, 182, 165, 0.8) 0%,
+      rgba(137, 182, 165, 0) 70%
+    );
+  }
 }
 
 /* Animations - Consider moving to animation.css */
@@ -266,4 +279,18 @@
   .bounce {
     @apply animate-bounce-slow;
   }
+}
+
+/* Add these styles */
+#gravityCanvas {
+    @apply transition-opacity duration-300;
+}
+
+#gravityCanvas:hover {
+    @apply opacity-50;
+}
+
+/* Only enable pointer events when actively dragging */
+#gravityCanvas.dragging {
+    @apply pointer-events-auto opacity-100;
 }
