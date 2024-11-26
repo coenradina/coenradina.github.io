@@ -196,6 +196,16 @@ class GravityWords {
   setupEvents() {
     const canvas = this.canvas;
     
+    // Add resize handler at the start of setupEvents
+    window.addEventListener('resize', () => {
+      // Update canvas dimensions
+      this.canvas.width = window.innerWidth;
+      this.canvas.height = window.innerHeight;
+      
+      // Update boundary positions
+      this.createHeaderBoundaries();
+    });
+    
     canvas.addEventListener('mousedown', (e) => {
       const mousePosition = {
         x: e.offsetX,
@@ -324,20 +334,6 @@ class GravityWords {
           });
         }
       });
-    });
-
-    // Add resize handler
-    window.addEventListener('resize', () => {
-      // Remove old boundaries
-      const bodies = Matter.Composite.allBodies(this.engine.world);
-      bodies.forEach(body => {
-        if (body.isStatic && !this.words.includes(body)) {
-          Matter.World.remove(this.engine.world, body);
-        }
-      });
-      
-      // Recreate boundaries
-      this.createHeaderBoundaries();
     });
 
     // Add scroll handler for performance
