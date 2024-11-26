@@ -1,0 +1,35 @@
+@layer utilities {
+  @keyframes typing {
+    0% { content: "a"; }
+    2% { content: "ap"; }
+    4% { content: "app"; }
+    6%, 25% { content: "apps"; }
+    27% { content: "c"; }
+    29% { content: "cu"; }
+    31% { content: "cur"; }
+    33% { content: "curr"; }
+    35% { content: "curri"; }
+    37% { content: "curric"; }
+    39% { content: "curricu"; }
+    41% { content: "curricul"; }
+    43% { content: "curriculu"; }
+    45%, 98% { content: "curriculums"; }
+    100% { content: "curriculums"; }
+  }
+
+  .typing-text::after {  /* Changed from before: to after: */
+    content: '';
+    border-right: 2px solid;
+    animation: typing 3s infinite;
+    @apply text-secondary;
+  }
+
+  @keyframes bounce {
+    from, to {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+}

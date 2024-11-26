@@ -1,0 +1,269 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply bg-white text-text scroll-smooth;
+  }
+  body {
+    @apply bg-white text-text-dark font-mono;
+  }
+}
+
+@layer components {
+  /* Common Components */
+  .container-base {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .section-base {
+    @apply py-20;
+  }
+  
+  /* Navigation */
+  .nav-link {
+    @apply text-text-dark relative py-2 px-3 transition-all duration-300 font-medium;
+  }
+  
+  .nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      rgba(137, 182, 165, 0) 0%,
+      rgba(137, 182, 165, 0.8) 50%,
+      rgba(137, 182, 165, 0) 100%
+    );
+    transform: translateX(-50%);
+    transition: width 0.3s ease-in-out;
+    filter: drop-shadow(0 0 8px rgba(137, 182, 165, 0.3));
+  }
+  
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+      circle at center,
+      rgba(137, 182, 165, 0.1) 0%,
+      transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
+  }
+  
+  .nav-link:hover {
+    @apply text-primary;
+  }
+  
+  .nav-link:hover::before {
+    width: 100%;
+  }
+  
+  .nav-link:hover::after {
+    opacity: 1;
+  }
+  
+  .nav-link.active {
+    @apply text-primary font-semibold;
+  }
+  
+  /* Cards */
+  .card-base {
+    @apply flex flex-col items-center justify-center p-6 bg-light-dark rounded-lg 
+           border border-primary hover:border-secondary hover:scale-105 
+           transition-all duration-200;
+  }
+  
+  /* Section Titles */
+  .section-title {
+    @apply text-4xl font-normal text-text-dark font-display;
+  }
+  
+  /* Links */
+  .explore-link {
+    @apply flex items-center p-4 bg-background-dark rounded-lg 
+           border border-primary font-sans hover:border-secondary 
+           transition-all duration-200;
+  }
+  
+  /* About Section */
+  .about-content {
+    @apply grid grid-cols-1 lg:grid-cols-2 gap-8 relative;
+  }
+  
+  .about-paragraph {
+    @apply text-justify leading-[170%] text-base;
+  }
+  
+  .about-photo-container {
+    @apply glass-container relative overflow-hidden
+           hover:shadow-2xl hover:border-secondary/40 
+           transition-all duration-500 ease-out;
+  }
+
+  .projects {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
+  }
+
+  
+  .floating-elements {
+    @apply absolute inset-0 pointer-events-none;
+  }
+  
+  .floating-element {
+    @apply absolute w-16 h-16 rounded-full 
+           bg-gradient-to-br from-primary/20 to-secondary/20 
+           backdrop-blur-md animate-float;
+  }
+  
+  /* Lists */
+  .arrow-list {
+    @apply list-none pl-0;
+  }
+  
+  .arrow-list-item {
+    @apply relative pl-5 before:content-["→"] before:absolute before:left-0 before:text-text-dark;
+  }
+  
+  .typing-text {
+    @apply relative;
+  }
+  
+  .typing-text::after {
+    @apply text-secondary;
+  }
+  
+  .glass-container {
+    @apply relative backdrop-blur-md bg-background-dark/90
+           border border-primary/20 shadow-lg rounded-xl
+           overflow-hidden
+           hover:shadow-2xl hover:border-primary/40 
+           hover:scale-[1.02] hover:-translate-y-1
+           transition-all duration-700 ease-out
+           cursor-pointer;
+  }
+  
+  .glass-content {
+    @apply relative p-8 z-10 flex flex-col items-center justify-center h-full;
+  }
+  
+  .glass-blur {
+    @apply absolute inset-0 -z-10 opacity-0 
+           transition-all duration-700 ease-out;
+    background: radial-gradient(
+      circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(137, 182, 165, 0.2),
+      rgba(244, 208, 63, 0.2),
+      transparent 70%
+    );
+    filter: blur(24px);
+    transform: scale(0.8);
+  }
+  
+  .glass-container:hover .glass-blur {
+    @apply opacity-100;
+    transform: scale(1);
+  }
+  
+  .glass-container:hover .glass-content {
+    transform: translateZ(10px);
+  }
+  
+  .glass-container svg {
+    @apply w-16 h-16 text-secondary mb-4 mx-auto stroke-[1.5];
+  }
+  
+  .glass-container:hover svg {
+    @apply text-primary transform scale-110;
+  }
+
+  /* Color Switcher */
+  .color-switcher-wrapper {
+    @apply fixed top-6 left-10 z-50 
+          backdrop-blur-sm 
+           border rounded-full 
+           shadow-lg;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+  }
+
+  .color-switcher {
+    @apply gap-3;
+  }
+
+  .color-option {
+    @apply w-8 h-8 rounded-full border-2 border-background-dark
+           cursor-pointer transition-all duration-300
+           hover:scale-110 hover:shadow-lg;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .color-option::after {
+    content: '';
+    @apply absolute inset-0 rounded-full;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.2), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .color-option:hover::after {
+    opacity: 1;
+  }
+
+  .color-option.active {
+    @apply scale-110 shadow-lg;
+    border-width: 3px;
+  }
+
+  .color-option.active::before {
+    content: '';
+    @apply absolute inset-0 rounded-full;
+    box-shadow: 0 0 15px currentColor;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.2); opacity: 0.2; }
+    100% { transform: scale(1); opacity: 0.5; }
+  }
+
+  /* Contact Form Styles */
+  input, textarea {
+    @apply font-code text-sm;
+  }
+
+  input:focus, textarea:focus {
+    @apply shadow-lg;
+    box-shadow: 0 0 15px rgba(var(--theme-primary-rgb), 0.1);
+  }
+
+  /* Form glass container specific styles */
+  form.glass-container {
+    @apply hover:scale-100 hover:translate-y-0;
+  }
+
+  form.glass-container:hover .glass-blur {
+    @apply opacity-50;
+  }
+}
+
+/* Animations - Consider moving to animation.css */
+@layer utilities {
+  .bounce {
+    @apply animate-bounce-slow;
+  }
+}

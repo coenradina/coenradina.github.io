@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Astrid Coenrad's portfolio - Developer and Curriculum Designer">
+    <link href="dist/style.css" rel="stylesheet">
+    <link href="src/css/index.css" rel="stylesheet">
+    <link href="src/css/animation.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="src/assets/favicon.svg">
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Fira+Code:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Fira+Sans+Condensed:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <title>astrid's space</title>
+</head>
+
+<body class="font-mono bg-white">
+    <div class="color-switcher-wrapper">
+        <div class="color-switcher flex gap-4">
+            <button class="color-option active" data-color="#89B6A5" style="background-color: #89B6A5;"></button>
+            <button class="color-option" data-color="#F4D03F" style="background-color: #F4D03F;"></button>
+            <button class="color-option" data-color="#E74C3C" style="background-color: #E74C3C;"></button>
+        </div>
+    </div>
+
+    <header class="h-screen flex flex-col justify-center mx-[10vw]">
+        <nav
+            class="fixed top-6 left-1/2 -translate-x-1/2 bg-background-dark/80 backdrop-blur-sm z-50 border border-dark-light rounded-full shadow-lg">
+            <div class="px-8">
+                <div class="flex h-14 items-center justify-between">
+                    <ul class="flex items-center space-x-8">
+                        <li><a href="#about" class="nav-link">about</a></li>
+                        <li><a href="#projects" class="nav-link">projects</a></li>
+                        <li><a href="#contact" class="nav-link">contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center min-h-screen">
+            <div class="flex flex-col items-start text-left gap-6">
+                <h1
+                    class="text-6xl font-bold text-primary leading-tight bg-background-normal p-4 rounded-lg backdrop-blur-sm">
+                    Hi, I'm <span class="text-secondary">Astrid Coenrad</span>
+                </h1>
+                <h4 class="text-2xl text-primary max-w-2xl font-code bg-background-normal p-4 rounded-lg backdrop-blur-sm">
+                    I build <span class="typing-text"></span>
+                </h4>
+                <div class="mt-8">
+                    <img id="scroll-down-arrow" src="src/assets/hero-arrow.svg" alt="Scroll Down"
+                        class="w-6 h-6 animate-bounce cursor-pointer" />
+                </div>
+            </div>
+        </div>
+    </header>
+    <section id="about" class="p-section relative overflow-hidden bg-white/50">
+        <!-- Global blur effect -->
+        <div class="glass-blur fixed inset-0"></div>
+
+        <div class="container-base relative z-10">
+            <div class="text-center mb-12">
+                <h2 class="section-title">here's how I can help:</h2>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="max-w-7xl mx-auto">
+                <ul class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                    <li class="glass-container group">
+                        <div class="glass-blur"></div>
+                        <div class="glass-content text-center">
+                            <svg class="w-16 h-16 text-secondary mb-4" 
+                                fill="none" 
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                </path>
+                            </svg>
+                            <h3
+                                class="text-xl font-normal text-text mb-2 h-14 flex items-center justify-center text-center font-sans">
+                                tech workshop</h3>
+                        </div>
+                    </li>
+
+                    <li class="glass-container group">
+                        <div class="glass-blur"></div>
+                        <div class="glass-content text-center">
+                            <svg class="w-16 h-16 text-secondary mb-4" 
+                                fill="none" 
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                                </path>
+                            </svg>
+                            <h3
+                                class="text-xl font-normal text-text mb-2 h-14 flex items-center justify-center text-center font-sans">
+                                curriculum design</h3>
+                        </div>
+                    </li>
+                    <li class="glass-container group">
+                        <div class="glass-blur"></div>
+                        <div class="glass-content text-center">
+                            <svg class="w-16 h-16 text-secondary mb-4" 
+                                fill="none" 
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9">
+                                </path>
+                            </svg>
+                            <h3
+                                class="text-xl font-normal text-text mb-2 h-14 flex items-center justify-center text-center font-sans">
+                                wordpress development</h3>
+                        </div>
+                    </li>
+                    <li class="glass-container group">
+                        <div class="glass-blur"></div>
+                        <div class="glass-content text-center">
+                            <svg class="w-16 h-16 text-secondary mb-4" 
+                                fill="none" 
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z">
+                                </path>
+                            </svg>
+                            <h3
+                                class="text-xl font-normal text-text mb-2 h-14 flex items-center justify-center text-center font-sans">
+                                android development</h3>
+                        </div>
+                    </li>
+                    <li class="glass-container group">
+                        <div class="glass-blur"></div>
+                        <div class="glass-content text-center">
+                            <svg class="w-16 h-16 text-secondary mb-4" 
+                                fill="none" 
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z">
+                                </path>
+                            </svg>
+                            <h3
+                                class="text-xl font-normal text-text mb-2 h-14 flex items-center justify-center text-center font-sans">
+                                project management</h3>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section-base bg-white">
+        <div class="container-base">
+            <div class="text-center mb-12">
+                <h2 class="section-title">featured projects</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card-base">
+                    <img src="src/assets/project-bca.webp" alt="Project 1"
+                        class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h3 class="text-xl font-sans text-text mb-2">open account bca mobile</h3>
+                    <p class="text-text text-sm mb-4">made opening a bca account on Android easier and more secure – My
+                        first project at work!</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-2 py-1 bg-background-dark text-text text-xs rounded-full">android</span>
+                        <span class="px-2 py-1 bg-background-dark text-text text-xs rounded-full">java</span>
+                        <span class="px-2 py-1 bg-background-dark text-text text-xs rounded-full">mvc</span>
+                    </div>
+                    <!-- <a href="#" class="explore-link text-white">
+                        <span>view project</span>
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </a> -->
+                </div>
+
+                <div class="card-base">
+                    <img src="src/assets/project-fd.webp" alt="female daily for android"
+                        class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h3 class="text-xl font-sans text-text mb-2">female daily</h3>
+                    <p class="text-text text-sm mb-4">built a user-friendly product review feature with photo uploads,
+                        tagging, and smart topic suggestions.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-2 py-1 bg-background-dark text-text text-xs rounded-full">android</span>
+                        <span class="px-2 py-1 bg-background-dark text-text text-xs rounded-full">kotlin</span>
+                        <span class="px-2 py-1 bg-background-dark text-text text-xs rounded-full">mvvm</span>
+                    </div>
+                    <!-- <a href="#" class="explore-link text-white">
+                        <span>view project</span>
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg> -->
+                    </a>
+                </div>
+
+                <div class="card-base">
+                    <img src="src/assets/project-lio.webp" alt="list it out"
+                        class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h3 class="text-xl font-sans text-text mb-2">list it out</h3>
+                    <p class="text-text text-sm mb-4">a handy app that simplifies inventory and sales management to
+                        streamline business.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-2 py-1 bg-background-dark text-text text-xs rounded-full">android</span>
+                        <span class="px-2 py-1 bg-background-dark text-text text-xs rounded-full">java</span>
+                        <span class="px-2 py-1 bg-background-dark text-text text-xs rounded-full">mvvm</span>
+                    </div>
+                    <!-- <a href="#" class="explore-link text-white">
+                        <span>view project</span>
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </a> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="p-section relative overflow-hidden bg-white/50">
+        <!-- Global blur effect -->
+        <div class="glass-blur fixed inset-0"></div>
+
+        <div class="container-base relative z-10">
+            <div class="text-center mb-12">
+                <h2 class="section-title">let's connect</h2>
+            </div>
+
+            <div class="max-w-2xl mx-auto">
+                <form class="glass-container p-8 bg-background-normal" action="mailto:inquiries.astridcoenrad@gmail.com" method="POST" enctype="text/plain" id="contactForm">
+                    <div class="grid grid-cols-1 gap-6 w-full">
+                        <div>
+                            <label for="name" class="block text-text-dark font-code mb-2">name</label>
+                            <input type="text" id="name" name="name" 
+                                class="w-full px-4 py-2 rounded-lg bg-background-dark/5 
+                                       border border-primary/20 focus:border-primary/40 
+                                       outline-none transition-all duration-300
+                                       text-text-dark font-code">
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-text-dark font-code mb-2">email</label>
+                            <input type="email" id="email" name="email" 
+                                class="w-full px-4 py-2 rounded-lg bg-background-dark/5 
+                                       border border-primary/20 focus:border-primary/40 
+                                       outline-none transition-all duration-300
+                                       text-text-dark font-code">
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-text-dark font-code mb-2">message</label>
+                            <textarea id="message" name="message" rows="4" 
+                                class="w-full px-4 py-2 rounded-lg bg-background-dark/5 
+                                       border border-primary/20 focus:border-primary/40 
+                                       outline-none transition-all duration-300
+                                       text-text-dark font-code resize-none"></textarea>
+                        </div>
+                        
+                        <button type="submit" 
+                            class="px-8 py-3 bg-primary text-white rounded-lg 
+                                   font-code transition-all duration-300
+                                   hover:bg-primary-hover hover:shadow-lg
+                                   focus:outline-none focus:ring-2 focus:ring-primary/50">
+                            send message →
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-background-dark py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col items-center justify-center space-y-8">
+                <nav class="flex items-center justify-center space-x-8">
+                    <a href="https://github.com/coenradina" target="_blank" rel="noopener noreferrer"
+                        class="text-text hover:text-secondary transition-colors duration-200" aria-label="GitHub">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd"
+                                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                    <a href="https://instagram.com/coen.rad" target="_blank" rel="noopener noreferrer"
+                        class="text-text hover:text-secondary transition-colors duration-200" aria-label="Instagram">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                        </svg>
+                    </a>
+                    <a href="https://medium.com/@coenrad" target="_blank" rel="noopener noreferrer"
+                        class="text-text hover:text-secondary transition-colors duration-200" aria-label="Medium">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M19 24h-14c-2.761 0-5-2.239-5-5v-14c0-2.761 2.239-5 5-5h14c2.762 0 5 2.239 5 5v14c0 2.761-2.238 5-5 5zm-3.288-4.888l-.001-.001.001.001zm-7.723-11.293v9.362c0 .253.126.491.336.634.21.143.477.147.691.01l7.134-4.581c.219-.141.35-.385.35-.645s-.131-.504-.35-.645l-7.134-4.581c-.214-.137-.481-.133-.691.01-.21.143-.336.381-.336.634v-.198z" />
+                        </svg>
+                    </a>
+                    <a href="https://linkedin.com/in/coenrad" target="_blank" rel="noopener noreferrer"
+                        class="text-text hover:text-secondary transition-colors duration-200" aria-label="LinkedIn">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                        </svg>
+                    </a>
+                </nav>
+                <div class="text-center">
+                    <p class="text-text font-code text-xs">
+                        powered by creativity (and snack breaks)🍪
+                        <br class="sm:hidden" />
+                        © 2024 Astrid Coenrad
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script defer type="text/javascript" src="src/js/index.js"></script>
+
+    <div id="emailConfirmModal" class="fixed inset-0 bg-background-dark/50 backdrop-blur-sm z-50 hidden flex items-center justify-center">
+        <div class="glass-container bg-background-dark p-8 max-w-md mx-4 hover:scale-100">
+            <h3 class="text-xl font-sans text-text mb-4">confirm action</h3>
+            <p class="text-text mb-6">you will be redirected to your default email application.</p>
+            <div class="flex gap-4 justify-end">
+                <button id="cancelEmail" class="px-4 py-2 text-text hover:text-primary transition-colors">
+                cancel
+                </button>
+                <button id="confirmEmail" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-hover transition-all">
+                continue →
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
