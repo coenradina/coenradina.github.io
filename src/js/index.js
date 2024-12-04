@@ -30,30 +30,38 @@ document.addEventListener('DOMContentLoaded', function() {
     const cancelEmailBtn = document.getElementById('cancelEmail');
 
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
-            emailConfirmModal.classList.remove('hidden');
+            
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: new FormData(contactForm),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    // Show success message
+                    emailConfirmModal.classList.remove('hidden');
+                    contactForm.reset();
+                    
+                    // Hide modal after 3 seconds
+                    setTimeout(() => {
+                        emailConfirmModal.classList.add('hidden');
+                    }, 3000);
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('There was a problem sending your message. Please try again later.');
+            }
         });
 
-        confirmEmailBtn.addEventListener('click', function() {
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-            
-            // Construct email body
-            const mailtoLink = `mailto:inquiries.astridcoenrad@gmail.com?subject=Portfolio Contact: ${encodeURIComponent(name)}&body=${encodeURIComponent(
-                `Hello, I'm ${name}\nYou can reach me at ${email}\n\nI'm reaching out regarding:\n${message}`
-            )}`;
-            
-            // Open default email client
-            window.location.href = mailtoLink;
-            
-            // Clear form and hide modal
-            contactForm.reset();
-            emailConfirmModal.classList.add('hidden');
-        });
-
-        cancelEmailBtn.addEventListener('click', function() {
+        // Update modal close handler
+        document.getElementById('closeSuccessModal').addEventListener('click', function() {
             emailConfirmModal.classList.add('hidden');
         });
 
