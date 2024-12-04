@@ -43,6 +43,18 @@
     transition: width 0.3s ease-in-out;
     filter: drop-shadow(0 0 8px rgba(137, 182, 165, 0.3));
   }
+
+  nav {
+    text-align: inherit;
+    padding: inherit;
+    flex: inherit;
+}
+
+.fixed {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+}
   
   .nav-link::after {
     content: '';
