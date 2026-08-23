@@ -1,0 +1,10 @@
+{
+  "description": "Showcase professional skills and projects through an engaging, interactive portfolio with gamified elements that highlight expertise and mentorship impact.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

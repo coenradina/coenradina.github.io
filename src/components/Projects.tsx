@@ -1,0 +1,250 @@
+import { useState } from "react";
+import XPBar from "./ui/XPBar";
+
+type Category = "All" | "TPM & EdTech" | "STEM & AI" | "Software & Mobile";
+
+interface ProjectsProps {
+  onUnlockAchievement: (title: string, xp: number) => void;
+}
+
+const PROJECTS = [
+  {
+    title: "AI Class ASEAN",
+    category: "STEM & AI" as Category,
+    company: "Binar Academy",
+    description: "Self-paced AI curriculum designed for learners across Southeast Asia. Delivered 71 learning modules from instructional design to video production.",
+    tech: ["AI Curriculum", "71 Modules", "20+ Regional Partners", "ASEAN Reach"],
+    xpLabel: "Beneficiaries",
+    xpValue: 98,
+    xp: "350,000+ Users",
+    color: "#0D9488",
+    bg: "#CCFBF1",
+    imgUrl: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=350&fit=crop&auto=format",
+  },
+  {
+    title: "Sekolah.mu & Karier.mu Platform Delivery",
+    category: "TPM & EdTech" as Category,
+    company: "PT Semesta Integrasi Digital",
+    description: "Led Scrum product delivery for school & HR Tech platforms (Sekolah.mu, Karier.mu, Talentics). Coordinated backlog prioritization, RAID, ISO compliance & QA.",
+    tech: ["Scrum Execution", "RAID Management", "ISO Compliance", "Quality Assurance"],
+    xpLabel: "Product Delivery Score",
+    xpValue: 95,
+    xp: "95% On-Time Delivery",
+    color: "#0F172A",
+    bg: "#EEE8D5",
+    imgUrl: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=600&h=350&fit=crop&auto=format",
+  },
+  {
+    title: "Generation Girl STEM LMS & Mentor System",
+    category: "STEM & AI" as Category,
+    company: "Generation Girl",
+    description: "Shaped education strategy for 30+ STEM projects. Modernized the LMS platform for 5,000+ learners, created mentor systems & built impact tracking tools.",
+    tech: ["LMS Modernization", "30+ STEM Projects", "100+ Mentors", "Data Tools"],
+    xpLabel: "Mentor Retention Boost",
+    xpValue: 92,
+    xp: "+57% Retention",
+    color: "#881337",
+    bg: "#FFE4E6",
+    imgUrl: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=350&fit=crop&auto=format",
+  },
+  {
+    title: "Female Daily Community Android App",
+    category: "Software & Mobile" as Category,
+    company: "Female Daily",
+    description: "Collaborated with cross-functional teams to develop key Android features using Kotlin and Clean Architecture for Indonesia's beauty community platform.",
+    tech: ["Kotlin", "Clean Architecture", "Android SDK", "REST APIs"],
+    xpLabel: "App Stability",
+    xpValue: 90,
+    xp: "99.9% Crash Free",
+    color: "#B58900",
+    bg: "#FEF3C7",
+    imgUrl: "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&h=350&fit=crop&auto=format",
+  },
+  {
+    title: "BCA Data Encryption & Biometric Security",
+    category: "Software & Mobile" as Category,
+    company: "Bank Central Asia (BCA)",
+    description: "Engineered critical data encryption layers and biometric verification modules to enhance financial data security for central banking operations.",
+    xpLabel: "Security Rating",
+    tech: ["Data Encryption", "Biometric Verification", "Banking Security", "Clean Code"],
+    xpValue: 96,
+    xp: "Banking Grade Shield",
+    color: "#0F172A",
+    bg: "#E2E8F0",
+    imgUrl: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=350&fit=crop&auto=format",
+  },
+];
+
+const CATEGORIES: Category[] = ["All", "TPM & EdTech", "STEM & AI", "Software & Mobile"];
+
+export default function Projects({ onUnlockAchievement }: ProjectsProps) {
+  const [active, setActive] = useState<Category>("All");
+  const [selectedProject, setSelectedProject] = useState<typeof PROJECTS[0] | null>(null);
+
+  const filtered = active === "All" ? PROJECTS : PROJECTS.filter((p) => p.category === active);
+
+  const handleCardClick = (project: typeof PROJECTS[0]) => {
+    setSelectedProject(project);
+    onUnlockAchievement(`Inspected ${project.title} (+100 XP)`, 100);
+  };
+
+  return (
+    <section id="projects" className="py-24 px-4 sm:px-6 border-t-2 border-slate-900" style={{ backgroundColor: "#EEE8D5" }}>
+      <div className="max-w-6xl mx-auto">
+        {/* Header */}
+        <div className="mb-12">
+          <div
+            className="text-xs font-mono font-bold uppercase tracking-wider text-slate-700 mb-2"
+          >
+            // projects[].filter(category)
+          </div>
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <div>
+              <h2
+                className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900"
+                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+              >
+                Flagship Work & <span className="text-brand-tosca underline decoration-amber-400 decoration-4">Impact Log</span>
+              </h2>
+              <p className="mt-2 text-sm text-slate-700 font-sans max-w-xl">
+                Real solutions delivered across education technology, AI learning, non-profit STEM initiatives, and enterprise mobile software.
+              </p>
+            </div>
+
+            {/* Filter chips */}
+            <div className="flex flex-wrap gap-2">
+              {CATEGORIES.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setActive(cat)}
+                  className={`px-3.5 py-1.5 rounded text-xs font-mono font-bold border-2 transition-all cyber-button cursor-pointer ${
+                    active === cat
+                      ? "bg-brand-tosca text-white border-slate-900"
+                      : "bg-white text-slate-900 border-slate-900 hover:bg-amber-100"
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filtered.map((project) => (
+            <div
+              key={project.title}
+              onClick={() => handleCardClick(project)}
+              className="group cursor-pointer rounded-lg border-2 border-slate-900 bg-white shadow-[4px_4px_0px_#0F172A] hover:translate-y-[-4px] hover:shadow-[6px_6px_0px_#0F172A] transition-all flex flex-col overflow-hidden"
+            >
+              {/* Thumbnail Container */}
+              <div className="relative h-44 overflow-hidden border-b-2 border-slate-900 bg-slate-100">
+                <img
+                  src={project.imgUrl}
+                  alt={project.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <span
+                  className="absolute top-3 left-3 text-[10px] font-mono font-bold px-2 py-1 rounded border border-slate-900 text-white bg-slate-900/90 shadow-xs"
+                >
+                  {project.category}
+                </span>
+
+                <span
+                  className="absolute bottom-3 right-3 text-[10px] font-mono font-bold px-2 py-0.5 rounded border border-slate-900 bg-amber-300 text-slate-900"
+                >
+                  {project.company}
+                </span>
+              </div>
+
+              {/* Card Body */}
+              <div className="p-5 flex flex-col justify-between flex-1 gap-4">
+                <div>
+                  <h3
+                    className="text-base font-bold text-slate-900 leading-snug group-hover:text-brand-tosca transition-colors"
+                    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                  >
+                    {project.title}
+                  </h3>
+                  <p className="mt-2 text-xs text-slate-600 leading-relaxed font-sans">
+                    {project.description}
+                  </p>
+                </div>
+
+                <div className="space-y-3">
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.tech.map((t) => (
+                      <span
+                        key={t}
+                        className="text-[10px] font-mono font-bold px-2 py-0.5 rounded border border-slate-900 bg-slate-100 text-slate-800"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  <XPBar
+                    label={project.xpLabel}
+                    value={project.xpValue}
+                    xp={project.xp}
+                    color={project.color}
+                  />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Project Inspector Modal */}
+        {selectedProject && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs">
+            <div className="w-full max-w-xl rounded-lg border-2 border-slate-900 bg-white p-6 shadow-2xl space-y-4" style={{ backgroundColor: "#FDF6E3" }}>
+              <div className="flex items-center justify-between border-b-2 border-slate-900 pb-3">
+                <div>
+                  <span className="text-[10px] font-mono font-bold text-brand-maroon uppercase">
+                    // INSPECT PROJECT DETAILS
+                  </span>
+                  <h3 className="text-xl font-bold text-slate-900" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                    {selectedProject.title}
+                  </h3>
+                </div>
+                <button
+                  onClick={() => setSelectedProject(null)}
+                  className="px-2.5 py-1 rounded border border-slate-900 bg-rose-100 text-rose-900 font-mono text-xs font-bold hover:bg-rose-200"
+                >
+                  CLOSE [X]
+                </button>
+              </div>
+
+              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-sans">
+                {selectedProject.description}
+              </p>
+
+              <div className="p-3 rounded border border-slate-900 bg-[#EEE8D5] space-y-2">
+                <div className="flex items-center justify-between text-xs font-mono font-bold text-slate-800">
+                  <span>ORGANIZATION:</span>
+                  <span className="text-brand-tosca">{selectedProject.company}</span>
+                </div>
+                <div className="flex items-center justify-between text-xs font-mono font-bold text-slate-800">
+                  <span>METRIC SCORE:</span>
+                  <span className="text-brand-maroon">{selectedProject.xp}</span>
+                </div>
+              </div>
+
+              <div className="flex justify-end pt-2">
+                <button
+                  onClick={() => setSelectedProject(null)}
+                  className="px-4 py-2 bg-brand-tosca text-white font-mono text-xs font-bold rounded border-2 border-slate-900 cyber-button cursor-pointer"
+                >
+                  ACKNOWLEDGEMENT APPROVED ↵
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
