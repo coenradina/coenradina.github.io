@@ -53,38 +53,38 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
   };
 
   return (
-    <section id="contact" className="py-24 px-4 sm:px-6 border-t-2 border-slate-900" style={{ backgroundColor: "#EEE8D5" }}>
-      <div className="max-w-5xl mx-auto">
+    <section id="contact" className="py-28 px-4 sm:px-6 lg:px-8 border-t-2 border-slate-900" style={{ backgroundColor: "#EEE8D5" }}>
+      <div className="max-w-5xl mx-auto space-y-12">
         {/* Header */}
-        <div className="mb-12 text-center">
+        <div className="text-center space-y-3 max-w-2xl mx-auto">
           <div
-            className="text-xs font-mono font-bold uppercase tracking-wider text-brand-maroon mb-2"
+            className="text-xs font-mono font-bold uppercase tracking-wider text-brand-maroon"
           >
             // initiate_contact_signal()
           </div>
           <h2
-            className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900"
+            className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 leading-tight"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
             Ready to build <span className="text-brand-tosca underline decoration-amber-400 decoration-4">high-impact EdTech?</span>
           </h2>
-          <p className="mt-3 mx-auto max-w-lg text-sm sm:text-base text-slate-700 font-sans leading-relaxed">
+          <p className="text-base text-slate-700 font-sans leading-relaxed pt-1">
             Got a project, STEM workshop inquiry, or Agile TPM mission? Transmit your signal below. I read every message!
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-10">
           {/* Mission Form */}
           <div className="lg:col-span-3">
             {status === "sent" ? (
               <div
-                className="rounded-lg border-2 border-slate-900 p-8 flex flex-col items-center justify-center text-center gap-4 min-h-[360px] shadow-[6px_6px_0px_#0F172A]"
+                className="rounded-xl border-2 border-slate-900 p-8 sm:p-10 flex flex-col items-center justify-center text-center gap-5 min-h-[400px] shadow-[6px_6px_0px_#0F172A]"
                 style={{ backgroundColor: "#FDF6E3" }}
               >
-                <div className="text-5xl animate-float">🚀</div>
-                <div>
+                <div className="text-5xl sm:text-6xl animate-float">🚀</div>
+                <div className="space-y-1">
                   <p
-                    className="text-2xl font-bold text-slate-900 mb-1"
+                    className="text-2xl sm:text-3xl font-bold text-slate-900"
                     style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                   >
                     SIGNAL DELIVERED!
@@ -95,7 +95,7 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
                     +250 XP EARNED · ACHIEVEMENT UNLOCKED: MISSION SIGNAL TRANSMITTED
                   </p>
                 </div>
-                <p className="text-xs sm:text-sm text-slate-700 max-w-sm">
+                <p className="text-sm text-slate-700 max-w-md leading-relaxed">
                   Thanks for reaching out! I'll review your mission coordinates and respond within 24 hours.
                 </p>
                 <button
@@ -103,7 +103,7 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
                     setStatus("idle");
                     setValues({ name: "", email: "", message: "" });
                   }}
-                  className="mt-2 text-xs font-mono font-bold px-4 py-2 rounded border-2 border-slate-900 bg-amber-300 text-slate-900 cyber-button cursor-pointer"
+                  className="mt-2 text-xs font-mono font-bold px-5 py-2.5 rounded border-2 border-slate-900 bg-amber-300 text-slate-900 cyber-button cursor-pointer"
                 >
                   TRANSMIT ANOTHER SIGNAL ↵
                 </button>
@@ -111,25 +111,25 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
             ) : (
               <form
                 onSubmit={handleSubmit}
-                className="rounded-lg border-2 border-slate-900 p-6 sm:p-8 flex flex-col gap-5 shadow-[6px_6px_0px_#0F172A]"
+                className="rounded-xl border-2 border-slate-900 p-7 sm:p-9 flex flex-col gap-6 shadow-[6px_6px_0px_#0F172A]"
                 style={{ backgroundColor: "#FDF6E3" }}
                 noValidate
               >
-                <div className="flex items-center justify-between border-b-2 border-slate-900 pb-3">
-                  <span className="text-xs font-mono font-bold text-slate-900">
+                <div className="flex items-center justify-between border-b-2 border-slate-900 pb-4">
+                  <span className="text-xs font-mono font-bold text-slate-900 uppercase">
                     // MISSION PARAMETERS
                   </span>
-                  <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded border border-slate-900 bg-amber-300">
+                  <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded border border-slate-900 bg-amber-300">
                     +250 XP REWARD
                   </span>
                 </div>
 
                 {/* Mission Type Selection */}
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-mono font-bold text-slate-900">
+                <div className="space-y-2">
+                  <label className="text-xs font-mono font-bold text-slate-900 uppercase">
                     MISSION CATEGORY
                   </label>
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="grid grid-cols-2 gap-2.5">
                     {[
                       "EdTech & AI Curriculum",
                       "Agile TPM & Scrum",
@@ -140,7 +140,7 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
                         key={cat}
                         type="button"
                         onClick={() => setCategory(cat)}
-                        className={`px-3 py-2 rounded text-xs font-mono font-bold border border-slate-900 transition-all text-left cursor-pointer ${
+                        className={`px-3.5 py-2.5 rounded text-xs font-mono font-bold border-2 border-slate-900 transition-all text-left cursor-pointer ${
                           category === cat
                             ? "bg-brand-tosca text-white"
                             : "bg-slate-100 text-slate-800 hover:bg-amber-100"
@@ -153,15 +153,15 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
                 </div>
 
                 {/* Name + Email Row */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   {[
                     { id: "name", label: "YOUR NAME", type: "text", placeholder: "e.g. Grace Hopper" },
                     { id: "email", label: "YOUR EMAIL", type: "email", placeholder: "grace@example.com" },
                   ].map(({ id, label, type, placeholder }) => (
-                    <div key={id} className="flex flex-col gap-1">
+                    <div key={id} className="space-y-1.5">
                       <label
                         htmlFor={id}
-                        className="text-xs font-mono font-bold text-slate-900"
+                        className="text-xs font-mono font-bold text-slate-900 uppercase"
                       >
                         {label}
                       </label>
@@ -173,13 +173,13 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
                         onFocus={() => setFocused(id)}
                         onBlur={() => setFocused(null)}
                         placeholder={placeholder}
-                        className="w-full bg-white outline-none text-xs font-mono p-2.5 rounded border-2 border-slate-900 text-slate-900 placeholder:text-slate-400"
+                        className="w-full bg-white outline-none text-xs sm:text-sm font-mono p-3 rounded-lg border-2 border-slate-900 text-slate-900 placeholder:text-slate-400"
                         style={{
                           borderColor: errors[id] ? "#881337" : focused === id ? "#0D9488" : "#0F172A",
                         }}
                       />
                       {errors[id] && (
-                        <span className="text-[11px] font-mono font-bold text-rose-700">
+                        <span className="text-[11px] font-mono font-bold text-rose-700 block">
                           {errors[id]}
                         </span>
                       )}
@@ -188,10 +188,10 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
                 </div>
 
                 {/* Message Field */}
-                <div className="flex flex-col gap-1">
+                <div className="space-y-1.5">
                   <label
                     htmlFor="message"
-                    className="text-xs font-mono font-bold text-slate-900"
+                    className="text-xs font-mono font-bold text-slate-900 uppercase"
                   >
                     SIGNAL BRIEF / MESSAGE
                   </label>
@@ -203,13 +203,13 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
                     onFocus={() => setFocused("message")}
                     onBlur={() => setFocused(null)}
                     placeholder="Describe your project, timeline, or education mission..."
-                    className="w-full bg-white outline-none text-xs font-mono p-2.5 rounded border-2 border-slate-900 text-slate-900 placeholder:text-slate-400 resize-none"
+                    className="w-full bg-white outline-none text-xs sm:text-sm font-mono p-3 rounded-lg border-2 border-slate-900 text-slate-900 placeholder:text-slate-400 resize-none leading-relaxed"
                     style={{
                       borderColor: errors.message ? "#881337" : focused === "message" ? "#0D9488" : "#0F172A",
                     }}
                   />
                   {errors.message && (
-                    <span className="text-[11px] font-mono font-bold text-rose-700">
+                    <span className="text-[11px] font-mono font-bold text-rose-700 block">
                       {errors.message}
                     </span>
                   )}
@@ -219,11 +219,11 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
                 <button
                   type="submit"
                   disabled={status === "sending"}
-                  className="w-full py-3 rounded border-2 border-slate-900 bg-brand-maroon hover:bg-rose-900 text-white font-mono text-xs font-bold cyber-button cursor-pointer flex items-center justify-center gap-2"
+                  className="w-full py-3.5 rounded-lg border-2 border-slate-900 bg-brand-maroon hover:bg-rose-900 text-white font-mono text-xs font-bold cyber-button cursor-pointer flex items-center justify-center gap-2"
                 >
                   {status === "sending" ? (
                     <>
-                      <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      <span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
                       TRANSMITTING SIGNAL…
                     </>
                   ) : (
@@ -238,15 +238,15 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
           <div className="lg:col-span-2 flex flex-col gap-6">
             {/* Mission Info Box */}
             <div
-              className="rounded-lg border-2 border-slate-900 p-6 flex flex-col gap-4 shadow-[4px_4px_0px_#0F172A] bg-white"
+              className="rounded-xl border-2 border-slate-900 p-6 sm:p-7 flex flex-col gap-5 shadow-[4px_4px_0px_#0F172A] bg-white"
             >
               <div>
                 <div
-                  className="text-[10px] font-mono font-bold uppercase text-slate-500 mb-1"
+                  className="text-[10px] font-mono font-bold uppercase text-slate-500 mb-1 tracking-wider"
                 >
                   LOCATION & TIMEZONE
                 </div>
-                <div className="flex items-center gap-2 text-xs font-mono font-bold text-slate-900">
+                <div className="flex items-center gap-2 text-xs sm:text-sm font-mono font-bold text-slate-900">
                   <span className="w-2.5 h-2.5 rounded-full bg-emerald-600 animate-pulse" />
                   Jakarta, Indonesia (GMT+7)
                 </div>
@@ -254,26 +254,26 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
 
               <div>
                 <div
-                  className="text-[10px] font-mono font-bold uppercase text-slate-500 mb-1"
+                  className="text-[10px] font-mono font-bold uppercase text-slate-500 mb-1 tracking-wider"
                 >
                   RESPONSE PROTOCOL
                 </div>
-                <div className="text-xs font-mono font-bold text-brand-tosca">
+                <div className="text-xs sm:text-sm font-mono font-bold text-brand-tosca">
                   Usually within 24 hours
                 </div>
               </div>
 
               <div>
                 <div
-                  className="text-[10px] font-mono font-bold uppercase text-slate-500 mb-2"
+                  className="text-[10px] font-mono font-bold uppercase text-slate-500 mb-2 tracking-wider"
                 >
                   SPECIALIZATION TAGS
                 </div>
-                <div className="flex flex-wrap gap-1.5">
+                <div className="flex flex-wrap gap-2">
                   {["TPM Delivery", "AI Class ASEAN", "STEM Strategy", "Kotlin Clean Arch"].map((t) => (
                     <span
                       key={t}
-                      className="text-[10px] font-mono font-bold px-2 py-0.5 rounded border border-slate-900 bg-amber-200 text-slate-900"
+                      className="text-[11px] font-mono font-bold px-2.5 py-1 rounded border border-slate-900 bg-amber-200 text-slate-900"
                     >
                       {t}
                     </span>
@@ -284,10 +284,10 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
 
             {/* Social Links Box */}
             <div
-              className="rounded-lg border-2 border-slate-900 p-6 flex flex-col gap-3 shadow-[4px_4px_0px_#0F172A] bg-white"
+              className="rounded-xl border-2 border-slate-900 p-6 sm:p-7 flex flex-col gap-3.5 shadow-[4px_4px_0px_#0F172A] bg-white"
             >
               <div
-                className="text-[10px] font-mono font-bold uppercase text-slate-500 mb-1"
+                className="text-[10px] font-mono font-bold uppercase text-slate-500 mb-1 tracking-wider"
               >
                 DIRECT CHANNELS & PORTFOLIO
               </div>
@@ -297,16 +297,16 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
                   href={href}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center justify-between p-2 rounded border border-slate-900 bg-slate-50 hover:bg-amber-100 transition-colors"
+                  className="flex items-center justify-between p-3 rounded-lg border border-slate-900 bg-slate-50 hover:bg-amber-100 transition-colors"
                 >
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2.5">
                     <span className="text-brand-tosca font-bold">{icon}</span>
                     <span className="text-xs font-bold font-mono text-slate-900">
                       {label}
                     </span>
                   </div>
                   <span
-                    className="text-[11px] font-mono font-semibold text-slate-600"
+                    className="text-xs font-mono font-bold text-slate-700"
                   >
                     {handle}
                   </span>
@@ -318,7 +318,7 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
 
         {/* Cyber Footer Bar */}
         <div
-          className="mt-16 pt-6 border-t-2 border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono text-slate-700"
+          className="pt-8 border-t-2 border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-700"
         >
           <span>
             © 2026 Maria Astrid Coenradina · Powered by Solarized Cyber-Retro Engine
@@ -331,4 +331,5 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
     </section>
   );
 }
+
 

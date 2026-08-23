@@ -89,95 +89,93 @@ export default function Projects({ onUnlockAchievement }: ProjectsProps) {
   };
 
   return (
-    <section id="projects" className="py-24 px-4 sm:px-6 border-t-2 border-slate-900" style={{ backgroundColor: "#EEE8D5" }}>
-      <div className="max-w-6xl mx-auto">
+    <section id="projects" className="py-28 px-4 sm:px-6 lg:px-8 border-t-2 border-slate-900" style={{ backgroundColor: "#EEE8D5" }}>
+      <div className="max-w-6xl mx-auto space-y-12">
         {/* Header */}
-        <div className="mb-12">
-          <div
-            className="text-xs font-mono font-bold uppercase tracking-wider text-slate-700 mb-2"
-          >
-            // projects[].filter(category)
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+          <div className="space-y-3 max-w-2xl">
+            <div
+              className="text-xs font-mono font-bold uppercase tracking-wider text-slate-700"
+            >
+              // projects[].filter(category)
+            </div>
+            <h2
+              className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 leading-tight"
+              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            >
+              Flagship Work & <span className="text-brand-tosca underline decoration-amber-400 decoration-4">Impact Log</span>
+            </h2>
+            <p className="text-base text-slate-700 font-sans leading-relaxed pt-1">
+              Real solutions delivered across education technology, AI learning, non-profit STEM initiatives, and enterprise mobile software.
+            </p>
           </div>
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-            <div>
-              <h2
-                className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900"
-                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-              >
-                Flagship Work & <span className="text-brand-tosca underline decoration-amber-400 decoration-4">Impact Log</span>
-              </h2>
-              <p className="mt-2 text-sm text-slate-700 font-sans max-w-xl">
-                Real solutions delivered across education technology, AI learning, non-profit STEM initiatives, and enterprise mobile software.
-              </p>
-            </div>
 
-            {/* Filter chips */}
-            <div className="flex flex-wrap gap-2">
-              {CATEGORIES.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setActive(cat)}
-                  className={`px-3.5 py-1.5 rounded text-xs font-mono font-bold border-2 transition-all cyber-button cursor-pointer ${
-                    active === cat
-                      ? "bg-brand-tosca text-white border-slate-900"
-                      : "bg-white text-slate-900 border-slate-900 hover:bg-amber-100"
-                  }`}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
+          {/* Filter chips */}
+          <div className="flex flex-wrap gap-2.5">
+            {CATEGORIES.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActive(cat)}
+                className={`px-4 py-2 rounded text-xs font-mono font-bold border-2 transition-all cyber-button cursor-pointer ${
+                  active === cat
+                    ? "bg-brand-tosca text-white border-slate-900"
+                    : "bg-white text-slate-900 border-slate-900 hover:bg-amber-100"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
           </div>
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filtered.map((project) => (
             <div
               key={project.title}
               onClick={() => handleCardClick(project)}
-              className="group cursor-pointer rounded-lg border-2 border-slate-900 bg-white shadow-[4px_4px_0px_#0F172A] hover:translate-y-[-4px] hover:shadow-[6px_6px_0px_#0F172A] transition-all flex flex-col overflow-hidden"
+              className="group cursor-pointer rounded-xl border-2 border-slate-900 bg-white shadow-[4px_4px_0px_#0F172A] hover:translate-y-[-4px] hover:shadow-[6px_6px_0px_#0F172A] transition-all flex flex-col overflow-hidden"
             >
               {/* Thumbnail Container */}
-              <div className="relative h-44 overflow-hidden border-b-2 border-slate-900 bg-slate-100">
+              <div className="relative h-48 overflow-hidden border-b-2 border-slate-900 bg-slate-100">
                 <img
                   src={project.imgUrl}
                   alt={project.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <span
-                  className="absolute top-3 left-3 text-[10px] font-mono font-bold px-2 py-1 rounded border border-slate-900 text-white bg-slate-900/90 shadow-xs"
+                  className="absolute top-3 left-3 text-[10px] font-mono font-bold px-2.5 py-1 rounded border border-slate-900 text-white bg-slate-900/90 shadow-xs"
                 >
                   {project.category}
                 </span>
 
                 <span
-                  className="absolute bottom-3 right-3 text-[10px] font-mono font-bold px-2 py-0.5 rounded border border-slate-900 bg-amber-300 text-slate-900"
+                  className="absolute bottom-3 right-3 text-[10px] font-mono font-bold px-2.5 py-1 rounded border border-slate-900 bg-amber-300 text-slate-900"
                 >
                   {project.company}
                 </span>
               </div>
 
               {/* Card Body */}
-              <div className="p-5 flex flex-col justify-between flex-1 gap-4">
-                <div>
+              <div className="p-6 sm:p-7 flex flex-col justify-between flex-1 gap-5">
+                <div className="space-y-2">
                   <h3
-                    className="text-base font-bold text-slate-900 leading-snug group-hover:text-brand-tosca transition-colors"
+                    className="text-lg font-bold text-slate-900 leading-snug group-hover:text-brand-tosca transition-colors"
                     style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                   >
                     {project.title}
                   </h3>
-                  <p className="mt-2 text-xs text-slate-600 leading-relaxed font-sans">
+                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-sans pt-1">
                     {project.description}
                   </p>
                 </div>
 
-                <div className="space-y-3">
-                  <div className="flex flex-wrap gap-1.5">
+                <div className="space-y-4 pt-2">
+                  <div className="flex flex-wrap gap-2">
                     {project.tech.map((t) => (
                       <span
                         key={t}
-                        className="text-[10px] font-mono font-bold px-2 py-0.5 rounded border border-slate-900 bg-slate-100 text-slate-800"
+                        className="text-[11px] font-mono font-bold px-2.5 py-0.5 rounded border border-slate-900 bg-slate-100 text-slate-800"
                       >
                         {t}
                       </span>
@@ -199,34 +197,34 @@ export default function Projects({ onUnlockAchievement }: ProjectsProps) {
         {/* Project Inspector Modal */}
         {selectedProject && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs">
-            <div className="w-full max-w-xl rounded-lg border-2 border-slate-900 bg-white p-6 shadow-2xl space-y-4" style={{ backgroundColor: "#FDF6E3" }}>
-              <div className="flex items-center justify-between border-b-2 border-slate-900 pb-3">
+            <div className="w-full max-w-xl rounded-xl border-2 border-slate-900 bg-white p-7 sm:p-8 shadow-2xl space-y-5" style={{ backgroundColor: "#FDF6E3" }}>
+              <div className="flex items-center justify-between border-b-2 border-slate-900 pb-4">
                 <div>
-                  <span className="text-[10px] font-mono font-bold text-brand-maroon uppercase">
+                  <span className="text-xs font-mono font-bold text-brand-maroon uppercase">
                     // INSPECT PROJECT DETAILS
                   </span>
-                  <h3 className="text-xl font-bold text-slate-900" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                  <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mt-0.5" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                     {selectedProject.title}
                   </h3>
                 </div>
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="px-2.5 py-1 rounded border border-slate-900 bg-rose-100 text-rose-900 font-mono text-xs font-bold hover:bg-rose-200"
+                  className="px-3 py-1.5 rounded border border-slate-900 bg-rose-100 text-rose-900 font-mono text-xs font-bold hover:bg-rose-200 cursor-pointer"
                 >
                   CLOSE [X]
                 </button>
               </div>
 
-              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-sans">
+              <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-sans">
                 {selectedProject.description}
               </p>
 
-              <div className="p-3 rounded border border-slate-900 bg-[#EEE8D5] space-y-2">
-                <div className="flex items-center justify-between text-xs font-mono font-bold text-slate-800">
+              <div className="p-4 rounded-lg border border-slate-900 bg-[#EEE8D5] space-y-2.5">
+                <div className="flex items-center justify-between text-xs sm:text-sm font-mono font-bold text-slate-800">
                   <span>ORGANIZATION:</span>
                   <span className="text-brand-tosca">{selectedProject.company}</span>
                 </div>
-                <div className="flex items-center justify-between text-xs font-mono font-bold text-slate-800">
+                <div className="flex items-center justify-between text-xs sm:text-sm font-mono font-bold text-slate-800">
                   <span>METRIC SCORE:</span>
                   <span className="text-brand-maroon">{selectedProject.xp}</span>
                 </div>
@@ -235,7 +233,7 @@ export default function Projects({ onUnlockAchievement }: ProjectsProps) {
               <div className="flex justify-end pt-2">
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="px-4 py-2 bg-brand-tosca text-white font-mono text-xs font-bold rounded border-2 border-slate-900 cyber-button cursor-pointer"
+                  className="px-5 py-2.5 bg-brand-tosca text-white font-mono text-xs font-bold rounded border-2 border-slate-900 cyber-button cursor-pointer"
                 >
                   ACKNOWLEDGEMENT APPROVED ↵
                 </button>
@@ -247,4 +245,5 @@ export default function Projects({ onUnlockAchievement }: ProjectsProps) {
     </section>
   );
 }
+
 

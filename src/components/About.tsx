@@ -74,44 +74,44 @@ export default function About({ onUnlockAchievement }: AboutProps) {
   };
 
   return (
-    <section id="about" className="py-24 px-4 sm:px-6 relative border-t-2 border-slate-900" style={{ backgroundColor: "#FDF6E3" }}>
-      <div className="max-w-6xl mx-auto">
+    <section id="about" className="py-28 px-4 sm:px-6 lg:px-8 relative border-t-2 border-slate-900" style={{ backgroundColor: "#FDF6E3" }}>
+      <div className="max-w-6xl mx-auto space-y-12">
         {/* Section Header */}
-        <div className="mb-12">
+        <div className="space-y-3 max-w-3xl">
           <div
-            className="text-xs font-mono font-bold mb-2 uppercase tracking-wider text-brand-tosca"
+            className="text-xs font-mono font-bold uppercase tracking-wider text-brand-tosca"
           >
             // git log --graph --oneline --decorated
           </div>
           <h2
-            className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900"
+            className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 leading-tight"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
             From code to strategy: <span className="text-brand-maroon underline decoration-amber-400 decoration-4">The career trajectory</span>
           </h2>
-          <p className="mt-3 max-w-2xl text-base text-slate-700 font-sans leading-relaxed">
+          <p className="text-base sm:text-lg text-slate-700 font-sans leading-relaxed pt-1">
             I don't just write code or manage backlogs — I engineer learning ecosystems and deliver high-stakes tech products. Click any card to inspect the commit log.
           </p>
         </div>
 
         {/* Career Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {ROLES.map((role, i) => (
             <div
               key={role.title}
-              className="flip-card min-h-[300px] cursor-pointer"
+              className="flip-card min-h-[320px] cursor-pointer"
               onClick={() => handleCardClick(i)}
             >
               <div className={`flip-card-inner w-full h-full${flipped === i ? " is-flipped" : ""}`}>
                 {/* Front Side */}
                 <div
-                  className="flip-card-front w-full h-full rounded-lg p-6 flex flex-col justify-between border-2 border-slate-900 shadow-[4px_4px_0px_#0F172A]"
+                  className="flip-card-front w-full h-full rounded-xl p-7 flex flex-col justify-between border-2 border-slate-900 shadow-[4px_4px_0px_#0F172A]"
                   style={{ backgroundColor: "#FFFFFF" }}
                 >
                   <div>
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-3xl">{role.icon}</span>
-                      <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded border border-slate-900 bg-amber-300">
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-3xl sm:text-4xl">{role.icon}</span>
+                      <span className="text-[11px] font-mono font-bold px-2 py-1 rounded border border-slate-900 bg-amber-300">
                         INSPECT ↵
                       </span>
                     </div>
@@ -121,40 +121,40 @@ export default function About({ onUnlockAchievement }: AboutProps) {
                     >
                       {role.title}
                     </h3>
-                    <p className="text-xs font-mono font-semibold text-brand-tosca mt-1">
+                    <p className="text-xs font-mono font-bold text-brand-tosca mt-1.5">
                       {role.company}
                     </p>
-                    <p className="mt-3 text-xs text-slate-600 leading-relaxed">
+                    <p className="mt-3 text-xs sm:text-sm text-slate-600 leading-relaxed font-sans">
                       {role.tagline}
                     </p>
                   </div>
 
-                  <div className="mt-4 pt-3 border-t border-slate-200 flex items-center justify-between text-[11px] font-mono font-bold text-slate-500">
-                    <span>STATUS: MERGED</span>
+                  <div className="mt-6 pt-3 border-t border-slate-200 flex items-center justify-between text-[11px] font-mono font-bold text-slate-600">
+                    <span>MERGED</span>
                     <span className="text-brand-maroon">Flip card →</span>
                   </div>
                 </div>
 
                 {/* Back Side */}
                 <div
-                  className="flip-card-back rounded-lg p-6 flex flex-col justify-between border-2 border-slate-900 shadow-[4px_4px_0px_#0F172A]"
+                  className="flip-card-back rounded-xl p-7 flex flex-col justify-between border-2 border-slate-900 shadow-[4px_4px_0px_#0F172A]"
                   style={{ backgroundColor: role.bgColor }}
                 >
                   <div>
                     <span
-                      className="text-[10px] font-mono font-bold uppercase tracking-wider block mb-2 px-2 py-0.5 rounded border border-slate-900 w-max bg-white"
+                      className="text-[10px] font-mono font-bold uppercase tracking-wider block mb-3 px-2 py-1 rounded border border-slate-900 w-max bg-white"
                       style={{ color: role.color }}
                     >
                       Commit Log Detail
                     </span>
-                    <p className="text-xs text-slate-900 font-sans leading-relaxed font-medium">
+                    <p className="text-xs sm:text-sm text-slate-900 font-sans leading-relaxed font-medium">
                       "{role.anecdote}"
                     </p>
                   </div>
 
-                  <div className="mt-4 pt-3 border-t border-slate-900/20">
+                  <div className="mt-6 pt-3 border-t border-slate-900/20">
                     <p
-                      className="text-[11px] font-mono font-bold text-slate-900"
+                      className="text-xs font-mono font-bold text-slate-900"
                       style={{ color: role.color }}
                     >
                       ⚡ {role.achievement}
@@ -167,8 +167,8 @@ export default function About({ onUnlockAchievement }: AboutProps) {
         </div>
 
         {/* Achievements Unlocked section */}
-        <div className="p-6 rounded-lg border-2 border-slate-900 bg-white shadow-[4px_4px_0px_#0F172A]">
-          <div className="flex items-center justify-between mb-4">
+        <div className="p-7 sm:p-8 rounded-xl border-2 border-slate-900 bg-white shadow-[4px_4px_0px_#0F172A] space-y-4">
+          <div className="flex flex-wrap items-center justify-between gap-2">
             <p className="text-xs font-mono font-bold uppercase tracking-wider text-slate-900">
               🏆 ACCREDITATIONS & ACHIEVEMENTS UNLOCKED
             </p>
@@ -177,7 +177,7 @@ export default function About({ onUnlockAchievement }: AboutProps) {
             </span>
           </div>
 
-          <div className="flex flex-wrap gap-2.5">
+          <div className="flex flex-wrap gap-3 pt-1">
             {BADGES.map((badge) => (
               <AchievementBadge
                 key={badge.label}
@@ -192,4 +192,5 @@ export default function About({ onUnlockAchievement }: AboutProps) {
     </section>
   );
 }
+
 

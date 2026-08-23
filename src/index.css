@@ -28,20 +28,22 @@ html {
   scroll-behavior: smooth;
   background-color: #FDF6E3;
   color: #0F172A;
+  font-size: 16px;
 }
 
 body {
   font-family: 'Space Grotesk', sans-serif;
   background-color: #FDF6E3;
   color: #0F172A;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
 
 /* Solarized light custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 9px;
+  height: 9px;
 }
 ::-webkit-scrollbar-track {
   background: #EEE8D5;
@@ -54,26 +56,26 @@ body {
   background: #881337;
 }
 
-/* Solarized Light Grid pattern */
+/* Solarized Light Grid pattern (airy & subtle) */
 .solarized-grid {
   background-image: 
-    linear-gradient(to right, rgba(13, 148, 136, 0.08) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(13, 148, 136, 0.08) 1px, transparent 1px);
-  background-size: 32px 32px;
+    linear-gradient(to right, rgba(13, 148, 136, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(13, 148, 136, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
 /* Cyber Retro Scanlines effect (subtle) */
 .scanlines {
   background: linear-gradient(
     rgba(253, 246, 227, 0) 50%, 
-    rgba(15, 23, 42, 0.03) 50%
+    rgba(15, 23, 42, 0.02) 50%
   );
   background-size: 100% 4px;
 }
 
 /* Animations */
 @keyframes fade-up {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(16px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
@@ -88,7 +90,7 @@ body {
 
 @keyframes float-gentle {
   0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-6px); }
+  50%       { transform: translateY(-5px); }
 }
 
 @keyframes pulse-border {
@@ -97,7 +99,7 @@ body {
 }
 
 .animate-fade-up    { animation: fade-up 0.5s cubic-bezier(0.4,0,0.2,1) forwards; }
-.animate-float      { animation: float-gentle 3s ease-in-out infinite; }
+.animate-float      { animation: float-gentle 3.5s ease-in-out infinite; }
 .cursor-blink       { animation: cursor-blink 0.9s step-end infinite; }
 .xp-bar-fill        { animation: xp-fill 1.2s cubic-bezier(0.4,0,0.2,1) forwards; }
 .animate-pulse-border { animation: pulse-border 2.5s ease-in-out infinite; }
@@ -117,7 +119,7 @@ body {
 }
 .cyber-button:hover {
   transform: translate(-2px, -2px);
-  box-shadow: 5px 5px 0px #0F172A;
+  box-shadow: 4px 4px 0px #0F172A;
 }
 .cyber-button:active {
   transform: translate(1px, 1px);
@@ -145,4 +147,5 @@ body {
   position: absolute;
   inset: 0;
 }
+
 
