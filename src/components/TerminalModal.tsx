@@ -62,11 +62,13 @@ export default function TerminalModal({ isOpen, onClose, onUnlockAchievement }: 
 
       case "whoami":
         outputNode = (
-          <div className="text-xs sm:text-sm leading-relaxed space-y-1">
-            <p className="font-bold text-brand-maroon text-base">Maria Astrid Coenradina Saffachrissa</p>
-            <p className="text-slate-800 font-medium">Technical Program Manager & Tech Educator | ex-Software Engineer & Android Dev</p>
-            <p className="text-slate-600">// Magna Cum Laude CS Graduate from Bina Nusantara University (GPA 3.90)</p>
-            <p className="text-slate-600">// Bridging tech execution, scalable EdTech curricula, and empowerment in STEM.</p>
+          <div className="text-xs sm:text-sm leading-relaxed space-y-1.5">
+            <p className="font-bold text-brand-maroon text-base">Astrid</p>
+            <p className="text-slate-900 font-semibold">Tech educator, TPM & Software Engineer.</p>
+            <p className="text-slate-700">
+              I still code, just now I can also teach people to code (or solve your code if you're too busy).
+            </p>
+            <p className="text-slate-500">// Magna Cum Laude CS Graduate from Bina Nusantara University (GPA 3.90)</p>
           </div>
         );
         break;
@@ -75,8 +77,8 @@ export default function TerminalModal({ isOpen, onClose, onUnlockAchievement }: 
         outputNode = (
           <div className="text-xs sm:text-sm space-y-1.5 leading-relaxed">
             <p className="text-brand-yellow font-bold">[SKILL MATRIX]</p>
-            <p>⚡ <span className="font-bold text-slate-900">Agile & TPM:</span> Scrum Delivery, RAID Management, Stakeholder Alignment, QA, ISO Compliance</p>
-            <p>🎓 <span className="font-bold text-slate-900">EdTech & Curriculum:</span> Self-Paced AI Class (350k+ users), GG LMS Modernization, STEM Mentorship</p>
+            <p>⚡ <span className="font-bold text-slate-900">Agile & TPM:</span> Scrum Delivery (Payment & Recruitment), Stakeholder Alignment, QA, ISO Compliance</p>
+            <p>🎓 <span className="font-bold text-slate-900">EdTech & Curriculum:</span> 70+ AI Class Modules (Millions across ASEAN), 50+ STEM Curriculums, 200+ Mentors Trained</p>
             <p>💻 <span className="font-bold text-slate-900">Engineering:</span> Kotlin, Clean Architecture, Java, Python, Security Encryption & Biometrics</p>
           </div>
         );
@@ -85,10 +87,10 @@ export default function TerminalModal({ isOpen, onClose, onUnlockAchievement }: 
       case "projects":
         outputNode = (
           <div className="text-xs sm:text-sm space-y-2 leading-relaxed">
-            <p className="text-brand-tosca font-bold">🚀 FLAGSHIP PROJECTS:</p>
-            <p>1. <span className="font-bold text-slate-900">AI Class ASEAN (@ Binar Academy)</span> - 71 self-paced modules, 350,000+ beneficiaries across ASEAN.</p>
-            <p>2. <span className="font-bold text-slate-900">Sekolah.mu & Karier.mu (@ Semesta Integrasi)</span> - Led Scrum product delivery for school & HR solutions.</p>
-            <p>3. <span className="font-bold text-slate-900">Generation Girl STEM LMS (@ GenGirl)</span> - 30+ STEM projects, 100+ mentors, 57% mentor retention boost.</p>
+            <p className="text-brand-tosca font-bold">🚀 FLAGSHIP PROJECTS (kinda proud tbh):</p>
+            <p>1. <span className="font-bold text-slate-900">AI Class ASEAN (@ Binar Academy)</span> - 70+ modules created for students, parents, educators, and master trainers across ASEAN.</p>
+            <p>2. <span className="font-bold text-slate-900">Sekolah.mu & Karier.mu (@ Semesta Integrasi)</span> - Led Scrum product delivery for payment & recruitment modules.</p>
+            <p>3. <span className="font-bold text-slate-900">Generation Girl STEM LMS (@ GenGirl)</span> - 50+ STEM curriculums, 200+ mentors trained, +57% retention boost.</p>
           </div>
         );
         break;

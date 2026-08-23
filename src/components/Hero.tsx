@@ -11,21 +11,18 @@ const TABS = [
     id: "AstridProfile.ts",
     lang: "TypeScript",
     color: "#0D9488",
-    code: `// Maria Astrid Coenradina Saffachrissa
-// Technical Program Manager & Tech Educator
+    code: `// Astrid — Tech Educator & Technical Program Manager
 
-export const Astrid: DeveloperProfile = {
-  education: {
-    university: "Bina Nusantara University",
-    degree: "Bachelor of Computer Science (Honors)",
-    honors: "Magna Cum Laude (GPA 3.90 / 4.00)",
-  },
+export const Profile = {
+  name: "Astrid",
+  lastSeen: "just now",
+  education: "Bina Nusantara University (CS Honors, Magna Cum Laude, GPA 3.90)",
   specializations: [
-    "Project Management Specialization (Google)",
-    "Virtual Teacher Specialization (UC Irvine)"
+    "Google Project Management Specialization",
+    "UC Irvine Virtual Teacher Specialization"
   ],
-  status: "Available for High-Impact TPM & EdTech Missions",
   coffeeToCodeRatio: 0.98,
+  meetingsDeclinedThisWeek: 14,
 };`,
   },
   {
@@ -35,15 +32,10 @@ export const Astrid: DeveloperProfile = {
     code: `// Binar Academy — AI Class ASEAN Initiative
 // Lead Learning Experience Designer
 
-fun deployASEANCurriculum(): ImpactMetrics {
-  val modules = generateModules(count = 71)
-  val partners = trainImplementationPartners(count = 20)
-  
-  return ImpactMetrics(
-    beneficiariesReached = 350_000,
-    completionRateBoost = "High Engagement",
-    region = "ASEAN"
-  )
+fun deployASEANCurriculum() {
+  // leading curriculum team to create 70+ modules 
+  // for students, parents, educators and master trainers 
+  // for millions of learners across ASEAN
 }`,
   },
   {
@@ -55,14 +47,10 @@ fun deployASEANCurriculum(): ImpactMetrics {
 
 class GenGirlImpact:
     def __init__(self):
-        self.projects_managed = 30
-        self.mentor_pool = 100
-        self.learners_in_lms = 5000
-
-    def calculate_retention_boost(self):
-        mentor_retention += 0.57 # 57% increase!
-        satisfaction_score += 0.30 # 30% increase
-        return "STEM Ecosystem Flourishing ✨"`,
+        # improving mentor retention by 57%
+        # trained 200+ mentors
+        # managed 50+ curriculums across programs
+        pass`,
   },
   {
     id: "SemestaIntegrasi.go",
@@ -73,13 +61,9 @@ class GenGirlImpact:
 
 package semestaintegrasi
 
-import "fmt"
-
-func DeliverSchoolAndHRTechSolutions() {
-    platforms := []string{"Sekolah.mu", "Karier.mu", "Talentics"}
-    
-    fmt.Println("Coordinating Scrum delivery, ISO compliance & RAID management...")
-    // Seamless cross-functional execution!
+func DeliverPlatforms() {
+    // led scrum delivery for payment & recruitment module
+    // Sekolah.mu, Karier.mu & Talentics
 }`,
   },
 ];
@@ -94,7 +78,7 @@ export default function Hero({ onUnlockAchievement, onOpenTerminal }: HeroProps)
     setExecutionLog("Compiling solarized code module...");
     setTimeout(() => {
       setExecutionLog(
-        `[SUCCESS] 0 errors, 0 warnings. Result: "350k+ ASEAN beneficiaries & 30+ STEM projects active!"`
+        `[SUCCESS] 0 errors, 0 warnings. Result: "Millions of learners reached & 50+ STEM curriculums shipped!"`
       );
       setIsExecuting(false);
       onUnlockAchievement("Code Execution Master (+150 XP)", 150);
@@ -144,14 +128,18 @@ export default function Hero({ onUnlockAchievement, onOpenTerminal }: HeroProps)
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 leading-[1.12]"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
-            Witty execution.
+            I build products.
             <br />
-            <span className="text-brand-tosca">Tech leadership.</span>{" "}
-            <span className="text-brand-maroon">Impactful learning.</span>
+            <span className="text-brand-tosca">I teach humans.</span>{" "}
+            <span className="text-brand-maroon">I avoid unnecessary meetings.</span>
           </h1>
           <p className="max-w-2xl text-base sm:text-lg text-slate-700 font-sans leading-relaxed pt-1">
-            Hi, I'm <strong className="text-slate-900 underline decoration-amber-400 decoration-4">Maria Astrid Coenradina</strong>. 
-            Technical Program Manager & Tech Educator blending Kotlin/Clean Architecture engineering precision with scalable STEM & AI curriculum design.
+            Hi, I'm <strong className="text-slate-900 underline decoration-amber-400 decoration-4">Astrid</strong>. My job is to:
+            <br />
+            <span className="font-mono text-xs sm:text-sm text-slate-800 font-semibold inline-block pt-1">
+              1) explain things about tech to humans<br />
+              2) explain stuff humans want to computer
+            </span>
           </p>
         </div>
 
@@ -233,7 +221,7 @@ export default function Hero({ onUnlockAchievement, onOpenTerminal }: HeroProps)
               onClick={() => handleScrollTo("#projects")}
               className="px-6 py-3.5 rounded border-2 border-slate-900 bg-brand-maroon hover:bg-rose-900 text-white font-mono text-xs font-bold cyber-button cursor-pointer"
             >
-              VIEW PROJECTS & IMPACT ➔
+              VIEW WORK & IMPACT ➔
             </button>
             <button
               onClick={() => handleScrollTo("#contact")}
@@ -246,9 +234,9 @@ export default function Hero({ onUnlockAchievement, onOpenTerminal }: HeroProps)
           {/* Quick Stats Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5">
             {[
-              { label: "ASEAN Learners", val: "350K+" },
-              { label: "STEM Projects", val: "30+" },
-              { label: "Mentors Trained", val: "100+" },
+              { label: "ASEAN Learners", val: "Millions" },
+              { label: "STEM Curriculums", val: "50+" },
+              { label: "Mentors Trained", val: "200+" },
               { label: "Binus CS GPA", val: "3.90" },
             ].map((item, idx) => (
               <div
@@ -272,5 +260,6 @@ export default function Hero({ onUnlockAchievement, onOpenTerminal }: HeroProps)
     </section>
   );
 }
+
 
 

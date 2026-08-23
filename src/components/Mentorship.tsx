@@ -11,29 +11,29 @@ const TESTIMONIALS = [
     name: "Generation Girl Mentorship Lead",
     role: "STEM Program Partner",
     quote:
-      "Astrid revamped our entire mentor training system and modernized our LMS for 5,000+ learners. Mentor retention shot up by 57% within a single cohort. Her curriculum design is unmatched.",
+      "Astrid revamped our entire mentor training system for 200+ mentors and managed 50+ curriculums across programs. Mentor retention shot up by 57% within a single cohort.",
     rating: 5,
   },
   {
     name: "AI Class ASEAN Participant",
     role: "Regional Learner @ Binar Academy",
     quote:
-      "The self-paced AI modules created by Astrid made complex machine learning concepts accessible and exciting. Going from zero AI knowledge to building my first model in 4 weeks was unbelievable.",
+      "The 70+ self-paced modules created for students, parents, educators, and master trainers made complex AI concepts accessible and exciting across ASEAN.",
     rating: 5,
   },
   {
     name: "EdTech Engineering Lead",
     role: "Collaborator @ Semesta Integrasi Digital",
     quote:
-      "Working with Astrid on Sekolah.mu and Karier.mu product delivery made Scrum execution smooth. She manages RAID logs and cross-functional teams with crisp clarity and high energy.",
+      "Working with Astrid on payment & recruitment module delivery made Scrum execution smooth. She manages cross-functional teams with crisp clarity and high energy.",
     rating: 5,
   },
 ];
 
 const STATS = [
-  { value: "350K+", label: "ASEAN AI Learners" },
-  { value: "30+", label: "STEM Projects" },
-  { value: "100+", label: "Mentors Trained" },
+  { value: "Millions", label: "ASEAN Learners" },
+  { value: "50+", label: "STEM Curriculums" },
+  { value: "200+", label: "Mentors Trained" },
   { value: "+57%", label: "Mentor Retention" },
 ];
 
@@ -75,10 +75,10 @@ export default function Mentorship({ onUnlockAchievement }: MentorshipProps) {
             className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 leading-tight"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
-            Empowering teams & <span className="text-brand-maroon underline decoration-amber-400 decoration-4">scaling education</span>
+            Teaching without <span className="text-brand-maroon underline decoration-amber-400 decoration-4">the boring lectures.</span>
           </h2>
-          <p className="text-base sm:text-lg text-slate-700 font-sans leading-relaxed pt-1">
-            Whether designing self-paced AI courses for 350k+ ASEAN beneficiaries or mentoring STEM leaders, I build engaging learning experiences that produce tangible growth.
+          <p className="text-base sm:text-lg text-slate-700 font-sans leading-relaxed pt-1 font-medium italic">
+            a.k.a me trying to make people do real project since the first day of learning
           </p>
         </div>
 
@@ -216,5 +216,6 @@ export default function Mentorship({ onUnlockAchievement }: MentorshipProps) {
     </section>
   );
 }
+
 
 

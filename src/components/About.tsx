@@ -10,43 +10,43 @@ const ROLES = [
     icon: "🧭",
     title: "Technical Program Manager",
     company: "PT Semesta Integrasi Digital (2025–Present)",
-    tagline: "Steering Scrum product delivery for Sekolah.mu, Karier.mu & Talentics.",
+    tagline: "Led Scrum product delivery for payment & recruitment modules.",
     color: "#0F172A",
     bgColor: "#EEE8D5",
     borderColor: "#0F172A",
     anecdote:
-      "Coordinated cross-functional Scrum execution across school solution & HR Tech teams. Balanced backlog prioritization with RAID management, ISO compliance, and security risk mitigation.",
-    achievement: "Sekolah.mu & Karier.mu · Agile Delivery · ISO Compliance",
+      "Coordinated Scrum execution for payment & recruitment modules across Sekolah.mu, Karier.mu & Talentics platforms while keeping stakeholders aligned.",
+    achievement: "Sekolah.mu & Karier.mu · Payment & Recruitment Scrum",
   },
   {
     icon: "🌟",
     title: "Education PM & Advisor",
     company: "Generation Girl (2022–Present)",
-    tagline: "Empowering young women in STEM & scaling learning operations.",
+    tagline: "Managed 50+ STEM curriculums & trained 200+ mentors.",
     color: "#881337",
     bgColor: "#FFE4E6",
     borderColor: "#881337",
     anecdote:
-      "Managed 30+ STEM education projects, trained 100+ mentors, improved mentor retention by 57%, and modernized the LMS platform for 5,000+ active learners.",
-    achievement: "30+ STEM Projects · 100+ Mentors · +57% Retention Boost",
+      "Managed 50+ STEM curriculums across programs, trained 200+ mentors, and improved mentor retention by 57% through empathetic program leadership.",
+    achievement: "50+ STEM Curriculums · 200+ Mentors · +57% Retention",
   },
   {
     icon: "💡",
     title: "Lead LX Designer",
     company: "Binar Academy (Feb–Jun 2023)",
-    tagline: "Designing self-paced AI curriculum for 350,000+ ASEAN learners.",
+    tagline: "Leading curriculum team to create 70+ modules for millions across ASEAN.",
     color: "#0D9488",
     bgColor: "#CCFBF1",
     borderColor: "#0D9488",
     anecdote:
-      "Created 71 self-paced AI learning modules for AI Class ASEAN. Coordinated cross-functional video production & trained 20+ regional implementation partners.",
-    achievement: "350,000+ Beneficiaries · 71 AI Modules · ASEAN Reach",
+      "Led curriculum team to deliver 70+ modules for students, parents, educators, and master trainers for millions of learners across ASEAN.",
+    achievement: "Millions of Learners · 70+ Modules · ASEAN Reach",
   },
   {
     icon: "📱",
     title: "Android Dev & Software Eng",
     company: "Female Daily & BCA (2020–2023)",
-    tagline: "Kotlin Clean Architecture & banking data security encryption.",
+    tagline: "Kotlin Clean Architecture & banking data security.",
     color: "#B58900",
     bgColor: "#FEF3C7",
     borderColor: "#B58900",
@@ -58,10 +58,10 @@ const ROLES = [
 
 const BADGES = [
   { icon: "🎓", label: "Magna Cum Laude (GPA 3.90)" },
-  { icon: "🏆", label: "350,000+ ASEAN AI Students" },
+  { icon: "🏆", label: "Millions of ASEAN Learners" },
   { icon: "📜", label: "Google PM Specialization" },
-  { icon: "👩‍💻", label: "UC Irvine Virtual Teacher" },
-  { icon: "🚀", label: "30+ STEM Projects" },
+  { icon: "👩‍💻", label: "200+ Mentors Trained" },
+  { icon: "🚀", label: "50+ STEM Curriculums" },
   { icon: "🔐", label: "BCA Biometric Security" },
 ];
 
@@ -81,16 +81,16 @@ export default function About({ onUnlockAchievement }: AboutProps) {
           <div
             className="text-xs font-mono font-bold uppercase tracking-wider text-brand-tosca"
           >
-            // git log --graph --oneline --decorated
+            // git log --graph --oneline
           </div>
           <h2
             className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 leading-tight"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
-            From code to strategy: <span className="text-brand-maroon underline decoration-amber-400 decoration-4">The career trajectory</span>
+            From Android code to <span className="text-brand-maroon underline decoration-amber-400 decoration-4">program strategy</span>
           </h2>
-          <p className="text-base sm:text-lg text-slate-700 font-sans leading-relaxed pt-1">
-            I don't just write code or manage backlogs — I engineer learning ecosystems and deliver high-stakes tech products. Click any card to inspect the commit log.
+          <p className="text-base sm:text-lg text-slate-700 font-sans leading-relaxed pt-1 font-medium">
+            Shifted from moving between Activity and Fragment to making STEM curriculums more accessible.
           </p>
         </div>
 
@@ -192,5 +192,6 @@ export default function About({ onUnlockAchievement }: AboutProps) {
     </section>
   );
 }
+
 
 

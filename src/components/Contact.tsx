@@ -321,15 +321,16 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
           className="pt-8 border-t-2 border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-700"
         >
           <span>
-            © 2026 Maria Astrid Coenradina · Powered by Solarized Cyber-Retro Engine
+            © 2026 Astrid · Powered by Solarized Cyber-Retro Engine
           </span>
           <span className="font-bold text-brand-maroon">
-            Lv.24 TPM & Educator · 14,850 XP TOTAL
+            Lv.24 TPM, Tech Educator & Software Engineer
           </span>
         </div>
       </div>
     </section>
   );
 }
+
 
 

@@ -12,11 +12,11 @@ const PROJECTS = [
     title: "AI Class ASEAN",
     category: "STEM & AI" as Category,
     company: "Binar Academy",
-    description: "Self-paced AI curriculum designed for learners across Southeast Asia. Delivered 71 learning modules from instructional design to video production.",
-    tech: ["AI Curriculum", "71 Modules", "20+ Regional Partners", "ASEAN Reach"],
+    description: "70+ modules created for students, parents, educators, and master trainers across ASEAN.",
+    tech: ["70+ AI Modules", "20+ Regional Partners", "ASEAN Reach"],
     xpLabel: "Beneficiaries",
     xpValue: 98,
-    xp: "350,000+ Users",
+    xp: "Millions of Learners",
     color: "#0D9488",
     bg: "#CCFBF1",
     imgUrl: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=350&fit=crop&auto=format",
@@ -25,11 +25,11 @@ const PROJECTS = [
     title: "Sekolah.mu & Karier.mu Platform Delivery",
     category: "TPM & EdTech" as Category,
     company: "PT Semesta Integrasi Digital",
-    description: "Led Scrum product delivery for school & HR Tech platforms (Sekolah.mu, Karier.mu, Talentics). Coordinated backlog prioritization, RAID, ISO compliance & QA.",
-    tech: ["Scrum Execution", "RAID Management", "ISO Compliance", "Quality Assurance"],
-    xpLabel: "Product Delivery Score",
+    description: "Led Scrum product delivery for payment & recruitment modules across school & HR Tech platforms.",
+    tech: ["Payment Modules", "Recruitment Modules", "Scrum Delivery", "ISO Compliance"],
+    xpLabel: "Scrum Delivery Metric",
     xpValue: 95,
-    xp: "95% On-Time Delivery",
+    xp: "Payment & Recruitment",
     color: "#0F172A",
     bg: "#EEE8D5",
     imgUrl: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=600&h=350&fit=crop&auto=format",
@@ -38,8 +38,8 @@ const PROJECTS = [
     title: "Generation Girl STEM LMS & Mentor System",
     category: "STEM & AI" as Category,
     company: "Generation Girl",
-    description: "Shaped education strategy for 30+ STEM projects. Modernized the LMS platform for 5,000+ learners, created mentor systems & built impact tracking tools.",
-    tech: ["LMS Modernization", "30+ STEM Projects", "100+ Mentors", "Data Tools"],
+    description: "Managed 50+ STEM curriculums across programs, trained 200+ mentors, and improved mentor retention by 57%.",
+    tech: ["50+ Curriculums", "200+ Mentors", "LMS Architecture", "Data Tools"],
     xpLabel: "Mentor Retention Boost",
     xpValue: 92,
     xp: "+57% Retention",
@@ -51,7 +51,7 @@ const PROJECTS = [
     title: "Female Daily Community Android App",
     category: "Software & Mobile" as Category,
     company: "Female Daily",
-    description: "Collaborated with cross-functional teams to develop key Android features using Kotlin and Clean Architecture for Indonesia's beauty community platform.",
+    description: "Developed key Android features using Kotlin and Clean Architecture for Indonesia's beauty community platform.",
     tech: ["Kotlin", "Clean Architecture", "Android SDK", "REST APIs"],
     xpLabel: "App Stability",
     xpValue: 90,
@@ -64,7 +64,7 @@ const PROJECTS = [
     title: "BCA Data Encryption & Biometric Security",
     category: "Software & Mobile" as Category,
     company: "Bank Central Asia (BCA)",
-    description: "Engineered critical data encryption layers and biometric verification modules to enhance financial data security for central banking operations.",
+    description: "Engineered critical data encryption layers and biometric verification modules for central banking operations.",
     xpLabel: "Security Rating",
     tech: ["Data Encryption", "Biometric Verification", "Banking Security", "Clean Code"],
     xpValue: 96,
@@ -97,16 +97,16 @@ export default function Projects({ onUnlockAchievement }: ProjectsProps) {
             <div
               className="text-xs font-mono font-bold uppercase tracking-wider text-slate-700"
             >
-              // projects[].filter(category)
+              // projects[].filter(real_impact)
             </div>
             <h2
               className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 leading-tight"
               style={{ fontFamily: "'Space Grotesk', sans-serif" }}
             >
-              Flagship Work & <span className="text-brand-tosca underline decoration-amber-400 decoration-4">Impact Log</span>
+              Stuff I've <span className="text-brand-tosca underline decoration-amber-400 decoration-4">actually shipped.</span>
             </h2>
-            <p className="text-base text-slate-700 font-sans leading-relaxed pt-1">
-              Real solutions delivered across education technology, AI learning, non-profit STEM initiatives, and enterprise mobile software.
+            <p className="text-base text-slate-700 font-sans leading-relaxed pt-1 font-semibold italic">
+              (kinda proud tbh)
             </p>
           </div>
 
@@ -245,5 +245,6 @@ export default function Projects({ onUnlockAchievement }: ProjectsProps) {
     </section>
   );
 }
+
 
 
