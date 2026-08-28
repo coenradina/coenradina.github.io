@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 
 const NAV_LINKS = [
   { label: "About", href: "#about" },
-  { label: "Projects & Impact", href: "#projects" },
+  { label: "Selected Work", href: "#projects" },
   { label: "Mentorship", href: "#mentorship" },
-  { label: "Contact Mission", href: "#contact" },
+  { label: "Say Hello", href: "#contact" },
 ];
 
 interface NavbarProps {
@@ -56,7 +56,7 @@ export default function Navbar({ activeSection, onOpenTerminal }: NavbarProps) {
             <span
               className="text-[10px] font-mono font-bold text-brand-maroon uppercase tracking-wider block"
             >
-              Lv.24 TPM & Educator
+              Software Engineer & Tech Mentor
             </span>
           </div>
         </button>
@@ -98,7 +98,7 @@ export default function Navbar({ activeSection, onOpenTerminal }: NavbarProps) {
             onClick={() => handleNav("#contact")}
             className="px-4 py-1.5 rounded border-2 border-slate-900 font-mono text-xs font-bold text-white bg-brand-maroon hover:bg-rose-900 transition-all cyber-button cursor-pointer"
           >
-            SUDO HIRE ↵
+            WORK WITH ME ↵
           </button>
         </div>
 
@@ -142,11 +142,10 @@ export default function Navbar({ activeSection, onOpenTerminal }: NavbarProps) {
             onClick={() => handleNav("#contact")}
             className="mt-2 text-xs font-mono font-bold px-4 py-2.5 rounded border-2 border-slate-900 text-center text-white bg-brand-maroon"
           >
-            SUDO HIRE ↵
+            WORK WITH ME ↵
           </button>
         </div>
       )}
     </nav>
   );
 }
-

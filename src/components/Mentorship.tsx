@@ -11,21 +11,21 @@ const TESTIMONIALS = [
     name: "Generation Girl Mentorship Lead",
     role: "STEM Program Partner",
     quote:
-      "Astrid revamped our entire mentor training system for 200+ mentors and managed 50+ curriculums across programs. Mentor retention shot up by 57% within a single cohort.",
+      "Astrid made the mentor training clearer and much easier to run. People arrived better prepared, and more of them chose to stay.",
     rating: 5,
   },
   {
     name: "AI Class ASEAN Participant",
     role: "Regional Learner @ Binar Academy",
     quote:
-      "The 70+ self-paced modules created for students, parents, educators, and master trainers made complex AI concepts accessible and exciting across ASEAN.",
+      "The AI lessons did not assume everyone started in the same place. Students, parents, and teachers each got explanations that made sense for them.",
     rating: 5,
   },
   {
     name: "EdTech Engineering Lead",
     role: "Collaborator @ Semesta Integrasi Digital",
     quote:
-      "Working with Astrid on payment & recruitment module delivery made Scrum execution smooth. She manages cross-functional teams with crisp clarity and high energy.",
+      "Astrid asks the slightly annoying but useful questions early. It saved us trouble later when we were delivering the payment and recruitment modules.",
     rating: 5,
   },
 ];
@@ -38,10 +38,10 @@ const STATS = [
 ];
 
 const SKILLS = [
-  { label: "Agile Scrum & Product Delivery", value: 98, xp: "4,900 XP" },
+  { label: "Full-stack & Mobile Engineering", value: 98, xp: "4,900 XP" },
   { label: "STEM & AI Curriculum Architecture", value: 96, xp: "4,800 XP" },
   { label: "Mentorship & Educator Leadership", value: 95, xp: "4,750 XP" },
-  { label: "Kotlin Clean Architecture & Engineering", value: 90, xp: "4,500 XP" },
+  { label: "Program & Product Delivery", value: 90, xp: "4,500 XP" },
 ];
 
 export default function Mentorship({ onUnlockAchievement }: MentorshipProps) {
@@ -49,11 +49,11 @@ export default function Mentorship({ onUnlockAchievement }: MentorshipProps) {
 
   const prev = () => {
     setCurrent((c) => (c - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
-    onUnlockAchievement("Testimonial Swiper (+50 XP)", 50);
+    onUnlockAchievement("Read another testimonial (+50 XP)", 50);
   };
   const next = () => {
     setCurrent((c) => (c + 1) % TESTIMONIALS.length);
-    onUnlockAchievement("Testimonial Swiper (+50 XP)", 50);
+    onUnlockAchievement("Read another testimonial (+50 XP)", 50);
   };
 
   const t = TESTIMONIALS[current];
@@ -69,16 +69,16 @@ export default function Mentorship({ onUnlockAchievement }: MentorshipProps) {
             >
               // side_quest: educator_hub()
             </span>
-            <AchievementBadge icon="🧭" label="Tech Educator & TPM Mode: ACTIVE" />
+            <AchievementBadge icon="🧭" label="Tech Mentor Mode: ACTIVE" />
           </div>
           <h2
             className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 leading-tight"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
-            Teaching without <span className="text-brand-maroon underline decoration-amber-400 decoration-4">the boring lectures.</span>
+            I teach by making people <span className="text-brand-maroon underline decoration-amber-400 decoration-4">make things.</span>
           </h2>
           <p className="text-base sm:text-lg text-slate-700 font-sans leading-relaxed pt-1 font-medium italic">
-            a.k.a me trying to make people do real project since the first day of learning
+            Lectures have their place. Day one is rarely it.
           </p>
         </div>
 
@@ -135,10 +135,10 @@ export default function Mentorship({ onUnlockAchievement }: MentorshipProps) {
                 <span className="text-3xl">🎓</span>
                 <div>
                   <p className="text-xs sm:text-sm font-bold font-mono text-slate-900">
-                    WANT A TECH WORKSHOP OR CURRICULUM COLLAB?
+                    PLANNING A WORKSHOP OR CURRICULUM?
                   </p>
                   <p className="text-xs text-slate-800 font-sans mt-0.5">
-                    Open for STEM talks, EdTech strategy & Agile TPM consulting.
+                    I work on STEM learning, EdTech strategy, and product delivery.
                   </p>
                 </div>
               </div>
@@ -146,7 +146,7 @@ export default function Mentorship({ onUnlockAchievement }: MentorshipProps) {
                 onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
                 className="px-4 py-2 rounded border-2 border-slate-900 bg-brand-maroon text-white font-mono text-xs font-bold cyber-button cursor-pointer min-w-max self-start sm:self-center"
               >
-                SEND SIGNAL ↵
+                TELL ME ABOUT IT ↵
               </button>
             </div>
           </div>
@@ -160,7 +160,7 @@ export default function Mentorship({ onUnlockAchievement }: MentorshipProps) {
               <div className="space-y-6">
                 <div className="flex items-center justify-between border-b-2 border-slate-900 pb-4">
                   <span className="text-xs font-mono font-bold text-brand-maroon uppercase">
-                    // TESTIMONIAL FEEDBACK LOG #{current + 1}
+                    // NOTES FROM PEOPLE I HAVE WORKED WITH #{current + 1}
                   </span>
                   <div className="flex gap-1">
                     {Array.from({ length: t.rating }).map((_, i) => (
@@ -216,6 +216,3 @@ export default function Mentorship({ onUnlockAchievement }: MentorshipProps) {
     </section>
   );
 }
-
-
-

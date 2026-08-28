@@ -37,7 +37,7 @@ export default function App() {
 
   const handleUnlockAchievement = (title: string, xp: number) => {
     setUserXP((prev) => prev + xp);
-    setToastMessage(`🎉 UNLOCKED: ${title}`);
+    setToastMessage(`+ ${title}`);
     setTimeout(() => {
       setToastMessage(null);
     }, 3500);
@@ -82,4 +82,3 @@ export default function App() {
     </div>
   );
 }
-

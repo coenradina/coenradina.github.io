@@ -11,25 +11,28 @@ const TABS = [
     id: "AstridProfile.ts",
     lang: "TypeScript",
     color: "#0D9488",
-    code: `// Astrid — Tech Educator & Technical Program Manager
+    code: `// Astrid: Software Engineer & Tech Mentor
 
 export const Profile = {
   name: "Astrid",
-  lastSeen: "just now",
+  currentWork: [
+    "full-stack software engineering",
+    "Head of Education at Generation Girl"
+  ],
   education: "Bina Nusantara University (CS Honors, Magna Cum Laude, GPA 3.90)",
   specializations: [
     "Google Project Management Specialization",
     "UC Irvine Virtual Teacher Specialization"
   ],
-  coffeeToCodeRatio: 0.98,
-  meetingsDeclinedThisWeek: 14,
+  stillCodes: true,
+  meetingsThatCouldHaveBeenDocs: 14,
 };`,
   },
   {
     id: "AI_Class_ASEAN.kt",
     lang: "Kotlin",
     color: "#881337",
-    code: `// Binar Academy — AI Class ASEAN Initiative
+    code: `// Binar Academy: AI Class ASEAN Initiative
 // Lead Learning Experience Designer
 
 fun deployASEANCurriculum() {
@@ -43,7 +46,7 @@ fun deployASEANCurriculum() {
     lang: "Python",
     color: "#B58900",
     code: `# Generation Girl STEM Empowerment
-# Education Project Manager & Curriculum Advisor
+# Head of Education
 
 class GenGirlImpact:
     def __init__(self):
@@ -75,13 +78,13 @@ export default function Hero({ onUnlockAchievement, onOpenTerminal }: HeroProps)
 
   const handleRunCode = () => {
     setIsExecuting(true);
-    setExecutionLog("Compiling solarized code module...");
+    setExecutionLog("Running it. This button is mostly decorative, by the way.");
     setTimeout(() => {
       setExecutionLog(
-        `[SUCCESS] 0 errors, 0 warnings. Result: "Millions of learners reached & 50+ STEM curriculums shipped!"`
+        `[OK] It works. A suspiciously rare and pleasant result.`
       );
       setIsExecuting(false);
-      onUnlockAchievement("Code Execution Master (+150 XP)", 150);
+      onUnlockAchievement("Pressed the tempting button (+150 XP)", 150);
     }, 900);
   };
 
@@ -112,12 +115,12 @@ export default function Hero({ onUnlockAchievement, onOpenTerminal }: HeroProps)
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded border-2 border-slate-900 bg-amber-300 font-mono text-xs font-bold text-slate-900 shadow-[3px_3px_0px_#0F172A]">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-600 animate-pulse" />
-            STATUS: ACTIVE & BUILDING IN EDTECH / TPM
+            CURRENTLY: FULL-STACK + GENERATION GIRL
           </div>
 
           <AchievementBadge
             icon="⚡"
-            label="Interactive CLI Terminal [~]"
+            label="I hid a terminal in here [~]"
             onClick={onOpenTerminal}
           />
         </div>
@@ -128,17 +131,15 @@ export default function Hero({ onUnlockAchievement, onOpenTerminal }: HeroProps)
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 leading-[1.12]"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
-            I build products.
-            <br />
-            <span className="text-brand-tosca">I teach humans.</span>{" "}
-            <span className="text-brand-maroon">I avoid unnecessary meetings.</span>
+            I write software and teach people <span className="text-brand-tosca">how to build it.</span>{" "}
+            <span className="text-brand-maroon">Usually in the same week.</span>
           </h1>
           <p className="max-w-2xl text-base sm:text-lg text-slate-700 font-sans leading-relaxed pt-1">
-            Hi, I'm <strong className="text-slate-900 underline decoration-amber-400 decoration-4">Astrid</strong>. My job is to:
+            I'm <strong className="text-slate-900 underline decoration-amber-400 decoration-4">Astrid</strong>. I still code full stack while leading education at Generation Girl. Engineering is my core; education is the work I keep making room for.
             <br />
             <span className="font-mono text-xs sm:text-sm text-slate-800 font-semibold inline-block pt-1">
-              1) explain things about tech to humans<br />
-              2) explain stuff humans want to computer
+              current tabs: code editor, curriculum plan, probably one spreadsheet<br />
+              recurring question: does this meeting need to exist?
             </span>
           </p>
         </div>
@@ -221,22 +222,22 @@ export default function Hero({ onUnlockAchievement, onOpenTerminal }: HeroProps)
               onClick={() => handleScrollTo("#projects")}
               className="px-6 py-3.5 rounded border-2 border-slate-900 bg-brand-maroon hover:bg-rose-900 text-white font-mono text-xs font-bold cyber-button cursor-pointer"
             >
-              VIEW WORK & IMPACT ➔
+              SEE THE WORK ➔
             </button>
             <button
               onClick={() => handleScrollTo("#contact")}
               className="px-6 py-3.5 rounded border-2 border-slate-900 bg-white hover:bg-amber-100 text-slate-900 font-mono text-xs font-bold cyber-button cursor-pointer"
             >
-              INITIATE CONTACT ✉
+              WRITE TO ME ✉
             </button>
           </div>
 
           {/* Quick Stats Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5">
             {[
-              { label: "ASEAN Learners", val: "Millions" },
-              { label: "STEM Curriculums", val: "50+" },
-              { label: "Mentors Trained", val: "200+" },
+              { label: "Engineering", val: "Full-stack" },
+              { label: "Education Home", val: "GenGirl" },
+              { label: "Based In", val: "Jakarta" },
               { label: "Binus CS GPA", val: "3.90" },
             ].map((item, idx) => (
               <div
@@ -260,6 +261,3 @@ export default function Hero({ onUnlockAchievement, onOpenTerminal }: HeroProps)
     </section>
   );
 }
-
-
-

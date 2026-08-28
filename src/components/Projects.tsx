@@ -1,7 +1,7 @@
 import { useState } from "react";
 import XPBar from "./ui/XPBar";
 
-type Category = "All" | "TPM & EdTech" | "STEM & AI" | "Software & Mobile";
+type Category = "All" | "Product & EdTech" | "STEM & AI" | "Software & Mobile";
 
 interface ProjectsProps {
   onUnlockAchievement: (title: string, xp: number) => void;
@@ -12,7 +12,7 @@ const PROJECTS = [
     title: "AI Class ASEAN",
     category: "STEM & AI" as Category,
     company: "Binar Academy",
-    description: "70+ modules created for students, parents, educators, and master trainers across ASEAN.",
+    description: "Led the curriculum team for 70+ AI modules used by students, parents, educators, and master trainers across ASEAN. One explanation did not fit all. We tried several.",
     tech: ["70+ AI Modules", "20+ Regional Partners", "ASEAN Reach"],
     xpLabel: "Beneficiaries",
     xpValue: 98,
@@ -23,9 +23,9 @@ const PROJECTS = [
   },
   {
     title: "Sekolah.mu & Karier.mu Platform Delivery",
-    category: "TPM & EdTech" as Category,
+    category: "Product & EdTech" as Category,
     company: "PT Semesta Integrasi Digital",
-    description: "Led Scrum product delivery for payment & recruitment modules across school & HR Tech platforms.",
+    description: "Led Scrum delivery for payment and recruitment modules across Sekolah.mu, Karier.mu, and Talentics. Much of the work happened between the tickets.",
     tech: ["Payment Modules", "Recruitment Modules", "Scrum Delivery", "ISO Compliance"],
     xpLabel: "Scrum Delivery Metric",
     xpValue: 95,
@@ -38,7 +38,7 @@ const PROJECTS = [
     title: "Generation Girl STEM LMS & Mentor System",
     category: "STEM & AI" as Category,
     company: "Generation Girl",
-    description: "Managed 50+ STEM curriculums across programs, trained 200+ mentors, and improved mentor retention by 57%.",
+    description: "Managed 50+ STEM curricula and trained 200+ mentors. Mentor retention improved by 57% after we changed how mentors were prepared and supported.",
     tech: ["50+ Curriculums", "200+ Mentors", "LMS Architecture", "Data Tools"],
     xpLabel: "Mentor Retention Boost",
     xpValue: 92,
@@ -51,7 +51,7 @@ const PROJECTS = [
     title: "Female Daily Community Android App",
     category: "Software & Mobile" as Category,
     company: "Female Daily",
-    description: "Developed key Android features using Kotlin and Clean Architecture for Indonesia's beauty community platform.",
+    description: "Built Android features in Kotlin for Female Daily's community app. Clean Architecture was useful. So was remembering that real people tap buttons in strange orders.",
     tech: ["Kotlin", "Clean Architecture", "Android SDK", "REST APIs"],
     xpLabel: "App Stability",
     xpValue: 90,
@@ -64,7 +64,7 @@ const PROJECTS = [
     title: "BCA Data Encryption & Biometric Security",
     category: "Software & Mobile" as Category,
     company: "Bank Central Asia (BCA)",
-    description: "Engineered critical data encryption layers and biometric verification modules for central banking operations.",
+    description: "Worked on data encryption and biometric verification at BCA. Banking software has a useful way of discouraging improvisation.",
     xpLabel: "Security Rating",
     tech: ["Data Encryption", "Biometric Verification", "Banking Security", "Clean Code"],
     xpValue: 96,
@@ -75,7 +75,7 @@ const PROJECTS = [
   },
 ];
 
-const CATEGORIES: Category[] = ["All", "TPM & EdTech", "STEM & AI", "Software & Mobile"];
+const CATEGORIES: Category[] = ["All", "Product & EdTech", "STEM & AI", "Software & Mobile"];
 
 export default function Projects({ onUnlockAchievement }: ProjectsProps) {
   const [active, setActive] = useState<Category>("All");
@@ -85,7 +85,7 @@ export default function Projects({ onUnlockAchievement }: ProjectsProps) {
 
   const handleCardClick = (project: typeof PROJECTS[0]) => {
     setSelectedProject(project);
-    onUnlockAchievement(`Inspected ${project.title} (+100 XP)`, 100);
+    onUnlockAchievement(`Looked closer at ${project.title} (+100 XP)`, 100);
   };
 
   return (
@@ -103,10 +103,10 @@ export default function Projects({ onUnlockAchievement }: ProjectsProps) {
               className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 leading-tight"
               style={{ fontFamily: "'Space Grotesk', sans-serif" }}
             >
-              Stuff I've <span className="text-brand-tosca underline decoration-amber-400 decoration-4">actually shipped.</span>
+              A few things <span className="text-brand-tosca underline decoration-amber-400 decoration-4">I've worked on.</span>
             </h2>
             <p className="text-base text-slate-700 font-sans leading-relaxed pt-1 font-semibold italic">
-              (kinda proud tbh)
+              Five projects I can explain without opening a pitch deck.
             </p>
           </div>
 
@@ -201,7 +201,7 @@ export default function Projects({ onUnlockAchievement }: ProjectsProps) {
               <div className="flex items-center justify-between border-b-2 border-slate-900 pb-4">
                 <div>
                   <span className="text-xs font-mono font-bold text-brand-maroon uppercase">
-                    // INSPECT PROJECT DETAILS
+                    // A CLOSER LOOK
                   </span>
                   <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mt-0.5" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                     {selectedProject.title}
@@ -225,7 +225,7 @@ export default function Projects({ onUnlockAchievement }: ProjectsProps) {
                   <span className="text-brand-tosca">{selectedProject.company}</span>
                 </div>
                 <div className="flex items-center justify-between text-xs sm:text-sm font-mono font-bold text-slate-800">
-                  <span>METRIC SCORE:</span>
+                  <span>RESULT:</span>
                   <span className="text-brand-maroon">{selectedProject.xp}</span>
                 </div>
               </div>
@@ -235,7 +235,7 @@ export default function Projects({ onUnlockAchievement }: ProjectsProps) {
                   onClick={() => setSelectedProject(null)}
                   className="px-5 py-2.5 bg-brand-tosca text-white font-mono text-xs font-bold rounded border-2 border-slate-900 cyber-button cursor-pointer"
                 >
-                  ACKNOWLEDGEMENT APPROVED ↵
+                  BACK TO PROJECTS ↵
                 </button>
               </div>
             </div>
@@ -245,6 +245,3 @@ export default function Projects({ onUnlockAchievement }: ProjectsProps) {
     </section>
   );
 }
-
-
-

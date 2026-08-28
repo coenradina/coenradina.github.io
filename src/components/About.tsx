@@ -7,61 +7,61 @@ interface AboutProps {
 
 const ROLES = [
   {
-    icon: "🧭",
-    title: "Technical Program Manager",
-    company: "PT Semesta Integrasi Digital (2025–Present)",
-    tagline: "Led Scrum product delivery for payment & recruitment modules.",
-    color: "#0F172A",
-    bgColor: "#EEE8D5",
-    borderColor: "#0F172A",
+    icon: "💻",
+    title: "Software Engineer",
+    company: "Full-stack today · Android & banking systems before",
+    tagline: "I still write production code. These days, I work across the stack.",
+    color: "#B58900",
+    bgColor: "#FEF3C7",
+    borderColor: "#B58900",
     anecdote:
-      "Coordinated Scrum execution for payment & recruitment modules across Sekolah.mu, Karier.mu & Talentics platforms while keeping stakeholders aligned.",
-    achievement: "Sekolah.mu & Karier.mu · Payment & Recruitment Scrum",
+      "My engineering background runs from Kotlin and Clean Architecture at Female Daily to encryption and biometric verification at BCA. Full-stack work keeps the list growing.",
+    achievement: "Full-stack · Kotlin · Clean Architecture · Security",
   },
   {
     icon: "🌟",
-    title: "Education PM & Advisor",
+    title: "Head of Education",
     company: "Generation Girl (2022–Present)",
-    tagline: "Managed 50+ STEM curriculums & trained 200+ mentors.",
+    tagline: "I lead education strategy, curricula, programs, and mentor development.",
     color: "#881337",
     bgColor: "#FFE4E6",
     borderColor: "#881337",
     anecdote:
-      "Managed 50+ STEM curriculums across programs, trained 200+ mentors, and improved mentor retention by 57% through empathetic program leadership.",
+      "I have managed more than 50 STEM curricula and trained over 200 mentors. We changed how mentors were prepared and supported; retention rose by 57%.",
     achievement: "50+ STEM Curriculums · 200+ Mentors · +57% Retention",
+  },
+  {
+    icon: "🧭",
+    title: "Technical Program Manager",
+    company: "PT Semesta Integrasi Digital (2025–Present)",
+    tagline: "I led delivery for payment and recruitment modules.",
+    color: "#0F172A",
+    bgColor: "#EEE8D5",
+    borderColor: "#0F172A",
+    anecdote:
+      "Across Sekolah.mu, Karier.mu, and Talentics, I coordinated the work between engineering, product, and stakeholders. The tickets were usually the easy part.",
+    achievement: "Sekolah.mu & Karier.mu · Payment & Recruitment",
   },
   {
     icon: "💡",
     title: "Lead LX Designer",
     company: "Binar Academy (Feb–Jun 2023)",
-    tagline: "Leading curriculum team to create 70+ modules for millions across ASEAN.",
+    tagline: "Seventy-plus AI modules for several very different kinds of learner.",
     color: "#0D9488",
     bgColor: "#CCFBF1",
     borderColor: "#0D9488",
     anecdote:
-      "Led curriculum team to deliver 70+ modules for students, parents, educators, and master trainers for millions of learners across ASEAN.",
+      "I led the team that made 70+ modules for students, parents, educators, and master trainers across ASEAN. The hard part was rarely the AI. It was finding an example that made sense to the person in front of us.",
     achievement: "Millions of Learners · 70+ Modules · ASEAN Reach",
-  },
-  {
-    icon: "📱",
-    title: "Android Dev & Software Eng",
-    company: "Female Daily & BCA (2020–2023)",
-    tagline: "Kotlin Clean Architecture & banking data security.",
-    color: "#B58900",
-    bgColor: "#FEF3C7",
-    borderColor: "#B58900",
-    anecdote:
-      "Shipped Kotlin mobile features with Clean Architecture at Female Daily, and engineered data encryption layers & biometric auth systems at Bank Central Asia.",
-    achievement: "Kotlin Clean Arch · Banking Security · Biometric Verification",
   },
 ];
 
 const BADGES = [
   { icon: "🎓", label: "Magna Cum Laude (GPA 3.90)" },
-  { icon: "🏆", label: "Millions of ASEAN Learners" },
   { icon: "📜", label: "Google PM Specialization" },
-  { icon: "👩‍💻", label: "200+ Mentors Trained" },
-  { icon: "🚀", label: "50+ STEM Curriculums" },
+  { icon: "🖥️", label: "Full-stack & Android Engineering" },
+  { icon: "🧠", label: "UC Irvine Virtual Teacher" },
+  { icon: "🚀", label: "Curriculum Design Across ASEAN" },
   { icon: "🔐", label: "BCA Biometric Security" },
 ];
 
@@ -70,7 +70,7 @@ export default function About({ onUnlockAchievement }: AboutProps) {
 
   const handleCardClick = (index: number) => {
     setFlipped(flipped === index ? null : index);
-    onUnlockAchievement("Career Log Explorer (+100 XP)", 100);
+    onUnlockAchievement("Turned over a career card (+100 XP)", 100);
   };
 
   return (
@@ -87,10 +87,10 @@ export default function About({ onUnlockAchievement }: AboutProps) {
             className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 leading-tight"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
-            From Android code to <span className="text-brand-maroon underline decoration-amber-400 decoration-4">program strategy</span>
+            The tabs kept <span className="text-brand-maroon underline decoration-amber-400 decoration-4">multiplying.</span>
           </h2>
           <p className="text-base sm:text-lg text-slate-700 font-sans leading-relaxed pt-1 font-medium">
-            Shifted from moving between Activity and Fragment to making STEM curriculums more accessible.
+            My engineering work grew from Android into full-stack development. Alongside it, I lead education at Generation Girl and mentor people in tech.
           </p>
         </div>
 
@@ -170,7 +170,7 @@ export default function About({ onUnlockAchievement }: AboutProps) {
         <div className="p-7 sm:p-8 rounded-xl border-2 border-slate-900 bg-white shadow-[4px_4px_0px_#0F172A] space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <p className="text-xs font-mono font-bold uppercase tracking-wider text-slate-900">
-              🏆 ACCREDITATIONS & ACHIEVEMENTS UNLOCKED
+              🏆 QUALIFICATIONS, MILESTONES, OTHER USEFUL EVIDENCE
             </p>
             <span className="text-xs font-mono font-bold text-brand-tosca">
               +1,200 XP TOTAL
@@ -192,6 +192,3 @@ export default function About({ onUnlockAchievement }: AboutProps) {
     </section>
   );
 }
-
-
-

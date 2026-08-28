@@ -15,7 +15,7 @@ const SOCIAL_LINKS = [
 export default function Contact({ onUnlockAchievement }: ContactProps) {
   const [status, setStatus] = useState<Status>("idle");
   const [focused, setFocused] = useState<string | null>(null);
-  const [category, setCategory] = useState("EdTech & AI Curriculum");
+  const [category, setCategory] = useState("Curriculum or EdTech");
   const [values, setValues] = useState({ name: "", email: "", message: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -23,7 +23,7 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
     const e: Record<string, string> = {};
     if (!values.name.trim()) e.name = "Name required";
     if (!values.email.includes("@")) e.email = "Valid email required";
-    if (values.message.trim().length < 8) e.message = "Tell me a bit more about your mission";
+    if (values.message.trim().length < 8) e.message = "Give me a little more to work with";
     return e;
   };
 
@@ -38,7 +38,7 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
     setStatus("sending");
     setTimeout(() => {
       setStatus("sent");
-      onUnlockAchievement("Mission Signal Transmitted (+250 XP)", 250);
+      onUnlockAchievement("Sent the form (+250 XP)", 250);
     }, 1200);
   };
 
@@ -60,16 +60,16 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
           <div
             className="text-xs font-mono font-bold uppercase tracking-wider text-brand-maroon"
           >
-            // initiate_contact_signal()
+            // contact
           </div>
           <h2
             className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 leading-tight"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
-            Ready to build <span className="text-brand-tosca underline decoration-amber-400 decoration-4">high-impact EdTech?</span>
+            Write to me. <span className="text-brand-tosca underline decoration-amber-400 decoration-4">Tell me the odd details.</span>
           </h2>
           <p className="text-base text-slate-700 font-sans leading-relaxed pt-1">
-            Got a project, STEM workshop inquiry, or Agile TPM mission? Transmit your signal below. I read every message!
+            Projects, workshops, curriculum work, interesting problems. I read every message.
           </p>
         </div>
 
@@ -87,16 +87,16 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
                     className="text-2xl sm:text-3xl font-bold text-slate-900"
                     style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                   >
-                    SIGNAL DELIVERED!
+                    MESSAGE RECEIVED.
                   </p>
                   <p
                     className="text-xs font-mono font-bold text-brand-tosca"
                   >
-                    +250 XP EARNED · ACHIEVEMENT UNLOCKED: MISSION SIGNAL TRANSMITTED
+                    +250 XP · THE FORM HAS DONE ITS ONE JOB
                   </p>
                 </div>
                 <p className="text-sm text-slate-700 max-w-md leading-relaxed">
-                  Thanks for reaching out! I'll review your mission coordinates and respond within 24 hours.
+                  Thanks. I usually reply within a day.
                 </p>
                 <button
                   onClick={() => {
@@ -105,7 +105,7 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
                   }}
                   className="mt-2 text-xs font-mono font-bold px-5 py-2.5 rounded border-2 border-slate-900 bg-amber-300 text-slate-900 cyber-button cursor-pointer"
                 >
-                  TRANSMIT ANOTHER SIGNAL ↵
+                  SEND ANOTHER NOTE ↵
                 </button>
               </div>
             ) : (
@@ -117,7 +117,7 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
               >
                 <div className="flex items-center justify-between border-b-2 border-slate-900 pb-4">
                   <span className="text-xs font-mono font-bold text-slate-900 uppercase">
-                    // MISSION PARAMETERS
+                    // THE BASICS
                   </span>
                   <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded border border-slate-900 bg-amber-300">
                     +250 XP REWARD
@@ -127,14 +127,14 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
                 {/* Mission Type Selection */}
                 <div className="space-y-2">
                   <label className="text-xs font-mono font-bold text-slate-900 uppercase">
-                    MISSION CATEGORY
+                    WHAT IS THIS ABOUT?
                   </label>
                   <div className="grid grid-cols-2 gap-2.5">
                     {[
-                      "EdTech & AI Curriculum",
-                      "Agile TPM & Scrum",
-                      "STEM Workshop & Talk",
-                      "Mentorship & Training",
+                      "Curriculum or EdTech",
+                      "Product delivery",
+                      "Workshop or talk",
+                      "Mentorship or training",
                     ].map((cat) => (
                       <button
                         key={cat}
@@ -193,7 +193,7 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
                     htmlFor="message"
                     className="text-xs font-mono font-bold text-slate-900 uppercase"
                   >
-                    SIGNAL BRIEF / MESSAGE
+                    MESSAGE
                   </label>
                   <textarea
                     id="message"
@@ -202,7 +202,7 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
                     onChange={(e) => handleChange("message", e.target.value)}
                     onFocus={() => setFocused("message")}
                     onBlur={() => setFocused(null)}
-                    placeholder="Describe your project, timeline, or education mission..."
+                    placeholder="A little context helps. What are you working on?"
                     className="w-full bg-white outline-none text-xs sm:text-sm font-mono p-3 rounded-lg border-2 border-slate-900 text-slate-900 placeholder:text-slate-400 resize-none leading-relaxed"
                     style={{
                       borderColor: errors.message ? "#881337" : focused === "message" ? "#0D9488" : "#0F172A",
@@ -224,10 +224,10 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
                   {status === "sending" ? (
                     <>
                       <span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
-                      TRANSMITTING SIGNAL…
+                      SENDING YOUR NOTE…
                     </>
                   ) : (
-                    "TRANSMIT MISSION SIGNAL ↵"
+                    "SEND THE NOTE ↵"
                   )}
                 </button>
               </form>
@@ -256,10 +256,10 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
                 <div
                   className="text-[10px] font-mono font-bold uppercase text-slate-500 mb-1 tracking-wider"
                 >
-                  RESPONSE PROTOCOL
+                  REPLY TIME
                 </div>
                 <div className="text-xs sm:text-sm font-mono font-bold text-brand-tosca">
-                  Usually within 24 hours
+                  Usually within a day
                 </div>
               </div>
 
@@ -270,7 +270,7 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
                   SPECIALIZATION TAGS
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  {["TPM Delivery", "AI Class ASEAN", "STEM Strategy", "Kotlin Clean Arch"].map((t) => (
+                  {["Full-stack Development", "Tech Mentorship", "STEM Curriculum", "Product Delivery"].map((t) => (
                     <span
                       key={t}
                       className="text-[11px] font-mono font-bold px-2.5 py-1 rounded border border-slate-900 bg-amber-200 text-slate-900"
@@ -289,7 +289,7 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
               <div
                 className="text-[10px] font-mono font-bold uppercase text-slate-500 mb-1 tracking-wider"
               >
-                DIRECT CHANNELS & PORTFOLIO
+                ELSEWHERE
               </div>
               {SOCIAL_LINKS.map(({ label, handle, icon, href }) => (
                 <a
@@ -321,16 +321,13 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
           className="pt-8 border-t-2 border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-700"
         >
           <span>
-            © 2026 Astrid · Powered by Solarized Cyber-Retro Engine
+            © 2026 Astrid · Built with React and too much teal
           </span>
           <span className="font-bold text-brand-maroon">
-            Lv.24 TPM, Tech Educator & Software Engineer
+            Software Engineer & Tech Mentor
           </span>
         </div>
       </div>
     </section>
   );
 }
-
-
-

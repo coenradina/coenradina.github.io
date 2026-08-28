@@ -18,9 +18,9 @@ export default function TerminalModal({ isOpen, onClose, onUnlockAchievement }: 
       command: "init",
       output: (
         <div className="space-y-1">
-          <p className="text-brand-tosca font-bold">// Welcome to Astrid's Cyber Terminal v2.4 (Solarized Light Edition)</p>
+          <p className="text-brand-tosca font-bold">// The terminal works. I checked.</p>
           <p className="text-slate-700 mt-1">
-            Type <span className="text-brand-yellow font-bold">help</span> for commands, or <span className="text-brand-maroon font-bold">sudo hire</span> for instant recruitment protocol.
+            Type <span className="text-brand-yellow font-bold">help</span> for the command list. <span className="text-brand-maroon font-bold">sudo hire</span> also does something.
           </p>
         </div>
       ),
@@ -48,14 +48,14 @@ export default function TerminalModal({ isOpen, onClose, onUnlockAchievement }: 
       case "help":
         outputNode = (
           <div className="space-y-1.5 text-xs sm:text-sm">
-            <p className="text-slate-900 font-bold">AVAILABLE COMMANDS:</p>
-            <p><span className="text-brand-tosca font-mono font-bold">whoami</span> - Display Astrid's core profile & bio</p>
-            <p><span className="text-brand-tosca font-mono font-bold">skills</span> - List technical, Agile & curriculum competencies</p>
-            <p><span className="text-brand-tosca font-mono font-bold">projects</span> - View flagship achievements (AI Class ASEAN, GG LMS)</p>
-            <p><span className="text-brand-tosca font-mono font-bold">exp</span> - Inspect career trajectory (PT Semesta, GenGirl, Binar, BCA)</p>
-            <p><span className="text-brand-tosca font-mono font-bold">sudo hire</span> - Trigger instant recruitment mission sequence</p>
-            <p><span className="text-brand-tosca font-mono font-bold">easteregg</span> - Secret command for curious developers</p>
-            <p><span className="text-brand-tosca font-mono font-bold">clear</span> - Wipe terminal output buffer</p>
+            <p className="text-slate-900 font-bold">COMMANDS:</p>
+            <p><span className="text-brand-tosca font-mono font-bold">whoami</span> - A short introduction</p>
+            <p><span className="text-brand-tosca font-mono font-bold">skills</span> - What I work with</p>
+            <p><span className="text-brand-tosca font-mono font-bold">projects</span> - Selected projects</p>
+            <p><span className="text-brand-tosca font-mono font-bold">exp</span> - Work history</p>
+            <p><span className="text-brand-tosca font-mono font-bold">sudo hire</span> - A dramatic shortcut to the contact form</p>
+            <p><span className="text-brand-tosca font-mono font-bold">easteregg</span> - Exactly what it sounds like</p>
+            <p><span className="text-brand-tosca font-mono font-bold">clear</span> - Clear this window</p>
           </div>
         );
         break;
@@ -64,9 +64,9 @@ export default function TerminalModal({ isOpen, onClose, onUnlockAchievement }: 
         outputNode = (
           <div className="text-xs sm:text-sm leading-relaxed space-y-1.5">
             <p className="font-bold text-brand-maroon text-base">Astrid</p>
-            <p className="text-slate-900 font-semibold">Tech educator, TPM & Software Engineer.</p>
+            <p className="text-slate-900 font-semibold">Software engineer and tech mentor.</p>
             <p className="text-slate-700">
-              I still code, just now I can also teach people to code (or solve your code if you're too busy).
+              I code full stack and serve as Head of Education at Generation Girl. Engineering is the foundation; teaching is the part I love sharing.
             </p>
             <p className="text-slate-500">// Magna Cum Laude CS Graduate from Bina Nusantara University (GPA 3.90)</p>
           </div>
@@ -76,10 +76,10 @@ export default function TerminalModal({ isOpen, onClose, onUnlockAchievement }: 
       case "skills":
         outputNode = (
           <div className="text-xs sm:text-sm space-y-1.5 leading-relaxed">
-            <p className="text-brand-yellow font-bold">[SKILL MATRIX]</p>
-            <p>⚡ <span className="font-bold text-slate-900">Agile & TPM:</span> Scrum Delivery (Payment & Recruitment), Stakeholder Alignment, QA, ISO Compliance</p>
-            <p>🎓 <span className="font-bold text-slate-900">EdTech & Curriculum:</span> 70+ AI Class Modules (Millions across ASEAN), 50+ STEM Curriculums, 200+ Mentors Trained</p>
-            <p>💻 <span className="font-bold text-slate-900">Engineering:</span> Kotlin, Clean Architecture, Java, Python, Security Encryption & Biometrics</p>
+            <p className="text-brand-yellow font-bold">[SKILLS]</p>
+            <p>💻 <span className="font-bold text-slate-900">Engineering:</span> Full-stack development, Kotlin, Clean Architecture, Java, Python, encryption, and biometrics</p>
+            <p>🎓 <span className="font-bold text-slate-900">Education:</span> STEM curriculum design, mentor training, learning programs, and technical facilitation</p>
+            <p>⚡ <span className="font-bold text-slate-900">Delivery:</span> Scrum, stakeholder alignment, QA, and ISO compliance</p>
           </div>
         );
         break;
@@ -87,7 +87,7 @@ export default function TerminalModal({ isOpen, onClose, onUnlockAchievement }: 
       case "projects":
         outputNode = (
           <div className="text-xs sm:text-sm space-y-2 leading-relaxed">
-            <p className="text-brand-tosca font-bold">🚀 FLAGSHIP PROJECTS (kinda proud tbh):</p>
+            <p className="text-brand-tosca font-bold">SELECTED PROJECTS:</p>
             <p>1. <span className="font-bold text-slate-900">AI Class ASEAN (@ Binar Academy)</span> - 70+ modules created for students, parents, educators, and master trainers across ASEAN.</p>
             <p>2. <span className="font-bold text-slate-900">Sekolah.mu & Karier.mu (@ Semesta Integrasi)</span> - Led Scrum product delivery for payment & recruitment modules.</p>
             <p>3. <span className="font-bold text-slate-900">Generation Girl STEM LMS (@ GenGirl)</span> - 50+ STEM curriculums, 200+ mentors trained, +57% retention boost.</p>
@@ -99,7 +99,7 @@ export default function TerminalModal({ isOpen, onClose, onUnlockAchievement }: 
         outputNode = (
           <div className="text-xs sm:text-sm space-y-1.5 leading-relaxed">
             <p><span className="text-brand-maroon font-bold">2025-Present:</span> Technical Program Manager @ PT Semesta Integrasi Digital</p>
-            <p><span className="text-brand-maroon font-bold">2023-Present:</span> Education Project Manager @ Generation Girl</p>
+            <p><span className="text-brand-maroon font-bold">2022-Present:</span> Head of Education @ Generation Girl</p>
             <p><span className="text-brand-maroon font-bold">Feb-Jun 2023:</span> Lead Learning Experience Designer @ Binar Academy</p>
             <p><span className="text-brand-maroon font-bold">2022-2023:</span> Android Developer @ Female Daily</p>
             <p><span className="text-brand-maroon font-bold">2020-2022:</span> Software Engineer @ Bank Central Asia (BCA)</p>
@@ -110,11 +110,11 @@ export default function TerminalModal({ isOpen, onClose, onUnlockAchievement }: 
       case "sudo hire":
         outputNode = (
           <div className="text-xs sm:text-sm p-3.5 rounded border border-brand-tosca bg-teal-50 space-y-1">
-            <p className="text-brand-tosca font-bold">🎉 RECRUITMENT PROTOCOL INITIATED!</p>
-            <p className="text-slate-800 font-medium">Permission granted. Scrolling down to mission contact terminal...</p>
+            <p className="text-brand-tosca font-bold">ALL RIGHT. LET'S TALK.</p>
+            <p className="text-slate-800 font-medium">Taking you to the contact form. The sudo was unnecessary.</p>
           </div>
         );
-        onUnlockAchievement("Cyber Terminal Hacking Master", 500);
+        onUnlockAchievement("Used sudo for networking (+500 XP)", 500);
         setTimeout(() => {
           onClose();
           document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
@@ -124,10 +124,10 @@ export default function TerminalModal({ isOpen, onClose, onUnlockAchievement }: 
       case "easteregg":
         outputNode = (
           <div className="text-xs sm:text-sm text-brand-maroon font-mono font-bold">
-            👾 "Compilers don't judge, but students notice when coffee runs out." — Astrid
+            👾 "Compilers don't judge. Students notice when the coffee runs out." - Astrid
           </div>
         );
-        onUnlockAchievement("Discovered the Secret Coffee Loop", 250);
+        onUnlockAchievement("Found the coffee footnote (+250 XP)", 250);
         break;
 
       case "clear":
@@ -138,7 +138,7 @@ export default function TerminalModal({ isOpen, onClose, onUnlockAchievement }: 
       default:
         outputNode = (
           <p className="text-brand-maroon font-mono text-xs sm:text-sm">
-            Command not recognized: "{cmd}". Type <span className="underline font-bold">help</span> for available commands.
+            I don't know "{cmd}". Try <span className="underline font-bold">help</span>.
           </p>
         );
     }
@@ -219,4 +219,3 @@ export default function TerminalModal({ isOpen, onClose, onUnlockAchievement }: 
     </div>
   );
 }
-
