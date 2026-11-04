@@ -44,7 +44,11 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
   const formStartedAt = useRef(Date.now());
   const turnstileContainer = useRef<HTMLDivElement>(null);
   const turnstileWidgetId = useRef<string | null>(null);
-  const turnstileSiteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY as string | undefined;
+  // Turnstile site keys are public browser identifiers. The matching secret
+  // remains server-only in Hostinger's private contact-config.php file.
+  const turnstileSiteKey =
+    (import.meta.env.VITE_TURNSTILE_SITE_KEY as string | undefined) ||
+    "0x4AAAAAAEgHVE2SNexuCoH6";
   const isSent = status === "sent";
 
   useEffect(() => {

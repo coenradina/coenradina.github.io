@@ -6,16 +6,18 @@ outbound mail enabled.
 
 ## 1. Create the domain mailboxes
 
-In Hostinger hPanel, configure `hello@aastr.id`. Also create
-`contact-form@aastr.id`, which the endpoint uses as its sender. Confirm that the
-domain's SPF and DKIM records are enabled in hPanel; these affect deliverability.
+In Hostinger hPanel, configure `hello@aastr.id`. The endpoint uses this same
+address as both its sender and recipient, so the form does not require a second
+mailbox. Confirm that the domain's SPF and DKIM records are enabled in hPanel;
+these affect deliverability.
 
 ## 2. Create a Cloudflare Turnstile widget
 
 Create a Turnstile widget for both `aastr.id` and `www.aastr.id`. It provides a
 public site key and a private secret key.
 
-Set the site key when building the Vite app:
+The production public site key is already included in `Contact.tsx`. To replace
+the widget later without changing source code, override it when building:
 
 ```sh
 VITE_TURNSTILE_SITE_KEY="YOUR_PUBLIC_SITE_KEY" npm run build

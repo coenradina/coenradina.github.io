@@ -11,6 +11,6 @@ return [
         'aastr.id',
         'www.aastr.id',
     ],
-    'from_address' => 'contact-form@aastr.id',
+    'from_address' => 'hello@aastr.id',
     'rate_limit' => 5,
 ];

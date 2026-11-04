@@ -173,7 +173,7 @@ if (!in_array((string) ($verification['hostname'] ?? ''), $expectedHostnames, tr
 }
 
 $recipient = 'hello@aastr.id';
-$from = (string) ($config['from_address'] ?? 'contact-form@aastr.id');
+$from = (string) ($config['from_address'] ?? 'hello@aastr.id');
 $safeName = preg_replace('/[\x00-\x1F\x7F]/u', '', $name) ?: 'Website visitor';
 $subject = 'Portfolio contact: ' . $category;
 $body = "New portfolio contact\n\n" .
