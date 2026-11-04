@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { initializeApp } from "firebase-admin/app";
 import { FieldValue, Timestamp, getFirestore } from "firebase-admin/firestore";
-import { defineSecret, defineString } from "firebase-functions/params";
+import { defineSecret } from "firebase-functions/params";
 import { logger } from "firebase-functions/v2";
 import { onRequest } from "firebase-functions/v2/https";
 import nodemailer from "nodemailer";
@@ -14,8 +14,8 @@ const TURNSTILE_SECRET = defineSecret("TURNSTILE_SECRET");
 const SMTP_PASSWORD = defineSecret("SMTP_PASSWORD");
 // Salt for hashing IPs, so stored rate-limit keys can't be reversed to addresses.
 const IP_HASH_SALT = defineSecret("IP_HASH_SALT");
-const SMTP_USER = defineString("SMTP_USER", { default: "hello@aastr.id" });
-const RECIPIENT = defineString("CONTACT_RECIPIENT", { default: "hello@aastr.id" });
+const SMTP_USER = "hello@aastr.id";
+const RECIPIENT = "hello@aastr.id";
 
 const PER_IP_LIMIT = 5; // submissions per IP per hour
 const PER_IP_WINDOW_MS = 60 * 60 * 1000;
@@ -160,11 +160,11 @@ export const contact = onRequest(
         host: "smtp.hostinger.com",
         port: 465,
         secure: true,
-        auth: { user: SMTP_USER.value(), pass: SMTP_PASSWORD.value() },
+        auth: { user: SMTP_USER, pass: SMTP_PASSWORD.value() },
       });
       await transport.sendMail({
-        from: { name: "aastr.id contact form", address: SMTP_USER.value() },
-        to: RECIPIENT.value(),
+        from: { name: "aastr.id contact form", address: SMTP_USER },
+        to: RECIPIENT,
         replyTo: { name, address: email },
         subject: `Portfolio contact: ${category}`,
         text: `New portfolio contact\n\nName: ${name}\nEmail: ${email}\nCategory: ${category}\n\nMessage:\n${message}\n`,
