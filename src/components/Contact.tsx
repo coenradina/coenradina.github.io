@@ -22,14 +22,18 @@ declare global {
   }
 }
 
+const CONTACT_ENDPOINT =
+  (import.meta.env.VITE_CONTACT_ENDPOINT as string | undefined) ||
+  "https://us-central1-aastr-portfolio.cloudfunctions.net/contact";
+
 interface ContactProps {
   onUnlockAchievement: (title: string, xp: number) => void;
 }
 
 const SOCIAL_LINKS = [
-  { label: "GitHub", handle: "@coenradina", icon: "⌥", href: "https://coenradina.github.io" },
+  { label: "GitHub", handle: "@coenradina", icon: "⌥", href: "https://github.com/coenradina" },
   { label: "LinkedIn", handle: "astridcoenrad", icon: "◈", href: "https://www.linkedin.com/in/astridcoenrad" },
-  { label: "Portfolio", handle: "coenradina.github.io", icon: "✦", href: "https://coenradina.github.io" },
+  { label: "Portfolio", handle: "aastr.id", icon: "✦", href: "https://aastr.id" },
 ];
 
 export default function Contact({ onUnlockAchievement }: ContactProps) {
@@ -45,7 +49,7 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
   const turnstileContainer = useRef<HTMLDivElement>(null);
   const turnstileWidgetId = useRef<string | null>(null);
   // Turnstile site keys are public browser identifiers. The matching secret
-  // remains server-only in Hostinger's private contact-config.php file.
+  // lives only in Firebase Secret Manager, used by the contact Cloud Function.
   const turnstileSiteKey =
     (import.meta.env.VITE_TURNSTILE_SITE_KEY as string | undefined) ||
     "0x4AAAAAAEgHVE2SNexuCoH6";
@@ -135,9 +139,11 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
     setStatus("sending");
 
     try {
-      const response = await fetch("/api/contact.php", {
+      const response = await fetch(CONTACT_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        credentials: "omit",
+        referrerPolicy: "no-referrer",
         body: JSON.stringify({
           ...values,
           category,

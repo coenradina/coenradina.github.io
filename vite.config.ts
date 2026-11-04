@@ -20,6 +20,7 @@ export default defineConfig(({ mode }) => {
       react(),
       tailwindcss(),
       figmaSiteConfiguration(siteConfiguration),
+      productionSecurityHeaders(),
       figmaErrorOverlayReplay(),
       figmaReactRefreshBoundaryFallback(),
       figmaMakeKitPlugin({ storiesGlob: '/src/**/*.stories.{ts,tsx,js,jsx}' }),
@@ -351,6 +352,38 @@ function figmaMakeKitPlugin(options: { storiesGlob: string | string[] }): Plugin
           next(err as Error)
         }
       })
+    },
+  }
+}
+
+/**
+ * GitHub Pages can't send custom HTTP headers, so production builds carry the
+ * Content Security Policy as a meta tag. Dev builds skip it because Vite's
+ * dev server injects inline scripts for hot reload.
+ */
+function productionSecurityHeaders(): Plugin {
+  const csp = [
+    "default-src 'self'",
+    "script-src 'self' https://challenges.cloudflare.com",
+    "frame-src https://challenges.cloudflare.com",
+    "connect-src 'self' https://us-central1-aastr-portfolio.cloudfunctions.net",
+    "img-src 'self' data: https://images.unsplash.com",
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+    "font-src https://fonts.gstatic.com",
+    "object-src 'none'",
+    "base-uri 'none'",
+    "form-action 'none'",
+    'upgrade-insecure-requests',
+  ].join('; ')
+
+  return {
+    name: 'production-security-headers',
+    apply: 'build',
+    transformIndexHtml() {
+      return [
+        { tag: 'meta', attrs: { 'http-equiv': 'Content-Security-Policy', content: csp }, injectTo: 'head-prepend' },
+        { tag: 'meta', attrs: { name: 'referrer', content: 'strict-origin-when-cross-origin' }, injectTo: 'head' },
+      ]
     },
   }
 }
