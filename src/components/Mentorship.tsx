@@ -1,6 +1,5 @@
 import { useState } from "react";
 import AchievementBadge from "./ui/AchievementBadge";
-import XPBar from "./ui/XPBar";
 
 interface MentorshipProps {
   onUnlockAchievement: (title: string, xp: number) => void;
@@ -8,25 +7,44 @@ interface MentorshipProps {
 
 const TESTIMONIALS = [
   {
-    name: "Generation Girl Mentorship Lead",
-    role: "STEM Program Partner",
+    name: "Audrey Natasha Meyer",
+    role: "Head of Marketing @ Generation Girl",
+    context: "Worked with Astrid on a different team",
     quote:
-      "Astrid made the mentor training clearer and much easier to run. People arrived better prepared, and more of them chose to stay.",
-    rating: 5,
+      "She's not just an exceptional programmer but also a compassionate educator and a capable project manager.",
+    highlights: ["Attention to detail", "Decision-making", "Problem-solving"],
   },
   {
-    name: "AI Class ASEAN Participant",
-    role: "Regional Learner @ Binar Academy",
+    name: "Dennis Setiawan",
+    role: "Lead Software Engineer @ GovTech Procurement",
+    context: "Built BCAmobile together at BCA (Astrid on Android, Dennis on iOS)",
     quote:
-      "The AI lessons did not assume everyone started in the same place. Students, parents, and teachers each got explanations that made sense for them.",
-    rating: 5,
+      "She balances technical implementation with a strong sense of user experience, ensuring the final product is both functional and intuitive.",
+    highlights: ["UI/UX sense", "Collaborative", "Solution-oriented"],
   },
   {
-    name: "EdTech Engineering Lead",
-    role: "Collaborator @ Semesta Integrasi Digital",
+    name: "Syaravina Meilita",
+    role: "Chief of Staff @ Generation Girl",
+    context: "Senior to Astrid at Generation Girl",
     quote:
-      "Astrid asks the slightly annoying but useful questions early. It saved us trouble later when we were delivering the payment and recruitment modules.",
-    rating: 5,
+      "Beyond her role, Astrid consistently goes above and beyond by supporting not only her division but also assisting other teams whenever needed.",
+    highlights: ["Agile", "Cross-team support", "Proactive"],
+  },
+  {
+    name: "Dimas Prakoso",
+    role: "Senior Mobile App Developer",
+    context: "Senior to Astrid on the Android team at Female Daily Network",
+    quote:
+      "She can clearly express her ideas and creates a positive collaborative atmosphere in the team.",
+    highlights: ["Clear communication", "Eager to learn"],
+  },
+  {
+    name: "Azizah Putri Nur Aini",
+    role: "UX Researcher @ Sekolah.mu",
+    context: "Same team at Sekolah.mu",
+    quote:
+      "She also has good communication and collaboration skills, even when working remotely.",
+    highlights: ["Dedication", "Remote collaboration"],
   },
 ];
 
@@ -38,10 +56,26 @@ const STATS = [
 ];
 
 const SKILLS = [
-  { label: "Full-stack & Mobile Engineering", value: 98, xp: "4,900 XP" },
-  { label: "STEM & AI Curriculum Architecture", value: 96, xp: "4,800 XP" },
-  { label: "Mentorship & Educator Leadership", value: 95, xp: "4,750 XP" },
-  { label: "Program & Product Delivery", value: 90, xp: "4,500 XP" },
+  {
+    icon: "⌨",
+    label: "Full-stack & Mobile Engineering",
+    detail: "Android in Kotlin at Female Daily and BCA. Full-stack web now.",
+  },
+  {
+    icon: "◆",
+    label: "STEM & AI Curriculum Architecture",
+    detail: "70+ AI modules for AI Class ASEAN. 50+ curriculums at Generation Girl.",
+  },
+  {
+    icon: "♥",
+    label: "Mentorship & Educator Leadership",
+    detail: "Runs a pool of 300+ volunteer mentors at Generation Girl.",
+  },
+  {
+    icon: "▶",
+    label: "Program & Product Delivery",
+    detail: "Scrum delivery for Sekolah.mu, Karier.mu, and Talentics.",
+  },
 ];
 
 export default function Mentorship({ onUnlockAchievement }: MentorshipProps) {
@@ -59,7 +93,7 @@ export default function Mentorship({ onUnlockAchievement }: MentorshipProps) {
   const t = TESTIMONIALS[current];
 
   return (
-    <section id="mentorship" className="py-28 px-4 sm:px-6 lg:px-8 border-t-2 border-slate-900" style={{ backgroundColor: "#FDF6E3" }}>
+    <section id="mentorship" className="py-28 px-4 sm:px-6 lg:px-8 border-t-2 border-slate-900" style={{ backgroundColor: "#EEE8D5" }}>
       <div className="max-w-6xl mx-auto space-y-12">
         {/* Header */}
         <div className="space-y-3 max-w-3xl">
@@ -106,26 +140,56 @@ export default function Mentorship({ onUnlockAchievement }: MentorshipProps) {
               ))}
             </div>
 
-            {/* Skill XP Matrix */}
-            <div
-              className="rounded-xl p-7 border-2 border-slate-900 bg-white shadow-[4px_4px_0px_#0F172A] flex flex-col gap-5"
-            >
-              <div className="flex items-center justify-between border-b-2 border-slate-900 pb-4">
-                <h3
-                  className="text-lg font-bold text-slate-900"
-                  style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-                >
-                  Competency XP Matrix
-                </h3>
-                <span className="text-[11px] font-mono font-bold px-2.5 py-0.5 rounded border border-slate-900 bg-amber-300">
-                  LVL 24 MAX
+            {/* Character Intro */}
+            <div className="rounded-xl border-2 border-slate-900 bg-white shadow-[4px_4px_0px_#0F172A] overflow-hidden">
+              <div className="flex items-center justify-between border-b-2 border-slate-900 px-5 py-3 bg-slate-900">
+                <span className="text-xs font-mono font-bold text-amber-300 uppercase tracking-wider">
+                  ▸ Player 1
+                </span>
+                <span className="text-[11px] font-mono font-bold text-slate-300">
+                  Jakarta, ID
                 </span>
               </div>
 
-              <div className="space-y-4 pt-1">
-                {SKILLS.map((s) => (
-                  <XPBar key={s.label} label={s.label} value={s.value} xp={s.xp} color="#0D9488" />
-                ))}
+              <div className="p-6 sm:p-7 flex flex-col sm:flex-row gap-6">
+                <img
+                  src={`${import.meta.env.BASE_URL}avatar.png`}
+                  alt="Pixel art portrait of Astrid"
+                  className="w-28 h-28 sm:w-32 sm:h-32 shrink-0 rounded-lg border-2 border-slate-900 shadow-[3px_3px_0px_#0F172A] self-start"
+                />
+                <div className="space-y-2">
+                  <h3
+                    className="text-2xl font-bold text-slate-900 leading-none"
+                    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                  >
+                    Astrid
+                  </h3>
+                  <p className="text-xs font-mono font-bold text-brand-tosca uppercase">
+                    Class: Engineer / Educator
+                  </p>
+                  <p className="text-sm text-slate-700 font-sans leading-relaxed">
+                    Writes code, designs curriculums, and keeps programs on schedule.
+                  </p>
+                </div>
+              </div>
+
+              <div className="px-6 sm:px-7 pb-7 space-y-3">
+                <div className="text-[11px] font-mono font-bold text-slate-600 uppercase tracking-wider">
+                  Skills
+                </div>
+                <ul className="space-y-3">
+                  {SKILLS.map((s) => (
+                    <li key={s.label} className="flex gap-3 items-start">
+                      <span className="w-7 h-7 shrink-0 rounded border-2 border-slate-900 bg-amber-300 flex items-center justify-center text-xs font-bold text-slate-900">
+                        {s.icon}
+                      </span>
+                      <div>
+                        <div className="text-xs sm:text-sm font-mono font-bold text-slate-900">{s.label}</div>
+                        <div className="text-xs text-slate-700 font-sans mt-0.5">{s.detail}</div>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
 
@@ -154,19 +218,22 @@ export default function Mentorship({ onUnlockAchievement }: MentorshipProps) {
           {/* Right Column: Testimonials & Feedback */}
           <div className="flex flex-col gap-6">
             <div
-              className="rounded-xl p-8 sm:p-10 border-2 border-slate-900 bg-white shadow-[6px_6px_0px_#0F172A] flex-1 flex flex-col justify-between"
+              className="rounded-xl p-8 sm:p-10 border-2 border-slate-900 bg-white shadow-[6px_6px_0px_#0F172A] flex flex-col justify-between lg:sticky lg:top-24"
               style={{ backgroundColor: "#EEE8D5" }}
             >
               <div className="space-y-6">
                 <div className="flex items-center justify-between border-b-2 border-slate-900 pb-4">
                   <span className="text-xs font-mono font-bold text-brand-maroon uppercase">
-                    // NOTES FROM PEOPLE I HAVE WORKED WITH #{current + 1}
+                    // FROM PEOPLE I HAVE WORKED WITH
                   </span>
-                  <div className="flex gap-1">
-                    {Array.from({ length: t.rating }).map((_, i) => (
-                      <span key={i} className="text-amber-500 text-base">★</span>
-                    ))}
-                  </div>
+                  <a
+                    href="https://www.linkedin.com/in/astridcoenrad/details/recommendations/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[11px] font-mono font-bold text-slate-700 underline hover:text-brand-tosca"
+                  >
+                    via LinkedIn ↗
+                  </a>
                 </div>
 
                 <p
@@ -174,6 +241,17 @@ export default function Mentorship({ onUnlockAchievement }: MentorshipProps) {
                 >
                   "{t.quote}"
                 </p>
+
+                <div className="flex flex-wrap gap-2">
+                  {t.highlights.map((h) => (
+                    <span
+                      key={h}
+                      className="text-[11px] font-mono font-bold px-2.5 py-0.5 rounded border border-slate-900 bg-white text-slate-800"
+                    >
+                      {h}
+                    </span>
+                  ))}
+                </div>
               </div>
 
               <div className="pt-8">
@@ -186,6 +264,9 @@ export default function Mentorship({ onUnlockAchievement }: MentorshipProps) {
                       className="text-xs text-brand-tosca font-mono font-bold mt-0.5"
                     >
                       {t.role}
+                    </div>
+                    <div className="text-xs text-slate-600 font-sans mt-1">
+                      {t.context}
                     </div>
                   </div>
 

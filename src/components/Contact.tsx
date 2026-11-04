@@ -177,7 +177,7 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
   };
 
   return (
-    <section id="contact" className="py-28 px-4 sm:px-6 lg:px-8 border-t-2 border-slate-900" style={{ backgroundColor: "#EEE8D5" }}>
+    <section id="contact" className="py-28 px-4 sm:px-6 lg:px-8 border-t-2 border-slate-900" style={{ backgroundColor: "#FDF6E3" }}>
       <div className="max-w-5xl mx-auto space-y-12">
         {/* Header */}
         <div className="text-center space-y-3 max-w-2xl mx-auto">

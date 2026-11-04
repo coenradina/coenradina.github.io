@@ -3,11 +3,12 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Projects from "./components/Projects";
+import PersonalProjects from "./components/PersonalProjects";
 import Mentorship from "./components/Mentorship";
 import Contact from "./components/Contact";
 import TerminalModal from "./components/TerminalModal";
 
-const SECTIONS = ["hero", "about", "projects", "mentorship", "contact"];
+const SECTIONS = ["hero", "about", "projects", "side-projects", "mentorship", "contact"];
 
 export default function App() {
   const [activeSection, setActiveSection] = useState("hero");
@@ -69,6 +70,7 @@ export default function App() {
         />
         <About onUnlockAchievement={handleUnlockAchievement} />
         <Projects onUnlockAchievement={handleUnlockAchievement} />
+        <PersonalProjects onUnlockAchievement={handleUnlockAchievement} />
         <Mentorship onUnlockAchievement={handleUnlockAchievement} />
         <Contact onUnlockAchievement={handleUnlockAchievement} />
       </main>

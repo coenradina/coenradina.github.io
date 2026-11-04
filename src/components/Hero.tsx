@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AchievementBadge from "./ui/AchievementBadge";
 
 interface HeroProps {
@@ -25,7 +25,6 @@ export const Profile = {
     "UC Irvine Virtual Teacher Specialization"
   ],
   stillCodes: true,
-  meetingsThatCouldHaveBeenDocs: 14,
 };`,
   },
   {
@@ -70,6 +69,51 @@ func DeliverPlatforms() {
 }`,
   },
 ];
+
+const BUILD_WORDS = ["apps.", "curriculums."];
+
+function Typewriter({ words }: { words: string[] }) {
+  const [wordIndex, setWordIndex] = useState(0);
+  const [length, setLength] = useState(words[0].length);
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      const id = setInterval(() => setWordIndex((i) => (i + 1) % words.length), 3000);
+      return () => clearInterval(id);
+    }
+    const word = words[wordIndex];
+    let delay = deleting ? 45 : 95;
+    if (!deleting && length === word.length) delay = 1800;
+    if (deleting && length === 0) delay = 350;
+
+    const id = setTimeout(() => {
+      if (!deleting && length === word.length) {
+        setDeleting(true);
+      } else if (deleting && length === 0) {
+        setDeleting(false);
+        setWordIndex((i) => (i + 1) % words.length);
+      } else {
+        setLength((n) => n + (deleting ? -1 : 1));
+      }
+    }, delay);
+    return () => clearTimeout(id);
+  }, [words, wordIndex, length, deleting]);
+
+  const word = words[wordIndex];
+  const reduced = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const shown = reduced ? word : word.slice(0, length);
+
+  return (
+    <span className="whitespace-nowrap">
+      <span className="sr-only">{words.join(" ")}</span>
+      <span aria-hidden="true" className={wordIndex % 2 === 0 ? "text-brand-tosca" : "text-brand-maroon"}>
+        {shown}
+      </span>
+      <span aria-hidden="true" className="cursor-blink inline-block w-[0.08em] h-[0.9em] ml-1 align-[-0.08em] bg-slate-900" />
+    </span>
+  );
+}
 
 export default function Hero({ onUnlockAchievement, onOpenTerminal }: HeroProps) {
   const [activeTab, setActiveTab] = useState(0);
@@ -131,16 +175,10 @@ export default function Hero({ onUnlockAchievement, onOpenTerminal }: HeroProps)
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 leading-[1.12]"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
-            I write software and teach people <span className="text-brand-tosca">how to build it.</span>{" "}
-            <span className="text-brand-maroon">Usually in the same week.</span>
+            I build <Typewriter words={BUILD_WORDS} />
           </h1>
           <p className="max-w-2xl text-base sm:text-lg text-slate-700 font-sans leading-relaxed pt-1">
-            I'm <strong className="text-slate-900 underline decoration-amber-400 decoration-4">Astrid</strong>. I still code full stack while leading education at Generation Girl. Engineering is my core; education is the work I keep making room for.
-            <br />
-            <span className="font-mono text-xs sm:text-sm text-slate-800 font-semibold inline-block pt-1">
-              current tabs: code editor, curriculum plan, probably one spreadsheet<br />
-              recurring question: does this meeting need to exist?
-            </span>
+            <strong className="text-slate-900 underline decoration-amber-400 decoration-4">Astrid</strong> here. TLDR; i code and teach. if you ever need a software engineer, tech mentor or program manager (or all three), you are in the right place.
           </p>
         </div>
 

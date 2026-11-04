@@ -48,6 +48,19 @@ const PROJECTS = [
     imgUrl: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=350&fit=crop&auto=format",
   },
   {
+    title: "Generation Girl Mentor Community",
+    category: "STEM & AI" as Category,
+    company: "Generation Girl",
+    description: "Manage the mentor pool at Generation Girl: 300+ volunteer mentors teaching across 50+ curriculums, reaching 20,000+ learners. Most of the job is matching the right mentor to the right class, then making sure they want to come back.",
+    tech: ["300+ Mentors", "50+ Curriculums", "20,000+ Learners", "Community Ops"],
+    xpLabel: "Learners Reached",
+    xpValue: 94,
+    xp: "20,000+ Learners",
+    color: "#0D9488",
+    bg: "#CCFBF1",
+    imgUrl: `${import.meta.env.BASE_URL}projects/gengirl-mentors.webp`,
+  },
+  {
     title: "Female Daily Community Android App",
     category: "Software & Mobile" as Category,
     company: "Female Daily",
@@ -106,7 +119,7 @@ export default function Projects({ onUnlockAchievement }: ProjectsProps) {
               A few things <span className="text-brand-tosca underline decoration-amber-400 decoration-4">I've worked on.</span>
             </h2>
             <p className="text-base text-slate-700 font-sans leading-relaxed pt-1 font-semibold italic">
-              Five projects I can explain without opening a pitch deck.
+              Six projects I can explain without opening a pitch deck.
             </p>
           </div>
 
