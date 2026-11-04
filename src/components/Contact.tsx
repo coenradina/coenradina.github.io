@@ -52,7 +52,7 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
   // lives only in Firebase Secret Manager, used by the contact Cloud Function.
   const turnstileSiteKey =
     (import.meta.env.VITE_TURNSTILE_SITE_KEY as string | undefined) ||
-    "0x4AAAAAAEgHVE2SNexuCoH6";
+    "0x4AAAAAAFzVJ9DJLBIBaMwZ";
   const isSent = status === "sent";
 
   useEffect(() => {
