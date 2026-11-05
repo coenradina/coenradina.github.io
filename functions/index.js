@@ -193,7 +193,8 @@ const ANALYZE_PER_IP_DAILY = 3; // matches the limit the UI tells visitors about
 const ANALYZE_GLOBAL_DAILY = 300; // hard cap on Groq calls per day
 const ANALYZE_MAX_BODY_BYTES = 16_000;
 const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
-const GROQ_MODEL = "llama-3.1-8b-instant";
+// llama-3.1-8b-instant was shut down for non-enterprise accounts on 2026-08-16.
+const GROQ_MODEL = "openai/gpt-oss-20b";
 
 /** Counts one use against a daily bucket. Returns uses left, or throws { status, message, code }. */
 async function takeDailyQuota(docId, limit, code, message) {
@@ -266,7 +267,9 @@ export const analyzePrompt = onRequest(
         body: JSON.stringify({
           model: GROQ_MODEL,
           temperature: 0.3,
-          max_tokens: 1024,
+          // gpt-oss is a reasoning model: reasoning tokens count toward this cap.
+          reasoning_effort: "low",
+          max_tokens: 2048,
           response_format: { type: "json_object" },
           messages: [
             { role: "system", content: buildSystemPrompt(framework, lang) },
