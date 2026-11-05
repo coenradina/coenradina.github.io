@@ -77,6 +77,7 @@ line height and letter spacing together:
 | `type-body` | sans 400 | 14 | Reading text |
 | `type-caption` | sans 400 | 12 | Fine print |
 | `type-button` | mono 700 | 12, no wrap | Buttons and nav actions |
+| `type-button-lg` | mono 700 | 14, no wrap | The main action on a screen, and the controls next to it |
 | `type-label` | mono 700 | 12 | Tags, meta lines, form labels, small UI text |
 | `type-eyebrow` | mono 700 | 11, uppercase | Kickers above titles, badges |
 | `type-micro` | mono 700 | 11 | Counters, tiny annotations |
@@ -91,7 +92,8 @@ Rules:
   is allowed for icons.
 - `font-bold` or `font-medium` on top of a role is for emphasis inside
   running text only.
-- Emoji and icon glyphs use `text-icon` (24px) or `text-icon-lg` (36px).
+- Emoji and icon glyphs use `text-icon-sm` (18px), `text-icon` (24px) or
+  `text-icon-lg` (36px).
 - A role that grows at `sm` grows on its own. Do not add `sm:text-*`.
 
 ## Spacing

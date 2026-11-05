@@ -31,7 +31,7 @@ const COLOUR_PREFIX = /^(bg|text|border|border-[trblxy]|ring|ring-offset|outline
 function checkClass(raw) {
   const cls = raw.replace(/^!/, '').split(':').pop().replace(/!$/, '')
   if (!cls || !/^-?[a-z]/.test(cls)) return null
-  if (/\[/.test(cls) && !ARBITRARY_OK.test(cls)) return 'arbitrary value; use a token'
+  if (/-\[/.test(cls) && !ARBITRARY_OK.test(cls)) return 'arbitrary value; use a token'
 
   // Typography
   if (/^text-(xs|sm|base|lg|[2-9]?xl)$/.test(cls)) return 'raw text size; use a type-* role'
