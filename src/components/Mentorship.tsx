@@ -142,7 +142,7 @@ export default function Mentorship({ onUnlockAchievement }: MentorshipProps) {
             </div>
 
             {/* Character Intro */}
-            <div className="rounded-xl border-2 border-slate-900 bg-white shadow-[4px_4px_0px_#0F172A] overflow-hidden">
+            <div data-perch="character" className="rounded-xl border-2 border-slate-900 bg-white shadow-[4px_4px_0px_#0F172A] overflow-hidden">
               <div className="flex items-center justify-between border-b-2 border-slate-900 px-5 py-3 bg-slate-900">
                 <span className="text-xs font-mono font-bold text-amber-300 uppercase tracking-wider">
                   ▸ Player 1
@@ -229,7 +229,7 @@ export default function Mentorship({ onUnlockAchievement }: MentorshipProps) {
 
           {/* Right Column: Testimonials & Feedback */}
           <div className="flex flex-col gap-6">
-            <div
+            <div data-perch="quotes"
               className="rounded-xl p-8 sm:p-10 border-2 border-slate-900 bg-white shadow-[6px_6px_0px_#0F172A] flex flex-col justify-between lg:sticky lg:top-24"
               style={{ backgroundColor: "#EEE8D5" }}
             >

@@ -188,7 +188,7 @@ export default function Hero({ onUnlockAchievement, onOpenTerminal }: HeroProps)
         </div>
 
         {/* Solarized Code Editor Box */}
-        <div 
+        <div data-perch="hero" 
           className="rounded-xl border-2 border-slate-900 shadow-[6px_6px_0px_#0F172A] overflow-hidden"
           style={{ backgroundColor: "#EEE8D5" }}
         >

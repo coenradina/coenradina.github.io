@@ -83,7 +83,7 @@ export default function PersonalProjects({ onUnlockAchievement }: PersonalProjec
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div data-perch="side" className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {PERSONAL_PROJECTS.map((project) => (
             <div
               key={project.title}

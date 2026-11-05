@@ -1,26 +1,24 @@
 import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
 import PixelSprite from "./PixelSprite";
 import { ASTRID, ASTRID_PALETTE } from "./sprites";
+import { GENERAL_FACTS, PERCH_FACTS } from "./perchFacts";
 import { onSummonPet, prefersReducedMotion } from "./events";
 
 const STORAGE_KEY = "aastr.pet";
-const TIPS = [
-  "Psst. Type sudo hack in the terminal. I dare you.",
-  "Try picking me up. I don't mind.",
-  "Kotakata teaches ML terms with blocks. Go train a robot!",
-  "There's a hidden terminal. Look for the [~] button.",
-  "Hiring? The contact form is at the bottom. 👇",
-  "I code and teach. Usually not at the same time.",
-  "300+ volunteer mentors at Generation Girl. Hi, mentors!",
-  "The arrow keys know a secret. ↑↑↓↓←→←→ B A",
-];
-
-type Mode = "walk" | "idle" | "sit" | "wave" | "held" | "fall";
-
-const SCALE_DESKTOP = 3;
-const SCALE_MOBILE = 2;
-const SPEED = 42; // px per second
+const SPEED = 40; // px per second while walking
 const GRAVITY = 2400; // px per second squared
+const HOP_MS = 600;
+const NAV_HEIGHT = 80; // keep clear of the sticky navbar
+const CHAT_GAP_MS = 6000; // at least this long between unprompted remarks
+
+type Mode = "walk" | "idle" | "sit" | "wave" | "held" | "fall" | "hop";
+
+interface Hop {
+  from: { x: number; y: number };
+  toPerch: HTMLElement | null;
+  toLocalX: number;
+  start: number;
+}
 
 function loadOn() {
   try {
@@ -39,156 +37,262 @@ function saveOn(on: boolean) {
 }
 
 /**
- * Pixel Astrid wanders along the bottom of the window. Summoned by clicking
- * the portrait on the character card; stays until dismissed.
+ * Pixel Astrid stands on top of whatever part of the page is in view,
+ * walks along it, hops to the next one as you scroll, and says a line about
+ * where she is. Summoned from the portrait; stays until sent away.
  */
 export default function PixelPet() {
   const [on, setOn] = useState(loadOn);
-  const [mode, setMode] = useState<Mode>("idle");
   const [frame, setFrame] = useState<keyof typeof ASTRID>("stand");
   const [facing, setFacing] = useState<1 | -1>(1);
-  const [pos, setPos] = useState({ x: 24, y: 0 });
+  const [pos, setPos] = useState({ x: -100, y: -100 });
   const [tip, setTip] = useState<string | null>(null);
-  const tipIndex = useRef(0);
-  const state = useRef({ x: 24, y: 0, vy: 0, dir: 1 as 1 | -1, mode: "idle" as Mode, until: 0 });
+
+  const small = typeof window !== "undefined" && window.innerWidth < 640;
+  const scale = small ? 2 : 3;
+  const w = 12 * scale;
+  const h = 18 * scale;
+
+  const s = useRef({
+    mode: "fall" as Mode,
+    x: 120, // screen x while falling/held/on the floor
+    y: -60,
+    vy: 0,
+    dir: 1 as 1 | -1,
+    until: 0,
+    perch: null as HTMLElement | null,
+    localX: 0, // x along the current perch
+    hop: null as Hop | null,
+  });
+  const said = useRef<Record<string, number>>({}); // next fact index per perch
+  const lastChat = useRef(0);
   const drag = useRef<{ dx: number; dy: number; moved: boolean } | null>(null);
   const calm = useRef(prefersReducedMotion());
-  const scale = typeof window !== "undefined" && window.innerWidth < 640 ? SCALE_MOBILE : SCALE_DESKTOP;
-  const w = 15 * scale;
-  const h = 18 * scale;
 
   useEffect(
     () =>
       onSummonPet(() => {
         setOn(true);
         saveOn(true);
-        // Drop in from above, near the left
-        state.current = { ...state.current, x: Math.min(120, window.innerWidth - w - 8), y: -h, vy: 0, mode: "fall" };
-        setMode("fall");
+        Object.assign(s.current, { mode: "fall", x: Math.min(140, window.innerWidth - w - 8), y: -h, vy: 0, perch: null, hop: null });
       }),
     [w, h],
   );
 
-  // Main loop: walking, falling, and picking what to do next.
+  /** Says the next line for a perch (or a general one). */
+  const say = (perch: HTMLElement | null) => {
+    const key = perch?.dataset.perch ?? "";
+    const lines = PERCH_FACTS[key] ?? GENERAL_FACTS;
+    const i = said.current[key] ?? 0;
+    said.current[key] = i + 1;
+    setTip(lines[i % lines.length]);
+    lastChat.current = performance.now();
+  };
+
+  // Main loop
   useEffect(() => {
     if (!on) return;
-    let last = performance.now();
     let raf = 0;
-    const floor = () => window.innerHeight - h - 6;
+    let last = performance.now();
+    const floorY = () => window.innerHeight - h - 6;
+
+    const perches = () => [...document.querySelectorAll<HTMLElement>("[data-perch]")];
+    /** A perch is usable when its top edge is comfortably on screen and wide enough. */
+    const usable = (el: HTMLElement) => {
+      const r = el.getBoundingClientRect();
+      return r.top - h > NAV_HEIGHT && r.top < window.innerHeight - 20 && r.width > w + 24;
+    };
+    /** The usable perch closest to the middle of the screen. */
+    const bestPerch = () => {
+      const mid = window.innerHeight * 0.55;
+      let best: HTMLElement | null = null;
+      let dist = Infinity;
+      for (const el of perches()) {
+        if (!usable(el)) continue;
+        const d = Math.abs(el.getBoundingClientRect().top - mid);
+        if (d < dist) {
+          dist = d;
+          best = el;
+        }
+      }
+      return best;
+    };
+    const screenOf = (perch: HTMLElement | null, localX: number) => {
+      if (!perch) return { x: localX, y: floorY() };
+      const r = perch.getBoundingClientRect();
+      return { x: r.left + localX, y: r.top - h + 2 };
+    };
+    const maxLocal = (perch: HTMLElement | null) => (perch ? perch.getBoundingClientRect().width - w : window.innerWidth - w - 4);
+
+    const land = (perch: HTMLElement | null, localX: number, now: number) => {
+      const st = s.current;
+      const changed = perch !== st.perch;
+      st.perch = perch;
+      st.localX = Math.max(0, Math.min(maxLocal(perch), localX));
+      st.mode = "idle";
+      st.until = now + 1200;
+      if (!changed) return;
+      // A remark about the old spot shouldn't follow her to the new one.
+      setTip(null);
+      // Say something about the new spot, but not every time she moves.
+      if (perch && now - lastChat.current > CHAT_GAP_MS) {
+        window.setTimeout(() => {
+          if (s.current.perch === perch) say(perch);
+        }, 350);
+      }
+    };
+
+    const startHop = (to: HTMLElement | null, now: number) => {
+      const st = s.current;
+      const from = st.mode === "fall" || st.mode === "held" ? { x: st.x, y: st.y } : screenOf(st.perch, st.localX);
+      const here = from.x;
+      const toLocalX = to ? here - to.getBoundingClientRect().left : here;
+      if (calm.current) return land(to, toLocalX, now);
+      st.hop = { from, toPerch: to, toLocalX, start: now };
+      st.mode = "hop";
+    };
 
     const choose = (now: number) => {
-      const s = state.current;
+      const st = s.current;
       if (calm.current) {
-        s.mode = "idle";
-        s.until = now + 4000;
+        st.mode = "idle";
+        st.until = now + 5000;
         return;
       }
       const roll = Math.random();
       if (roll < 0.55) {
-        s.mode = "walk";
-        s.dir = Math.random() < 0.5 ? -1 : 1;
-        s.until = now + 2500 + Math.random() * 4000;
+        st.mode = "walk";
+        st.dir = Math.random() < 0.5 ? -1 : 1;
+        st.until = now + 2000 + Math.random() * 3500;
       } else if (roll < 0.85) {
-        s.mode = "idle";
-        s.until = now + 1500 + Math.random() * 2500;
+        st.mode = "idle";
+        st.until = now + 1500 + Math.random() * 2500;
       } else {
-        s.mode = "sit";
-        s.until = now + 3000 + Math.random() * 3000;
+        st.mode = "sit";
+        st.until = now + 3000 + Math.random() * 3000;
       }
     };
 
     const tick = (now: number) => {
       const dt = Math.min(0.05, (now - last) / 1000);
       last = now;
-      const s = state.current;
-      const maxX = window.innerWidth - w - 4;
+      const st = s.current;
+      let screen = { x: st.x, y: st.y };
 
-      if (s.mode === "fall") {
-        s.vy += GRAVITY * dt;
-        s.y += s.vy * dt;
-        if (s.y >= floor()) {
-          s.y = floor();
-          s.vy = 0;
-          s.mode = "idle";
-          s.until = now + 900;
+      if (st.mode === "held") {
+        screen = { x: st.x, y: st.y };
+      } else if (st.mode === "fall") {
+        const prevBottom = st.y + h;
+        st.vy += GRAVITY * dt;
+        st.y += st.vy * dt;
+        const feet = st.x + w / 2;
+        // Land on the first perch whose top edge she falls through
+        const hit = perches().find((el) => {
+          const r = el.getBoundingClientRect();
+          return feet > r.left && feet < r.right && prevBottom <= r.top + 2 && st.y + h >= r.top && r.top - h > NAV_HEIGHT;
+        });
+        if (hit) land(hit, st.x - hit.getBoundingClientRect().left, now);
+        else if (st.y >= floorY()) land(null, st.x, now);
+        screen = { x: st.x, y: st.y };
+      } else if (st.mode === "hop" && st.hop) {
+        const hop = st.hop;
+        const t = Math.min(1, (now - hop.start) / HOP_MS);
+        const target = screenOf(hop.toPerch, hop.toLocalX);
+        const arc = Math.sin(Math.PI * t) * 70;
+        screen = { x: hop.from.x + (target.x - hop.from.x) * t, y: hop.from.y + (target.y - hop.from.y) * t - arc };
+        // If the page scrolled her target away mid-hop, aim for one still in view.
+        if (hop.toPerch && !usable(hop.toPerch)) {
+          const next = bestPerch();
+          st.hop = { from: screen, toPerch: next, toLocalX: next ? screen.x - next.getBoundingClientRect().left : screen.x, start: now };
         }
-      } else if (s.mode !== "held") {
-        s.y = floor();
-        if (s.mode === "walk") {
-          s.x += s.dir * SPEED * dt;
-          if (s.x <= 4 || s.x >= maxX) s.dir = s.x <= 4 ? 1 : -1;
+        if (t >= 1) {
+          st.hop = null;
+          land(hop.toPerch, hop.toLocalX, now);
         }
-        if (now > s.until && s.mode !== "wave") choose(now);
-        if (s.mode === "wave" && now > s.until) choose(now);
+      } else {
+        // Standing on a perch (or the floor). Hop if the perch scrolled away,
+        // or if a better one is in view while she's on the floor.
+        if (st.perch && !usable(st.perch)) startHop(bestPerch(), now);
+        else if (!st.perch) {
+          const next = bestPerch();
+          if (next) startHop(next, now);
+        }
+        if (st.mode === "walk") {
+          st.localX += st.dir * SPEED * dt;
+          const max = maxLocal(st.perch);
+          if (st.localX <= 0 || st.localX >= max) st.dir = st.localX <= 0 ? 1 : -1;
+          st.localX = Math.max(0, Math.min(max, st.localX));
+        }
+        if (now > st.until && st.mode !== "hop") choose(now);
+        if (st.mode !== "hop") screen = screenOf(st.perch, st.localX);
+        st.x = screen.x;
+        st.y = screen.y;
       }
-      s.x = Math.max(4, Math.min(maxX, s.x));
 
-      setPos({ x: s.x, y: s.y });
-      setMode(s.mode);
-      setFacing(s.dir);
+      setPos(screen);
+      setFacing(st.dir);
       raf = requestAnimationFrame(tick);
     };
-    state.current.y = state.current.mode === "fall" ? state.current.y : floor();
+
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
+    // say() only reads refs and stable setters
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [on, w, h]);
 
-  // Animation frames: two-step walk, blink now and then
+  // Animation frames
   useEffect(() => {
     if (!on) return;
     let step = 0;
     const id = window.setInterval(() => {
       step++;
-      const m = state.current.mode;
+      const m = s.current.mode;
       if (m === "walk") setFrame(step % 2 ? "walkA" : "walkB");
       else if (m === "sit") setFrame("sit");
       else if (m === "wave") setFrame(step % 2 ? "wave" : "stand");
-      else if (m === "fall" || m === "held") setFrame("walkA");
+      else if (m === "fall" || m === "held" || m === "hop") setFrame("walkA");
       else setFrame(step % 12 === 0 ? "blink" : "stand");
     }, 220);
     return () => window.clearInterval(id);
   }, [on]);
 
-  // Hide the tip after a while
   useEffect(() => {
     if (!tip) return;
-    const id = window.setTimeout(() => setTip(null), 4200);
+    const id = window.setTimeout(() => setTip(null), 4500);
     return () => window.clearTimeout(id);
   }, [tip]);
 
-  const sayNext = () => {
-    setTip(TIPS[tipIndex.current % TIPS.length]);
-    tipIndex.current++;
-    const s = state.current;
-    s.mode = "wave";
-    s.until = performance.now() + 1600;
+  const wave = () => {
+    say(s.current.perch);
+    const st = s.current;
+    if (st.mode !== "hop" && st.mode !== "fall") {
+      st.mode = "wave";
+      st.until = performance.now() + 1600;
+    }
   };
 
   const onPointerDown = (e: ReactPointerEvent) => {
     (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
-    drag.current = { dx: e.clientX - state.current.x, dy: e.clientY - state.current.y, moved: false };
+    drag.current = { dx: e.clientX - pos.x, dy: e.clientY - pos.y, moved: false };
   };
   const onPointerMove = (e: ReactPointerEvent) => {
     const d = drag.current;
     if (!d) return;
     const nx = e.clientX - d.dx;
     const ny = e.clientY - d.dy;
-    if (!d.moved && Math.hypot(nx - state.current.x, ny - state.current.y) < 6) return;
+    if (!d.moved && Math.hypot(nx - pos.x, ny - pos.y) < 6) return;
     d.moved = true;
-    state.current.mode = "held";
-    state.current.x = nx;
-    state.current.y = ny;
+    Object.assign(s.current, { mode: "held", x: nx, y: ny, perch: null, hop: null });
   };
   const onPointerUp = () => {
     const d = drag.current;
     drag.current = null;
     if (!d) return;
     if (d.moved) {
-      state.current.mode = "fall";
-      state.current.vy = 0;
+      Object.assign(s.current, { mode: "fall", vy: 0 });
       setTip("Wheee!");
     } else {
-      sayNext();
+      wave();
     }
   };
 
@@ -201,22 +305,33 @@ export default function PixelPet() {
   if (!on) return null;
 
   return (
-    <div className="pixel-pet fixed left-0 top-0 z-[55] select-none" style={{ transform: `translate(${pos.x}px, ${pos.y}px)` }}>
+    <div
+      className="pixel-pet fixed left-0 top-0 z-[35] select-none"
+      style={{ transform: `translate(${pos.x}px, ${pos.y}px)` }}
+    >
       {tip && (
-        <div className="card-in absolute bottom-full left-1/2 mb-2 w-56 -translate-x-1/2 rounded-lg border-2 border-slate-900 bg-white px-3 py-2 font-mono text-[11px] font-bold leading-snug text-slate-900 shadow-[3px_3px_0_#0F172A]" role="status">
+        <div
+          className="card-in absolute bottom-full mb-2 w-56 rounded-lg border-2 border-slate-900 bg-white px-3 py-2 font-mono text-[11px] font-bold leading-snug text-slate-900 shadow-[3px_3px_0_#0F172A]"
+          style={pos.x > window.innerWidth - 240 ? { right: 0 } : { left: 0 }}
+          role="status"
+        >
           {tip}
-          <span aria-hidden="true" className="absolute -bottom-[7px] left-1/2 -ml-1.5 h-3 w-3 rotate-45 border-b-2 border-r-2 border-slate-900 bg-white" />
         </div>
       )}
       <button
         type="button"
-        aria-label="Pixel Astrid. Click for a tip, or drag to pick her up."
-        className={`block cursor-grab touch-none active:cursor-grabbing ${mode === "fall" ? "" : "pet-land"}`}
+        aria-label="Pixel Astrid. Click for a fact about this part of the page, or drag to move her."
+        className="block cursor-grab touch-none active:cursor-grabbing"
         style={{ width: w, height: h }}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
-        onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), sayNext())}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            wave();
+          }
+        }}
       >
         <PixelSprite frame={ASTRID[frame]} palette={ASTRID_PALETTE} scale={scale} flip={facing === -1} />
       </button>

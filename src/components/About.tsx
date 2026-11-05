@@ -95,7 +95,7 @@ export default function About({ onUnlockAchievement }: AboutProps) {
         </div>
 
         {/* Career Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div data-perch="roles" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {ROLES.map((role, i) => (
             <div
               key={role.title}
@@ -167,7 +167,7 @@ export default function About({ onUnlockAchievement }: AboutProps) {
         </div>
 
         {/* Achievements Unlocked section */}
-        <div className="p-7 sm:p-8 rounded-xl border-2 border-slate-900 bg-white shadow-[4px_4px_0px_#0F172A] space-y-4">
+        <div data-perch="badges" className="p-7 sm:p-8 rounded-xl border-2 border-slate-900 bg-white shadow-[4px_4px_0px_#0F172A] space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <p className="text-xs font-mono font-bold uppercase tracking-wider text-slate-900">
               🏆 QUALIFICATIONS, MILESTONES, OTHER USEFUL EVIDENCE

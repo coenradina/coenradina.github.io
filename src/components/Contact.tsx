@@ -244,6 +244,7 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
               </div>
             ) : (
               <form
+                data-perch="contact"
                 onSubmit={handleSubmit}
                 className="rounded-xl border-2 border-slate-900 p-7 sm:p-9 flex flex-col gap-6 shadow-[6px_6px_0px_#0F172A]"
                 style={{ backgroundColor: "#FDF6E3" }}
