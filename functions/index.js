@@ -6,6 +6,7 @@ import { logger } from "firebase-functions/v2";
 import { onRequest } from "firebase-functions/v2/https";
 import nodemailer from "nodemailer";
 import { ALLOWED_ORIGINS, TURNSTILE_HOSTNAMES, clientIp, validateSubmission } from "./validate.js";
+import { ANALYZE_ORIGINS, buildSystemPrompt, sanitiseModelOutput, validateAnalyzeRequest } from "./analyze.js";
 
 initializeApp();
 const db = getFirestore();
@@ -14,6 +15,7 @@ const TURNSTILE_SECRET = defineSecret("TURNSTILE_SECRET");
 const SMTP_PASSWORD = defineSecret("SMTP_PASSWORD");
 // Salt for hashing IPs, so stored rate-limit keys can't be reversed to addresses.
 const IP_HASH_SALT = defineSecret("IP_HASH_SALT");
+const GROQ_API_KEY = defineSecret("GROQ_API_KEY");
 const SMTP_USER = "hello@aastr.id";
 const RECIPIENT = "hello@aastr.id";
 
@@ -177,5 +179,119 @@ export const contact = onRequest(
     }
 
     return send(res, 202, "Thanks, your note has been sent.", true);
+  },
+);
+
+// ---------------------------------------------------------------------------
+// Prompt Analyzer proxy (https://aastr.id/prompt-analyzer/)
+//
+// Holds the Groq key server-side. Before this, the key was built into the
+// public JS bundle, so anyone could copy it.
+// ---------------------------------------------------------------------------
+
+const ANALYZE_PER_IP_DAILY = 3; // matches the limit the UI tells visitors about
+const ANALYZE_GLOBAL_DAILY = 300; // hard cap on Groq calls per day
+const ANALYZE_MAX_BODY_BYTES = 16_000;
+const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
+const GROQ_MODEL = "llama-3.1-8b-instant";
+
+/** Counts one use against a daily bucket. Returns uses left, or throws { status, message, code }. */
+async function takeDailyQuota(docId, limit, code, message) {
+  const ref = db.collection("analyzeLimits").doc(docId);
+  return db.runTransaction(async (tx) => {
+    const used = (await tx.get(ref)).get("count") ?? 0;
+    if (used >= limit) throw { status: 429, message, code };
+    tx.set(ref, { count: used + 1, expiresAt: Timestamp.fromMillis(Date.now() + 2 * 86_400_000) });
+    return limit - used - 1;
+  });
+}
+
+export const analyzePrompt = onRequest(
+  {
+    region: "us-central1",
+    secrets: [GROQ_API_KEY, IP_HASH_SALT],
+    maxInstances: 2,
+    concurrency: 20,
+    memory: "256MiB",
+    timeoutSeconds: 30,
+    invoker: "public",
+    cors: false,
+  },
+  async (req, res) => {
+    setSecurityHeaders(res);
+    const origin = req.get("origin") ?? "";
+    if (!ANALYZE_ORIGINS.has(origin)) return send(res, 403, "Request rejected.");
+
+    res.set("Access-Control-Allow-Origin", origin);
+    res.set("Vary", "Origin");
+    if (req.method === "OPTIONS") {
+      res.set("Access-Control-Allow-Methods", "POST");
+      res.set("Access-Control-Allow-Headers", "Content-Type");
+      res.set("Access-Control-Max-Age", "3600");
+      return res.status(204).end();
+    }
+    if (req.method !== "POST") {
+      res.set("Allow", "POST, OPTIONS");
+      return send(res, 405, "Method not allowed.");
+    }
+    if (!req.is("application/json")) return send(res, 415, "Unsupported request format.");
+    if ((req.rawBody?.length ?? 0) > ANALYZE_MAX_BODY_BYTES) return send(res, 413, "Request is too large.");
+
+    const check = validateAnalyzeRequest(req.body);
+    if (!check.ok) return send(res, check.status, check.message);
+    const { prompt, framework, lang } = check.data;
+
+    const ip = clientIp(req.get("x-forwarded-for"), req.ip);
+    const ipHash = createHash("sha256").update(IP_HASH_SALT.value() + ip).digest("hex");
+    const day = new Date().toISOString().slice(0, 10);
+
+    let remaining;
+    try {
+      remaining = await takeDailyQuota(`ip-${ipHash}-${day}`, ANALYZE_PER_IP_DAILY, "daily_limit", "Daily limit reached.");
+      await takeDailyQuota(`day-${day}`, ANALYZE_GLOBAL_DAILY, "busy", "Service is busy today.");
+    } catch (err) {
+      if (err?.status === 429) {
+        res.set("Retry-After", "3600");
+        return res.status(429).json({ ok: false, code: err.code, message: err.message, remaining: 0 });
+      }
+      logger.error("Analyze quota check failed", err);
+      return send(res, 503, "Service temporarily unavailable.");
+    }
+
+    let groq;
+    try {
+      groq = await fetch(GROQ_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${GROQ_API_KEY.value()}` },
+        body: JSON.stringify({
+          model: GROQ_MODEL,
+          temperature: 0.3,
+          max_tokens: 1024,
+          response_format: { type: "json_object" },
+          messages: [
+            { role: "system", content: buildSystemPrompt(framework, lang) },
+            { role: "user", content: `Prompt yang perlu dianalisis:\n\n${prompt}` },
+          ],
+        }),
+        signal: AbortSignal.timeout(20_000),
+      });
+    } catch (err) {
+      logger.error("Groq request failed", { err: String(err) });
+      return send(res, 502, "AI service unreachable.");
+    }
+
+    if (!groq.ok) {
+      // Log status only. Never log the prompt: it is the visitor's data.
+      logger.warn("Groq returned an error", { status: groq.status });
+      return send(res, groq.status === 429 ? 503 : 502, "AI service error.");
+    }
+
+    try {
+      const data = await groq.json();
+      const parsed = JSON.parse(data.choices[0].message.content);
+      return res.status(200).json({ ok: true, remaining, result: sanitiseModelOutput(parsed, framework) });
+    } catch {
+      return send(res, 502, "AI returned an unreadable answer.");
+    }
   },
 );
