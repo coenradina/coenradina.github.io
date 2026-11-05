@@ -17,8 +17,7 @@ const PROJECTS = [
     xpLabel: "Beneficiaries",
     xpValue: 98,
     xp: "Millions of Learners",
-    color: "#0D9488",
-    bg: "#CCFBF1",
+    tone: "tosca" as const,
     imgUrl: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=350&fit=crop&auto=format",
   },
   {
@@ -30,8 +29,7 @@ const PROJECTS = [
     xpLabel: "Scrum Delivery Metric",
     xpValue: 95,
     xp: "Payment & Recruitment",
-    color: "#0F172A",
-    bg: "#EEE8D5",
+    tone: "ink" as const,
     imgUrl: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=600&h=350&fit=crop&auto=format",
   },
   {
@@ -43,8 +41,7 @@ const PROJECTS = [
     xpLabel: "Mentor Retention Boost",
     xpValue: 92,
     xp: "+57% Retention",
-    color: "#881337",
-    bg: "#FFE4E6",
+    tone: "maroon" as const,
     imgUrl: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=350&fit=crop&auto=format",
   },
   {
@@ -56,8 +53,7 @@ const PROJECTS = [
     xpLabel: "Learners Reached",
     xpValue: 94,
     xp: "20,000+ Learners",
-    color: "#0D9488",
-    bg: "#CCFBF1",
+    tone: "tosca" as const,
     imgUrl: `${import.meta.env.BASE_URL}projects/gengirl-mentors.webp`,
   },
   {
@@ -69,8 +65,7 @@ const PROJECTS = [
     xpLabel: "App Stability",
     xpValue: 90,
     xp: "99.9% Crash Free",
-    color: "#B58900",
-    bg: "#FEF3C7",
+    tone: "gold" as const,
     imgUrl: "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&h=350&fit=crop&auto=format",
   },
   {
@@ -82,8 +77,7 @@ const PROJECTS = [
     tech: ["Data Encryption", "Biometric Verification", "Banking Security", "Clean Code"],
     xpValue: 96,
     xp: "Banking Grade Shield",
-    color: "#0F172A",
-    bg: "#E2E8F0",
+    tone: "ink" as const,
     imgUrl: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=350&fit=crop&auto=format",
   },
 ];
@@ -102,37 +96,34 @@ export default function Projects({ onUnlockAchievement }: ProjectsProps) {
   };
 
   return (
-    <section id="projects" className="py-28 px-4 sm:px-6 lg:px-8 border-t-2 border-slate-900" style={{ backgroundColor: "#EEE8D5" }}>
+    <section id="projects" className="py-28 px-4 sm:px-6 lg:px-8 border-t-2 border-ink bg-parchment">
       <div className="max-w-6xl mx-auto space-y-12">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div className="space-y-3 max-w-2xl">
             <div
-              className="text-xs font-mono font-bold uppercase tracking-wider text-slate-700"
+              className="type-eyebrow text-ink-soft"
             >
               // projects[].filter(real_impact)
             </div>
             <h2
-              className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 leading-tight"
-              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+              className="type-title text-ink"
             >
-              A few things <span className="text-brand-tosca underline decoration-amber-400 decoration-4">I've worked on.</span>
+              A few things <span className="text-tosca underline decoration-amber decoration-4">I've worked on.</span>
             </h2>
-            <p className="text-base text-slate-700 font-sans leading-relaxed pt-1 font-semibold italic">
+            <p className="type-subheading text-ink-soft pt-1 italic">
               Six projects I can explain without opening a pitch deck.
             </p>
           </div>
 
           {/* Filter chips */}
-          <div className="flex flex-wrap gap-2.5">
+          <div className="flex flex-wrap gap-3">
             {CATEGORIES.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActive(cat)}
-                className={`px-4 py-2 rounded text-xs font-mono font-bold border-2 transition-all cyber-button cursor-pointer ${
-                  active === cat
-                    ? "bg-brand-tosca text-white border-slate-900"
-                    : "bg-white text-slate-900 border-slate-900 hover:bg-amber-100"
+                className={`px-4 py-2 rounded type-label border-2 transition-all cyber-button cursor-pointer ${active === cat ? "bg-tosca text-white border-ink"
+                    : "bg-white text-ink border-ink hover:bg-amber-tint"
                 }`}
               >
                 {cat}
@@ -147,38 +138,37 @@ export default function Projects({ onUnlockAchievement }: ProjectsProps) {
             <div
               key={project.title}
               onClick={() => handleCardClick(project)}
-              className="group cursor-pointer rounded-xl border-2 border-slate-900 bg-white shadow-[4px_4px_0px_#0F172A] hover:translate-y-[-4px] hover:shadow-[6px_6px_0px_#0F172A] transition-all flex flex-col overflow-hidden"
+              className="group cursor-pointer rounded-lg border-2 border-ink bg-white shadow-pixel hover:translate-y-[-4px] hover:shadow-pixel-lg transition-all flex flex-col overflow-hidden"
             >
               {/* Thumbnail Container */}
-              <div className="relative h-48 overflow-hidden border-b-2 border-slate-900 bg-slate-100">
+              <div className="relative h-48 overflow-hidden border-b-2 border-ink bg-parchment">
                 <img
                   src={project.imgUrl}
                   alt={project.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <span
-                  className="absolute top-3 left-3 text-[10px] font-mono font-bold px-2.5 py-1 rounded border border-slate-900 text-white bg-slate-900/90 shadow-xs"
+                  className="absolute top-3 left-3 type-micro px-3 py-1 rounded border border-ink text-white bg-ink/90 shadow-pixel-sm"
                 >
                   {project.category}
                 </span>
 
                 <span
-                  className="absolute bottom-3 right-3 text-[10px] font-mono font-bold px-2.5 py-1 rounded border border-slate-900 bg-amber-300 text-slate-900"
+                  className="absolute bottom-3 right-3 type-micro px-3 py-1 rounded border border-ink bg-amber text-ink"
                 >
                   {project.company}
                 </span>
               </div>
 
               {/* Card Body */}
-              <div className="p-6 sm:p-7 flex flex-col justify-between flex-1 gap-5">
+              <div className="p-6 sm:p-8 flex flex-col justify-between flex-1 gap-6">
                 <div className="space-y-2">
                   <h3
-                    className="text-lg font-bold text-slate-900 leading-snug group-hover:text-brand-tosca transition-colors"
-                    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                    className="type-subheading text-ink group-hover:text-tosca transition-colors"
                   >
                     {project.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-sans pt-1">
+                  <p className="type-body text-ink-soft pt-1">
                     {project.description}
                   </p>
                 </div>
@@ -188,7 +178,7 @@ export default function Projects({ onUnlockAchievement }: ProjectsProps) {
                     {project.tech.map((t) => (
                       <span
                         key={t}
-                        className="text-[11px] font-mono font-bold px-2.5 py-0.5 rounded border border-slate-900 bg-slate-100 text-slate-800"
+                        className="type-micro px-3 py-0.5 rounded border border-ink bg-parchment text-ink-soft"
                       >
                         {t}
                       </span>
@@ -199,7 +189,7 @@ export default function Projects({ onUnlockAchievement }: ProjectsProps) {
                     label={project.xpLabel}
                     value={project.xpValue}
                     xp={project.xp}
-                    color={project.color}
+                    tone={project.tone}
                   />
                 </div>
               </div>
@@ -209,44 +199,44 @@ export default function Projects({ onUnlockAchievement }: ProjectsProps) {
 
         {/* Project Inspector Modal */}
         {selectedProject && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs">
-            <div className="w-full max-w-xl rounded-xl border-2 border-slate-900 bg-white p-7 sm:p-8 shadow-2xl space-y-5" style={{ backgroundColor: "#FDF6E3" }}>
-              <div className="flex items-center justify-between border-b-2 border-slate-900 pb-4">
+          <div className="fixed inset-0 z-modal flex items-center justify-center p-4 bg-ink/60 backdrop-blur-xs">
+            <div className="w-full max-w-xl rounded-lg border-2 border-ink p-8 shadow-pixel-lg space-y-6 bg-cream">
+              <div className="flex items-center justify-between border-b-2 border-ink pb-4">
                 <div>
-                  <span className="text-xs font-mono font-bold text-brand-maroon uppercase">
+                  <span className="type-eyebrow text-maroon">
                     // A CLOSER LOOK
                   </span>
-                  <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mt-0.5" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                  <h3 className="type-heading text-ink mt-0.5">
                     {selectedProject.title}
                   </h3>
                 </div>
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="px-3 py-1.5 rounded border border-slate-900 bg-rose-100 text-rose-900 font-mono text-xs font-bold hover:bg-rose-200 cursor-pointer"
+                  className="px-3 py-1.5 rounded border border-ink bg-maroon-tint text-maroon type-label hover:bg-maroon-tint cursor-pointer"
                 >
                   CLOSE [X]
                 </button>
               </div>
 
-              <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-sans">
+              <p className="type-body text-ink-soft">
                 {selectedProject.description}
               </p>
 
-              <div className="p-4 rounded-lg border border-slate-900 bg-[#EEE8D5] space-y-2.5">
-                <div className="flex items-center justify-between text-xs sm:text-sm font-mono font-bold text-slate-800">
+              <div className="p-4 rounded-lg border border-ink bg-parchment space-y-3">
+                <div className="flex items-center justify-between type-button text-ink-soft">
                   <span>ORGANIZATION:</span>
-                  <span className="text-brand-tosca">{selectedProject.company}</span>
+                  <span className="text-tosca">{selectedProject.company}</span>
                 </div>
-                <div className="flex items-center justify-between text-xs sm:text-sm font-mono font-bold text-slate-800">
+                <div className="flex items-center justify-between type-button text-ink-soft">
                   <span>RESULT:</span>
-                  <span className="text-brand-maroon">{selectedProject.xp}</span>
+                  <span className="text-maroon">{selectedProject.xp}</span>
                 </div>
               </div>
 
               <div className="flex justify-end pt-2">
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="px-5 py-2.5 bg-brand-tosca text-white font-mono text-xs font-bold rounded border-2 border-slate-900 cyber-button cursor-pointer"
+                  className="px-6 py-3 bg-tosca text-white type-label rounded border-2 border-ink cyber-button cursor-pointer"
                 >
                   BACK TO PROJECTS ↵
                 </button>

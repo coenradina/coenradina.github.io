@@ -1,0 +1,191 @@
+/* AC design tokens, shared by aastr.id and Kotakata.
+   Both repos keep an identical copy of this file. The rules for using it are
+   in DESIGN.md, and scripts/check-design.mjs fails the build when code
+   reaches past them. Change a value here, then copy the file to the other repo. */
+
+@theme {
+  /* Colour. Tailwind's default palette is switched off: only these exist. */
+  --color-*: initial;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-white: #ffffff;
+  --color-cream: #fdf6e3; /* page background */
+  --color-parchment: #eee8d5; /* panels, inputs, secondary surfaces */
+  --color-ink: #0f172a; /* text, borders, pixel shadows, dark surfaces */
+  --color-ink-soft: #334155; /* secondary text */
+  --color-ink-muted: #475569; /* captions, meta, placeholders */
+  --color-tosca: #0d9488; /* primary accent, success */
+  --color-tosca-dark: #0f766e; /* tosca hover */
+  --color-tosca-light: #2dd4bf; /* tosca on dark surfaces */
+  --color-tosca-tint: #ccfbf1; /* tosca background tint */
+  --color-maroon: #881337; /* call to action, error */
+  --color-maroon-dark: #6b0f1a; /* maroon hover */
+  --color-maroon-tint: #ffe4e6; /* maroon background tint */
+  --color-amber: #e5a93c; /* highlight, warning, focus ring */
+  --color-amber-tint: #fef3c7; /* amber background tint */
+  --color-gold: #b58900; /* amber as text on light surfaces */
+
+  /* Type families and weights. Sizes come from the type-* roles below. */
+  --font-*: initial;
+  --font-sans: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-pixel: 'VT323', ui-monospace, monospace;
+  --font-weight-*: initial;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  /* Raw text sizes are switched off. The only two left size emoji and icons. */
+  --text-*: initial;
+  --text-icon: 1.5rem;
+  --text-icon--line-height: 1;
+  --text-icon-lg: 2.25rem;
+  --text-icon-lg--line-height: 1;
+
+  /* Hard pixel shadows only */
+  --shadow-*: initial;
+  --shadow-pixel-sm: 2px 2px 0 var(--color-ink);
+  --shadow-pixel: 4px 4px 0 var(--color-ink);
+  --shadow-pixel-lg: 6px 6px 0 var(--color-ink);
+}
+
+/* Effect colours that are not part of the UI palette */
+:root {
+  --fx-grid: color-mix(in srgb, var(--color-tosca) 5%, transparent);
+  --fx-grid-ink: color-mix(in srgb, var(--color-ink) 4%, transparent);
+  --fx-scanline: color-mix(in srgb, var(--color-ink) 8%, transparent);
+  --fx-glitch-red: rgb(239 68 68 / 0.75);
+  --fx-glitch-cyan: rgb(6 182 212 / 0.75);
+}
+
+/* ---------------------------------------------------------------------------
+   Type roles. Every piece of text uses exactly one. A role sets family, size,
+   weight, line height and letter spacing, and grows at the sm breakpoint
+   where noted. Add font-bold or font-medium on top only for emphasis. */
+
+/* Hero name. One per page. */
+@utility type-display {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 2.25rem;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  @media (width >= 40rem) { font-size: 3rem; }
+  @media (width >= 48rem) { font-size: 3.75rem; }
+  @media (width >= 64rem) { font-size: 4.5rem; }
+}
+/* Section title (h2) */
+@utility type-title {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 2.25rem;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  @media (width >= 40rem) { font-size: 3rem; }
+}
+/* Card or modal title (h3) */
+@utility type-heading {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1.3;
+  @media (width >= 40rem) { font-size: 1.5rem; }
+}
+/* Small title inside a card (h4) */
+@utility type-subheading {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 1.4;
+}
+/* Intro paragraph under a title */
+@utility type-lead {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.65;
+  @media (width >= 40rem) { font-size: 1.125rem; }
+}
+/* Default reading text */
+@utility type-body {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.65;
+}
+/* Fine print, footnotes */
+@utility type-caption {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+/* Buttons and nav links. Never wraps. */
+@utility type-button {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.75rem;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+/* Tags, meta lines, form labels, small UI text */
+@utility type-label {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+/* Kicker above a title, badge text. Always uppercase. */
+@utility type-eyebrow {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.6875rem;
+  line-height: 1.4;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+/* Counters and tiny annotations */
+@utility type-micro {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.6875rem;
+  line-height: 1.4;
+}
+/* Code, terminal output, mono paragraphs */
+@utility type-mono {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 1.65;
+  @media (width >= 40rem) { font-size: 0.875rem; }
+}
+/* Retro accents: scores, levels, game numbers. VT323 runs small, so its
+   steps sit a size above the sans scale. */
+@utility type-pixel-sm {
+  font-family: var(--font-pixel);
+  font-weight: 400;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+@utility type-pixel {
+  font-family: var(--font-pixel);
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+@utility type-pixel-lg {
+  font-family: var(--font-pixel);
+  font-weight: 400;
+  font-size: 2.25rem;
+  line-height: 1;
+}
+
+/* ---------------------------------------------------------------------------
+   Stacking layers. Numeric z-* classes are not allowed. */
+@utility z-raised { z-index: 10; }
+@utility z-float { z-index: 30; }
+@utility z-nav { z-index: 40; }
+@utility z-overlay { z-index: 80; }
+@utility z-toast { z-index: 90; }
+@utility z-modal { z-index: 100; }
+@utility z-takeover { z-index: 110; }

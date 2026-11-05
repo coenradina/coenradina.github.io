@@ -162,13 +162,13 @@ export default function HackSequence({ onUnlockAchievement }: Props) {
   return (
     <>
       {(phase === "breach" || phase === "patching") && (
-        <div className="hack-overlay pointer-events-none fixed inset-0 z-[60]" aria-hidden="true">
+        <div className="hack-overlay pointer-events-none fixed inset-0 z-takeover" aria-hidden="true">
           <div className="hack-scanlines absolute inset-0" />
           {phase === "breach" &&
             noise.map((n, i) => (
               <span
                 key={i}
-                className="absolute rounded bg-slate-900/85 px-2 py-0.5 font-mono text-[11px] font-bold text-lime-300 sm:text-xs"
+                className="absolute rounded bg-ink/90 px-2 py-0.5 type-micro text-tosca-light"
                 style={{ left: `${n.x}%`, top: `${n.y}%` }}
               >
                 {n.text}
@@ -180,7 +180,7 @@ export default function HackSequence({ onUnlockAchievement }: Props) {
             </div>
           )}
           <div className="absolute inset-x-0 top-16 flex justify-center sm:top-20">
-            <div className="rounded border-2 border-lime-400 bg-slate-900 px-4 py-2 font-mono text-xs font-bold text-lime-300 shadow-[4px_4px_0_#0F172A] sm:text-sm">
+            <div className="rounded border-2 border-tosca-light bg-ink px-4 py-2 type-button text-tosca-light shadow-pixel">
               {phase === "breach" ? "⚠ UNAUTHORIZED ACCESS: bug.exe has entered the portfolio" : "✓ RESPONDER ON SITE: patching…"}
             </div>
           </div>
@@ -188,14 +188,14 @@ export default function HackSequence({ onUnlockAchievement }: Props) {
       )}
 
       {phase === "patching" && (
-        <div className="card-in fixed bottom-6 right-6 z-[61] flex w-72 items-start gap-3 rounded-lg border-2 border-slate-900 bg-white p-3 shadow-[5px_5px_0_#0F172A]" role="status">
-          <img src={`${import.meta.env.BASE_URL}avatar.png`} alt="" className="h-14 w-14 shrink-0 rounded border-2 border-slate-900" />
+        <div className="card-in fixed bottom-6 right-6 z-takeover flex w-72 items-start gap-3 rounded-lg border-2 border-ink bg-white p-3 shadow-pixel" role="status">
+          <img src={`${import.meta.env.BASE_URL}avatar.png`} alt="" className="h-14 w-14 shrink-0 rounded border-2 border-ink" />
           <div className="min-w-0 flex-1 space-y-2">
-            <p className="font-mono text-xs font-bold text-slate-900">Astrid: Hold on. I've seen this one before.</p>
-            <div className="h-3 overflow-hidden rounded border-2 border-slate-900 bg-slate-100">
-              <div className="h-full bg-brand-tosca" style={{ width: `${progress}%` }} />
+            <p className="type-label text-ink">Astrid: Hold on. I've seen this one before.</p>
+            <div className="h-3 overflow-hidden rounded border-2 border-ink bg-parchment">
+              <div className="h-full bg-tosca" style={{ width: `${progress}%` }} />
             </div>
-            <p className="font-mono text-[10px] text-slate-600">git revert bug.exe · {Math.round(progress)}%</p>
+            <p className="type-micro text-ink-muted">git revert bug.exe · {Math.round(progress)}%</p>
           </div>
         </div>
       )}
@@ -218,40 +218,40 @@ function IncidentReport({ via, seconds, onClose }: { via: "terminal" | "konami";
   const cause = via === "konami" ? "a visitor entered the Konami code" : "a visitor typed `sudo hack` into the terminal";
 
   return (
-    <div className="fixed inset-0 z-[62] flex items-center justify-center bg-slate-900/50 p-4" onClick={(e) => e.target === e.currentTarget && onClose()}>
-      <div role="dialog" aria-modal="true" aria-labelledby="incident-title" className="card-in w-full max-w-md overflow-hidden rounded-xl border-2 border-slate-900 bg-[#FDF6E3] shadow-[6px_6px_0_#0F172A]">
-        <div className="flex items-center justify-between bg-slate-900 px-4 py-2.5">
-          <h2 id="incident-title" className="font-mono text-sm font-bold text-lime-300">
+    <div className="fixed inset-0 z-takeover flex items-center justify-center bg-ink/50 p-4" onClick={(e) => e.target === e.currentTarget && onClose()}>
+      <div role="dialog" aria-modal="true" aria-labelledby="incident-title" className="card-in w-full max-w-md overflow-hidden rounded-lg border-2 border-ink bg-cream shadow-pixel-lg">
+        <div className="flex items-center justify-between bg-ink px-4 py-3">
+          <h2 id="incident-title" className="type-button text-tosca-light">
             INCIDENT REPORT #001
           </h2>
-          <span className="rounded bg-lime-400 px-2 py-0.5 font-mono text-[10px] font-bold text-slate-900">RESOLVED</span>
+          <span className="rounded bg-tosca-light px-2 py-0.5 type-micro text-ink">RESOLVED</span>
         </div>
-        <div className="space-y-4 p-5 font-mono text-xs text-slate-800 sm:text-sm">
+        <div className="space-y-4 p-6 type-mono text-ink-soft">
           <p>
-            <span className="font-bold text-slate-900">Severity:</span> SEV-4 (cosmetic, mostly emotional)
+            <span className="font-bold text-ink">Severity:</span> SEV-4 (cosmetic, mostly emotional)
           </p>
           <div>
-            <p className="mb-1.5 font-bold text-slate-900">Timeline</p>
+            <p className="mb-1.5 font-bold text-ink">Timeline</p>
             <ul className="space-y-1">
               <li>
-                <span className="text-brand-maroon">{s(0)}</span> Detected: {cause}
+                <span className="text-maroon">{s(0)}</span> Detected: {cause}
               </li>
               <li>
-                <span className="text-brand-maroon">{s(0.3)}</span> bug.exe claimed the headline: "I build bugs."
+                <span className="text-maroon">{s(0.3)}</span> bug.exe claimed the headline: "I build bugs."
               </li>
               <li>
-                <span className="text-brand-maroon">{s(Math.min(seconds, 2.6))}</span> Responder on site: Astrid
+                <span className="text-maroon">{s(Math.min(seconds, 2.6))}</span> Responder on site: Astrid
               </li>
               <li>
-                <span className="text-brand-maroon">{s(seconds)}</span> Patched and verified
+                <span className="text-maroon">{s(seconds)}</span> Patched and verified
               </li>
             </ul>
           </div>
           <p>
-            <span className="font-bold text-slate-900">Impact:</span> No data lost. One headline was briefly wrong.
+            <span className="font-bold text-ink">Impact:</span> No data lost. One headline was briefly wrong.
           </p>
           <div>
-            <p className="mb-1.5 font-bold text-slate-900">Action items</p>
+            <p className="mb-1.5 font-bold text-ink">Action items</p>
             <ul className="space-y-1">
               <li>[x] Remove the bug</li>
               <li>[x] Restore "I build apps."</li>
@@ -259,17 +259,17 @@ function IncidentReport({ via, seconds, onClose }: { via: "terminal" | "konami";
             </ul>
           </div>
         </div>
-        <div className="flex justify-end gap-3 border-t-2 border-slate-900/10 px-5 py-4">
+        <div className="flex justify-end gap-3 border-t-2 border-ink/10 px-6 py-4">
           <button
             onClick={() => {
               onClose();
               document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
             }}
-            className="rounded border-2 border-slate-900 bg-white px-4 py-2 font-mono text-xs font-bold text-slate-900 shadow-[3px_3px_0_#0F172A] hover:bg-amber-100"
+            className="rounded border-2 border-ink bg-white px-4 py-2 type-label text-ink shadow-pixel-sm hover:bg-amber-tint"
           >
             WRITE TO ME ✉
           </button>
-          <button ref={close} onClick={onClose} className="rounded border-2 border-slate-900 bg-brand-tosca px-4 py-2 font-mono text-xs font-bold text-white shadow-[3px_3px_0_#0F172A]">
+          <button ref={close} onClick={onClose} className="rounded border-2 border-ink bg-tosca px-4 py-2 type-label text-white shadow-pixel-sm">
             CLOSE REPORT
           </button>
         </div>

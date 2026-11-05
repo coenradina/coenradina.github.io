@@ -47,12 +47,12 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen relative font-sans text-slate-900" style={{ backgroundColor: "#FDF6E3" }}>
+    <div className="min-h-screen relative font-sans text-ink bg-cream">
       {/* Toast Notification Bar */}
       {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 animate-fade-up">
-          <div className="px-4 py-3 rounded-lg border-2 border-slate-900 bg-amber-300 text-slate-900 font-mono text-xs font-bold shadow-[4px_4px_0px_#0F172A] flex items-center gap-3">
-            <span className="w-2.5 h-2.5 rounded-full bg-teal-600 animate-ping" />
+        <div className="fixed bottom-6 right-6 z-toast animate-fade-up">
+          <div className="px-4 py-3 rounded-lg border-2 border-ink bg-amber text-ink type-label shadow-pixel flex items-center gap-3">
+            <span className="w-2.5 h-2.5 rounded-full bg-tosca animate-ping" />
             <span>{toastMessage}</span>
           </div>
         </div>

@@ -306,12 +306,12 @@ export default function PixelPet() {
 
   return (
     <div
-      className="pixel-pet fixed left-0 top-0 z-[35] select-none"
+      className="pixel-pet fixed left-0 top-0 z-float select-none"
       style={{ transform: `translate(${pos.x}px, ${pos.y}px)` }}
     >
       {tip && (
         <div
-          className="card-in absolute bottom-full mb-2 w-56 rounded-lg border-2 border-slate-900 bg-white px-3 py-2 font-mono text-[11px] font-bold leading-snug text-slate-900 shadow-[3px_3px_0_#0F172A]"
+          className="card-in absolute bottom-full mb-2 w-56 rounded-lg border-2 border-ink bg-white px-3 py-2 type-micro text-ink shadow-pixel-sm"
           style={pos.x > window.innerWidth - 240 ? { right: 0 } : { left: 0 }}
           role="status"
         >
@@ -339,7 +339,7 @@ export default function PixelPet() {
         type="button"
         onClick={dismiss}
         aria-label="Send pixel Astrid away"
-        className="pet-close absolute -right-3 -top-3 flex h-5 w-5 items-center justify-center rounded-full border-2 border-slate-900 bg-white font-mono text-[10px] font-bold leading-none text-slate-900"
+        className="pet-close absolute -right-3 -top-3 flex h-5 w-5 items-center justify-center rounded-full border-2 border-ink bg-white type-micro text-ink"
       >
         ×
       </button>

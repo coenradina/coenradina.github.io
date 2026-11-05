@@ -183,22 +183,21 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
   };
 
   return (
-    <section id="contact" className="py-28 px-4 sm:px-6 lg:px-8 border-t-2 border-slate-900" style={{ backgroundColor: "#FDF6E3" }}>
+    <section id="contact" className="py-28 px-4 sm:px-6 lg:px-8 border-t-2 border-ink bg-cream">
       <div className="max-w-5xl mx-auto space-y-12">
         {/* Header */}
         <div className="text-center space-y-3 max-w-2xl mx-auto">
           <div
-            className="text-xs font-mono font-bold uppercase tracking-wider text-brand-maroon"
+            className="type-eyebrow text-maroon"
           >
             // contact
           </div>
           <h2
-            className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 leading-tight"
-            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            className="type-title text-ink"
           >
-            Write to me. <span className="text-brand-tosca underline decoration-amber-400 decoration-4">Tell me the odd details.</span>
+            Write to me. <span className="text-tosca underline decoration-amber decoration-4">Tell me the odd details.</span>
           </h2>
-          <p className="text-base text-slate-700 font-sans leading-relaxed pt-1">
+          <p className="type-lead text-ink-soft pt-1">
             Projects, workshops, curriculum work, interesting problems. I read every message.
           </p>
         </div>
@@ -208,24 +207,22 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
           <div className="lg:col-span-3">
             {status === "sent" ? (
               <div
-                className="rounded-xl border-2 border-slate-900 p-8 sm:p-10 flex flex-col items-center justify-center text-center gap-5 min-h-[400px] shadow-[6px_6px_0px_#0F172A]"
-                style={{ backgroundColor: "#FDF6E3" }}
+                className="rounded-lg border-2 border-ink p-8 sm:p-10 flex flex-col items-center justify-center text-center gap-6 min-h-[400px] shadow-pixel-lg bg-cream"
               >
-                <div className="text-5xl sm:text-6xl animate-float">🚀</div>
+                <div className="text-icon-lg animate-float">🚀</div>
                 <div className="space-y-1">
                   <p
-                    className="text-2xl sm:text-3xl font-bold text-slate-900"
-                    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                    className="type-heading text-ink"
                   >
                     MESSAGE RECEIVED.
                   </p>
                   <p
-                    className="text-xs font-mono font-bold text-brand-tosca"
+                    className="type-label text-tosca"
                   >
                     +250 XP · THE FORM HAS DONE ITS ONE JOB
                   </p>
                 </div>
-                <p className="text-sm text-slate-700 max-w-md leading-relaxed">
+                <p className="type-body text-ink-soft max-w-md">
                   Thanks. I usually reply within a day.
                 </p>
                 <button
@@ -237,7 +234,7 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
                     formStartedAt.current = Date.now();
                     resetTurnstile();
                   }}
-                  className="mt-2 text-xs font-mono font-bold px-5 py-2.5 rounded border-2 border-slate-900 bg-amber-300 text-slate-900 cyber-button cursor-pointer"
+                  className="mt-2 type-label px-6 py-3 rounded border-2 border-ink bg-amber text-ink cyber-button cursor-pointer"
                 >
                   SEND ANOTHER NOTE ↵
                 </button>
@@ -246,25 +243,24 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
               <form
                 data-perch="contact"
                 onSubmit={handleSubmit}
-                className="rounded-xl border-2 border-slate-900 p-7 sm:p-9 flex flex-col gap-6 shadow-[6px_6px_0px_#0F172A]"
-                style={{ backgroundColor: "#FDF6E3" }}
+                className="rounded-lg border-2 border-ink p-8 sm:p-10 flex flex-col gap-6 shadow-pixel-lg bg-cream"
                 noValidate
               >
-                <div className="flex items-center justify-between border-b-2 border-slate-900 pb-4">
-                  <span className="text-xs font-mono font-bold text-slate-900 uppercase">
+                <div className="flex items-center justify-between border-b-2 border-ink pb-4">
+                  <span className="type-eyebrow text-ink">
                     // THE BASICS
                   </span>
-                  <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded border border-slate-900 bg-amber-300">
+                  <span className="type-micro px-3 py-1 rounded border border-ink bg-amber">
                     +250 XP REWARD
                   </span>
                 </div>
 
                 {/* Mission Type Selection */}
                 <div className="space-y-2">
-                  <label className="text-xs font-mono font-bold text-slate-900 uppercase">
+                  <label className="type-eyebrow text-ink">
                     WHAT IS THIS ABOUT?
                   </label>
-                  <div className="grid grid-cols-2 gap-2.5">
+                  <div className="grid grid-cols-2 gap-3">
                     {[
                       "Curriculum or EdTech",
                       "Product delivery",
@@ -275,10 +271,8 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
                         key={cat}
                         type="button"
                         onClick={() => setCategory(cat)}
-                        className={`px-3.5 py-2.5 rounded text-xs font-mono font-bold border-2 border-slate-900 transition-all text-left cursor-pointer ${
-                          category === cat
-                            ? "bg-brand-tosca text-white"
-                            : "bg-slate-100 text-slate-800 hover:bg-amber-100"
+                        className={`px-4 py-3 rounded type-label border-2 border-ink transition-all text-left cursor-pointer ${category === cat ? "bg-tosca text-white"
+                            : "bg-parchment text-ink-soft hover:bg-amber-tint"
                         }`}
                       >
                         {cat}
@@ -288,7 +282,7 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
                 </div>
 
                 {/* Name + Email Row */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   {[
                     { id: "name", label: "YOUR NAME", type: "text", placeholder: "e.g. Grace Hopper" },
                     { id: "email", label: "YOUR EMAIL", type: "email", placeholder: "grace@example.com" },
@@ -296,7 +290,7 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
                     <div key={id} className="space-y-1.5">
                       <label
                         htmlFor={id}
-                        className="text-xs font-mono font-bold text-slate-900 uppercase"
+                        className="type-eyebrow text-ink"
                       >
                         {label}
                       </label>
@@ -308,13 +302,10 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
                         onFocus={() => setFocused(id)}
                         onBlur={() => setFocused(null)}
                         placeholder={placeholder}
-                        className="w-full bg-white outline-none text-xs sm:text-sm font-mono p-3 rounded-lg border-2 border-slate-900 text-slate-900 placeholder:text-slate-400"
-                        style={{
-                          borderColor: errors[id] ? "#881337" : focused === id ? "#0D9488" : "#0F172A",
-                        }}
+                        className={`w-full bg-white outline-none type-mono p-3 rounded-lg border-2 text-ink placeholder:text-ink-muted ${errors[id] ? "border-maroon" : focused === id ? "border-tosca" : "border-ink"}`}
                       />
                       {errors[id] && (
-                        <span className="text-[11px] font-mono font-bold text-rose-700 block">
+                        <span className="type-micro text-maroon block">
                           {errors[id]}
                         </span>
                       )}
@@ -326,7 +317,7 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
                 <div className="space-y-1.5">
                   <label
                     htmlFor="message"
-                    className="text-xs font-mono font-bold text-slate-900 uppercase"
+                    className="type-eyebrow text-ink"
                   >
                     MESSAGE
                   </label>
@@ -338,13 +329,10 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
                     onFocus={() => setFocused("message")}
                     onBlur={() => setFocused(null)}
                     placeholder="A little context helps. What are you working on?"
-                    className="w-full bg-white outline-none text-xs sm:text-sm font-mono p-3 rounded-lg border-2 border-slate-900 text-slate-900 placeholder:text-slate-400 resize-none leading-relaxed"
-                    style={{
-                      borderColor: errors.message ? "#881337" : focused === "message" ? "#0D9488" : "#0F172A",
-                    }}
+                    className={`w-full bg-white outline-none type-mono p-3 rounded-lg border-2 text-ink placeholder:text-ink-muted resize-none ${errors.message ? "border-maroon" : focused === "message" ? "border-tosca" : "border-ink"}`}
                   />
                   {errors.message && (
-                    <span className="text-[11px] font-mono font-bold text-rose-700 block">
+                    <span className="type-micro text-maroon block">
                       {errors.message}
                     </span>
                   )}
@@ -367,12 +355,12 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
                 <div className="space-y-2">
                   <div ref={turnstileContainer} className="min-h-[65px]" />
                   {!turnstileSiteKey && (
-                    <p className="text-[11px] font-mono font-bold text-rose-700">
+                    <p className="type-micro text-maroon">
                       Anti-spam verification needs to be configured before publishing.
                     </p>
                   )}
                   {status === "error" && submitError && (
-                    <p role="alert" className="text-xs font-mono font-bold text-rose-700">
+                    <p role="alert" className="type-label text-maroon">
                       {submitError}
                     </p>
                   )}
@@ -382,7 +370,7 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
                 <button
                   type="submit"
                   disabled={status === "sending"}
-                  className="w-full py-3.5 rounded-lg border-2 border-slate-900 bg-brand-maroon hover:bg-rose-900 text-white font-mono text-xs font-bold cyber-button cursor-pointer flex items-center justify-center gap-2"
+                  className="w-full py-4 rounded-lg border-2 border-ink bg-maroon hover:bg-maroon-dark text-white type-label cyber-button cursor-pointer flex items-center justify-center gap-2"
                 >
                   {status === "sending" ? (
                     <>
@@ -401,34 +389,34 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
           <div className="lg:col-span-2 flex flex-col gap-6">
             {/* Mission Info Box */}
             <div
-              className="rounded-xl border-2 border-slate-900 p-6 sm:p-7 flex flex-col gap-5 shadow-[4px_4px_0px_#0F172A] bg-white"
+              className="rounded-lg border-2 border-ink p-6 sm:p-8 flex flex-col gap-6 shadow-pixel bg-white"
             >
               <div>
                 <div
-                  className="text-[10px] font-mono font-bold uppercase text-slate-500 mb-1 tracking-wider"
+                  className="type-eyebrow text-ink-muted mb-1"
                 >
                   LOCATION & TIMEZONE
                 </div>
-                <div className="flex items-center gap-2 text-xs sm:text-sm font-mono font-bold text-slate-900">
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-600 animate-pulse" />
+                <div className="flex items-center gap-2 type-button text-ink">
+                  <span className="w-2.5 h-2.5 rounded-full bg-tosca animate-pulse" />
                   Jakarta, Indonesia (GMT+7)
                 </div>
               </div>
 
               <div>
                 <div
-                  className="text-[10px] font-mono font-bold uppercase text-slate-500 mb-1 tracking-wider"
+                  className="type-eyebrow text-ink-muted mb-1"
                 >
                   REPLY TIME
                 </div>
-                <div className="text-xs sm:text-sm font-mono font-bold text-brand-tosca">
+                <div className="type-button text-tosca">
                   Usually within a day
                 </div>
               </div>
 
               <div>
                 <div
-                  className="text-[10px] font-mono font-bold uppercase text-slate-500 mb-2 tracking-wider"
+                  className="type-eyebrow text-ink-muted mb-2"
                 >
                   SPECIALIZATION TAGS
                 </div>
@@ -436,7 +424,7 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
                   {["Full-stack Development", "Tech Mentorship", "STEM Curriculum", "Product Delivery"].map((t) => (
                     <span
                       key={t}
-                      className="text-[11px] font-mono font-bold px-2.5 py-1 rounded border border-slate-900 bg-amber-200 text-slate-900"
+                      className="type-micro px-3 py-1 rounded border border-ink bg-amber-tint text-ink"
                     >
                       {t}
                     </span>
@@ -447,10 +435,10 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
 
             {/* Social Links Box */}
             <div
-              className="rounded-xl border-2 border-slate-900 p-6 sm:p-7 flex flex-col gap-3.5 shadow-[4px_4px_0px_#0F172A] bg-white"
+              className="rounded-lg border-2 border-ink p-6 sm:p-8 flex flex-col gap-4 shadow-pixel bg-white"
             >
               <div
-                className="text-[10px] font-mono font-bold uppercase text-slate-500 mb-1 tracking-wider"
+                className="type-eyebrow text-ink-muted mb-1"
               >
                 ELSEWHERE
               </div>
@@ -460,16 +448,16 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
                   href={href}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center justify-between p-3 rounded-lg border border-slate-900 bg-slate-50 hover:bg-amber-100 transition-colors"
+                  className="flex items-center justify-between p-3 rounded-lg border border-ink bg-cream hover:bg-amber-tint transition-colors"
                 >
-                  <div className="flex items-center gap-2.5">
-                    <span className="text-brand-tosca font-bold">{icon}</span>
-                    <span className="text-xs font-bold font-mono text-slate-900">
+                  <div className="flex items-center gap-3">
+                    <span className="text-tosca font-bold">{icon}</span>
+                    <span className="type-label text-ink">
                       {label}
                     </span>
                   </div>
                   <span
-                    className="text-xs font-mono font-bold text-slate-700"
+                    className="type-label text-ink-soft"
                   >
                     {handle}
                   </span>
@@ -481,12 +469,12 @@ export default function Contact({ onUnlockAchievement }: ContactProps) {
 
         {/* Cyber Footer Bar */}
         <div
-          className="pt-8 border-t-2 border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-700"
+          className="pt-8 border-t-2 border-ink flex flex-col sm:flex-row items-center justify-between gap-4 type-mono text-ink-soft"
         >
           <span>
             © 2026 Astrid · Built with React and too much teal
           </span>
-          <span className="font-bold text-brand-maroon">
+          <span className="font-bold text-maroon">
             Software Engineer & Tech Mentor
           </span>
         </div>

@@ -34,6 +34,10 @@ This project uses **Tailwind CSS v4** through the `@tailwindcss/vite` plugin con
 
 `src/main.tsx` imports `src/index.css`, so global font wiring belongs in `src/index.css`. Keep CSS `@import` statements first, then add any `@font-face` rules and font-family defaults there.
 
+## Design system
+
+Follow `DESIGN.md`. Use only the tokens in `src/styles/tokens.css`: palette colours, `type-*` roles for every piece of text, the spacing scale, `shadow-pixel*` and the `z-*` layers. `pnpm build` runs `scripts/check-design.mjs` first and fails on raw text sizes, Tailwind palette colours, hex values, arbitrary values and off-scale spacing.
+
 ## Code quality
 
 - Use double quotes for strings containing apostrophes (`"We're here to help"`), or escape them in single-quoted strings. An unescaped apostrophe in a single-quoted string breaks the build.

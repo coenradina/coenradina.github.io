@@ -19,9 +19,9 @@ export default function TerminalModal({ isOpen, onClose, onUnlockAchievement }: 
       command: "init",
       output: (
         <div className="space-y-1">
-          <p className="text-brand-tosca font-bold">// The terminal works. I checked.</p>
-          <p className="text-slate-700 mt-1">
-            Type <span className="text-brand-yellow font-bold">help</span> for the command list. <span className="text-brand-maroon font-bold">sudo hire</span> also does something.
+          <p className="text-tosca font-bold">// The terminal works. I checked.</p>
+          <p className="text-ink-soft mt-1">
+            Type <span className="text-amber font-bold">help</span> for the command list. <span className="text-maroon font-bold">sudo hire</span> also does something.
           </p>
         </div>
       ),
@@ -48,71 +48,71 @@ export default function TerminalModal({ isOpen, onClose, onUnlockAchievement }: 
     switch (cmd) {
       case "help":
         outputNode = (
-          <div className="space-y-1.5 text-xs sm:text-sm">
-            <p className="text-slate-900 font-bold">COMMANDS:</p>
-            <p><span className="text-brand-tosca font-mono font-bold">whoami</span> - A short introduction</p>
-            <p><span className="text-brand-tosca font-mono font-bold">skills</span> - What I work with</p>
-            <p><span className="text-brand-tosca font-mono font-bold">projects</span> - Selected projects</p>
-            <p><span className="text-brand-tosca font-mono font-bold">exp</span> - Work history</p>
-            <p><span className="text-brand-tosca font-mono font-bold">sudo hire</span> - A dramatic shortcut to the contact form</p>
-            <p><span className="text-brand-tosca font-mono font-bold">easteregg</span> - Exactly what it sounds like</p>
-            <p><span className="text-brand-tosca font-mono font-bold">clear</span> - Clear this window</p>
+          <div className="space-y-1.5 type-body">
+            <p className="text-ink font-bold">COMMANDS:</p>
+            <p><span className="text-tosca font-mono font-bold">whoami</span> - A short introduction</p>
+            <p><span className="text-tosca font-mono font-bold">skills</span> - What I work with</p>
+            <p><span className="text-tosca font-mono font-bold">projects</span> - Selected projects</p>
+            <p><span className="text-tosca font-mono font-bold">exp</span> - Work history</p>
+            <p><span className="text-tosca font-mono font-bold">sudo hire</span> - A dramatic shortcut to the contact form</p>
+            <p><span className="text-tosca font-mono font-bold">easteregg</span> - Exactly what it sounds like</p>
+            <p><span className="text-tosca font-mono font-bold">clear</span> - Clear this window</p>
           </div>
         );
         break;
 
       case "whoami":
         outputNode = (
-          <div className="text-xs sm:text-sm leading-relaxed space-y-1.5">
-            <p className="font-bold text-brand-maroon text-base">Astrid</p>
-            <p className="text-slate-900 font-semibold">Software engineer and tech mentor.</p>
-            <p className="text-slate-700">
+          <div className="type-body space-y-1.5">
+            <p className="type-subheading text-maroon">Astrid</p>
+            <p className="text-ink font-bold">Software engineer and tech mentor.</p>
+            <p className="text-ink-soft">
               I code full stack and serve as Head of Education at Generation Girl. Engineering is the foundation; teaching is the part I love sharing.
             </p>
-            <p className="text-slate-500">// Magna Cum Laude CS Graduate from Bina Nusantara University (GPA 3.90)</p>
+            <p className="text-ink-muted">// Magna Cum Laude CS Graduate from Bina Nusantara University (GPA 3.90)</p>
           </div>
         );
         break;
 
       case "skills":
         outputNode = (
-          <div className="text-xs sm:text-sm space-y-1.5 leading-relaxed">
-            <p className="text-brand-yellow font-bold">[SKILLS]</p>
-            <p>💻 <span className="font-bold text-slate-900">Engineering:</span> Full-stack development, Kotlin, Clean Architecture, Java, Python, encryption, and biometrics</p>
-            <p>🎓 <span className="font-bold text-slate-900">Education:</span> STEM curriculum design, mentor training, learning programs, and technical facilitation</p>
-            <p>⚡ <span className="font-bold text-slate-900">Delivery:</span> Scrum, stakeholder alignment, QA, and ISO compliance</p>
+          <div className="type-body space-y-1.5">
+            <p className="text-amber font-bold">[SKILLS]</p>
+            <p>💻 <span className="font-bold text-ink">Engineering:</span> Full-stack development, Kotlin, Clean Architecture, Java, Python, encryption, and biometrics</p>
+            <p>🎓 <span className="font-bold text-ink">Education:</span> STEM curriculum design, mentor training, learning programs, and technical facilitation</p>
+            <p>⚡ <span className="font-bold text-ink">Delivery:</span> Scrum, stakeholder alignment, QA, and ISO compliance</p>
           </div>
         );
         break;
 
       case "projects":
         outputNode = (
-          <div className="text-xs sm:text-sm space-y-2 leading-relaxed">
-            <p className="text-brand-tosca font-bold">SELECTED PROJECTS:</p>
-            <p>1. <span className="font-bold text-slate-900">AI Class ASEAN (@ Binar Academy)</span> - 70+ modules created for students, parents, educators, and master trainers across ASEAN.</p>
-            <p>2. <span className="font-bold text-slate-900">Sekolah.mu & Karier.mu (@ Semesta Integrasi)</span> - Led Scrum product delivery for payment & recruitment modules.</p>
-            <p>3. <span className="font-bold text-slate-900">Generation Girl STEM LMS (@ GenGirl)</span> - 50+ STEM curriculums, 200+ mentors trained, +57% retention boost.</p>
+          <div className="type-body space-y-2">
+            <p className="text-tosca font-bold">SELECTED PROJECTS:</p>
+            <p>1. <span className="font-bold text-ink">AI Class ASEAN (@ Binar Academy)</span> - 70+ modules created for students, parents, educators, and master trainers across ASEAN.</p>
+            <p>2. <span className="font-bold text-ink">Sekolah.mu & Karier.mu (@ Semesta Integrasi)</span> - Led Scrum product delivery for payment & recruitment modules.</p>
+            <p>3. <span className="font-bold text-ink">Generation Girl STEM LMS (@ GenGirl)</span> - 50+ STEM curriculums, 200+ mentors trained, +57% retention boost.</p>
           </div>
         );
         break;
 
       case "exp":
         outputNode = (
-          <div className="text-xs sm:text-sm space-y-1.5 leading-relaxed">
-            <p><span className="text-brand-maroon font-bold">2025-Present:</span> Technical Program Manager @ PT Semesta Integrasi Digital</p>
-            <p><span className="text-brand-maroon font-bold">2022-Present:</span> Head of Education @ Generation Girl</p>
-            <p><span className="text-brand-maroon font-bold">Feb-Jun 2023:</span> Lead Learning Experience Designer @ Binar Academy</p>
-            <p><span className="text-brand-maroon font-bold">2022-2023:</span> Android Developer @ Female Daily</p>
-            <p><span className="text-brand-maroon font-bold">2020-2022:</span> Software Engineer @ Bank Central Asia (BCA)</p>
+          <div className="type-body space-y-1.5">
+            <p><span className="text-maroon font-bold">2025-Present:</span> Technical Program Manager @ PT Semesta Integrasi Digital</p>
+            <p><span className="text-maroon font-bold">2022-Present:</span> Head of Education @ Generation Girl</p>
+            <p><span className="text-maroon font-bold">Feb-Jun 2023:</span> Lead Learning Experience Designer @ Binar Academy</p>
+            <p><span className="text-maroon font-bold">2022-2023:</span> Android Developer @ Female Daily</p>
+            <p><span className="text-maroon font-bold">2020-2022:</span> Software Engineer @ Bank Central Asia (BCA)</p>
           </div>
         );
         break;
 
       case "sudo hire":
         outputNode = (
-          <div className="text-xs sm:text-sm p-3.5 rounded border border-brand-tosca bg-teal-50 space-y-1">
-            <p className="text-brand-tosca font-bold">ALL RIGHT. LET'S TALK.</p>
-            <p className="text-slate-800 font-medium">Taking you to the contact form. The sudo was unnecessary.</p>
+          <div className="type-body p-4 rounded border border-tosca bg-tosca-tint space-y-1">
+            <p className="text-tosca font-bold">ALL RIGHT. LET'S TALK.</p>
+            <p className="text-ink-soft font-medium">Taking you to the contact form. The sudo was unnecessary.</p>
           </div>
         );
         onUnlockAchievement("Used sudo for networking (+500 XP)", 500);
@@ -124,10 +124,10 @@ export default function TerminalModal({ isOpen, onClose, onUnlockAchievement }: 
 
       case "easteregg":
         outputNode = (
-          <div className="text-xs sm:text-sm font-mono space-y-1">
-            <p className="text-brand-maroon font-bold">👾 Two secrets live here. I'll give you hints, not answers.</p>
-            <p className="text-slate-700">1. Something about sudo. Not the hiring one.</p>
-            <p className="text-slate-700">2. My portrait in the Mentorship section is clickable.</p>
+          <div className="type-mono space-y-1">
+            <p className="text-maroon font-bold">👾 Two secrets live here. I'll give you hints, not answers.</p>
+            <p className="text-ink-soft">1. Something about sudo. Not the hiring one.</p>
+            <p className="text-ink-soft">2. My portrait in the Mentorship section is clickable.</p>
           </div>
         );
         onUnlockAchievement("Asked nicely for secrets (+250 XP)", 250);
@@ -136,7 +136,7 @@ export default function TerminalModal({ isOpen, onClose, onUnlockAchievement }: 
       case "sudo hack":
       case "hack":
         outputNode = (
-          <p className="text-xs sm:text-sm font-mono font-bold text-lime-600">
+          <p className="type-button text-tosca">
             {cmd === "hack" ? "Permission denied. Have you tried sudo?" : "Okay. You asked for it..."}
           </p>
         );
@@ -150,7 +150,7 @@ export default function TerminalModal({ isOpen, onClose, onUnlockAchievement }: 
 
       case "summon astrid":
       case "summon":
-        outputNode = <p className="text-xs sm:text-sm font-mono font-bold text-brand-tosca">Summoning pixel Astrid. Look down. 👇</p>;
+        outputNode = <p className="type-button text-tosca">Summoning pixel Astrid. Look down. 👇</p>;
         setTimeout(() => {
           onClose();
           summonPet();
@@ -164,7 +164,7 @@ export default function TerminalModal({ isOpen, onClose, onUnlockAchievement }: 
 
       default:
         outputNode = (
-          <p className="text-brand-maroon font-mono text-xs sm:text-sm">
+          <p className="text-maroon type-mono">
             I don't know "{cmd}". Try <span className="underline font-bold">help</span>.
           </p>
         );
@@ -175,22 +175,20 @@ export default function TerminalModal({ isOpen, onClose, onUnlockAchievement }: 
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-900/60 backdrop-blur-xs">
+    <div className="fixed inset-0 z-modal flex items-center justify-center p-4 sm:p-6 bg-ink/60 backdrop-blur-xs">
       <div 
-        className="w-full max-w-3xl rounded-xl border-2 border-slate-900 overflow-hidden shadow-2xl flex flex-col"
-        style={{ backgroundColor: "#FDF6E3", height: "540px" }}
+        className="w-full max-w-3xl h-[540px] rounded-lg border-2 border-ink overflow-hidden shadow-pixel-lg flex flex-col bg-cream"
       >
         {/* Terminal Header Bar */}
         <div 
-          className="px-4 py-3 flex items-center justify-between border-b-2 border-slate-900 select-none"
-          style={{ backgroundColor: "#EEE8D5" }}
+          className="px-4 py-3 flex items-center justify-between border-b-2 border-ink select-none bg-parchment"
         >
           <div className="flex items-center gap-2">
-            <span className="w-3.5 h-3.5 rounded-full bg-rose-600 inline-block border border-slate-900" />
-            <span className="w-3.5 h-3.5 rounded-full bg-amber-500 inline-block border border-slate-900" />
-            <span className="w-3.5 h-3.5 rounded-full bg-teal-600 inline-block border border-slate-900" />
+            <span className="w-3.5 h-3.5 rounded-full bg-maroon inline-block border border-ink" />
+            <span className="w-3.5 h-3.5 rounded-full bg-amber inline-block border border-ink" />
+            <span className="w-3.5 h-3.5 rounded-full bg-tosca inline-block border border-ink" />
             <span 
-              className="ml-3 text-xs sm:text-sm font-bold font-mono tracking-tight text-slate-800"
+              className="ml-3 type-button text-ink-soft"
             >
               astrid@solarized-terminal:~
             </span>
@@ -198,23 +196,23 @@ export default function TerminalModal({ isOpen, onClose, onUnlockAchievement }: 
 
           <button
             onClick={onClose}
-            className="text-xs font-mono font-bold px-2.5 py-1 rounded border border-slate-900 bg-rose-100 text-rose-900 hover:bg-rose-200 cursor-pointer"
+            className="type-label px-3 py-1 rounded border border-ink bg-maroon-tint text-maroon hover:bg-maroon-tint cursor-pointer"
           >
             [ESC / CLOSE]
           </button>
         </div>
 
         {/* Terminal Output */}
-        <div className="flex-1 p-5 font-mono text-xs sm:text-sm overflow-y-auto space-y-4 leading-relaxed">
+        <div className="flex-1 p-6 type-mono overflow-y-auto space-y-4">
           {history.map((item, idx) => (
             <div key={idx} className="space-y-1.5">
               {item.command && (
-                <div className="flex items-center gap-2 text-slate-900">
-                  <span className="text-brand-tosca font-bold">astrid@solarized:~$</span>
+                <div className="flex items-center gap-2 text-ink">
+                  <span className="text-tosca font-bold">astrid@solarized:~$</span>
                   <span className="font-bold">{item.command}</span>
                 </div>
               )}
-              <div className="pl-4 border-l-2 border-teal-600/40">{item.output}</div>
+              <div className="pl-4 border-l-2 border-tosca/40">{item.output}</div>
             </div>
           ))}
           <div ref={bottomRef} />
@@ -223,21 +221,20 @@ export default function TerminalModal({ isOpen, onClose, onUnlockAchievement }: 
         {/* Terminal Input */}
         <form 
           onSubmit={handleCommand}
-          className="px-4 py-3.5 border-t-2 border-slate-900 flex items-center gap-2.5 select-none"
-          style={{ backgroundColor: "#EEE8D5" }}
+          className="px-4 py-4 border-t-2 border-ink flex items-center gap-3 select-none bg-parchment"
         >
-          <span className="text-brand-tosca font-mono font-bold text-xs sm:text-sm">astrid@solarized:~$</span>
+          <span className="text-tosca type-button">astrid@solarized:~$</span>
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="type 'help' or 'sudo hire'..."
-            className="flex-1 bg-transparent font-mono text-xs sm:text-sm text-slate-900 font-medium outline-none placeholder:text-slate-500"
+            className="flex-1 bg-transparent type-mono text-ink outline-none placeholder:text-ink-muted font-medium"
             autoFocus
           />
           <button 
             type="submit"
-            className="px-4 py-1.5 bg-brand-tosca text-white font-mono text-xs font-bold rounded border-2 border-slate-900 hover:bg-teal-700 cyber-button cursor-pointer"
+            className="px-4 py-1.5 bg-tosca text-white type-label rounded border-2 border-ink hover:bg-tosca-dark cyber-button cursor-pointer"
           >
             RUN ↵
           </button>

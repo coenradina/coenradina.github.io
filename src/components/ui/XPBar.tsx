@@ -1,13 +1,20 @@
 import { useEffect, useRef, useState } from "react";
 
+const TONES = {
+  tosca: { bar: "bg-tosca", text: "text-tosca" },
+  maroon: { bar: "bg-maroon", text: "text-maroon" },
+  gold: { bar: "bg-gold", text: "text-gold" },
+  ink: { bar: "bg-ink", text: "text-ink" },
+};
+
 interface XPBarProps {
   label: string;
   value: number; // 0–100
   xp?: string;
-  color?: string;
+  tone?: keyof typeof TONES;
 }
 
-export default function XPBar({ label, value, xp, color = "#0D9488" }: XPBarProps) {
+export default function XPBar({ label, value, xp, tone = "tosca" }: XPBarProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [triggered, setTriggered] = useState(false);
 
@@ -26,30 +33,22 @@ export default function XPBar({ label, value, xp, color = "#0D9488" }: XPBarProp
     <div ref={ref} className="w-full">
       <div className="flex items-center justify-between mb-1.5">
         <span
-          className="text-xs font-semibold uppercase tracking-wider"
-          style={{ fontFamily: "'JetBrains Mono', monospace", color: "#0F172A" }}
+          className="type-eyebrow text-ink"
         >
           {label}
         </span>
-        <span
-          className="text-xs font-bold"
-          style={{ fontFamily: "'VT323', monospace", color, fontSize: "16px" }}
-        >
+        <span className={`type-label ${TONES[tone].text}`}>
           {xp ?? `${value}% MAX`}
         </span>
       </div>
       <div 
-        className="h-3 w-full rounded border p-0.5" 
-        style={{ backgroundColor: "#EEE8D5", borderColor: "#0F172A" }}
+        className="h-3 w-full rounded border p-0.5 bg-parchment border-ink"
       >
         <div
-          className="h-full rounded-xs xp-bar-fill transition-all"
+          className={`h-full rounded xp-bar-fill xp-stripes transition-all ${TONES[tone].bar}`}
           style={{
-            backgroundColor: color,
             width: triggered ? `${value}%` : "0%",
             transition: triggered ? "width 1.2s cubic-bezier(0.4,0,0.2,1)" : "none",
-            backgroundImage: "linear-gradient(45deg, rgba(255,255,255,0.2) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.2) 75%, transparent 75%, transparent)",
-            backgroundSize: "16px 16px",
           }}
         />
       </div>

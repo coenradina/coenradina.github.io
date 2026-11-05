@@ -64,20 +64,19 @@ export default function PersonalProjects({ onUnlockAchievement }: PersonalProjec
   };
 
   return (
-    <section id="side-projects" className="py-28 px-4 sm:px-6 lg:px-8 border-t-2 border-slate-900" style={{ backgroundColor: "#FDF6E3" }}>
+    <section id="side-projects" className="py-28 px-4 sm:px-6 lg:px-8 border-t-2 border-ink bg-cream">
       <div className="max-w-6xl mx-auto space-y-12">
         {/* Header */}
         <div className="space-y-3 max-w-2xl">
-          <div className="text-xs font-mono font-bold uppercase tracking-wider text-slate-700">
+          <div className="type-eyebrow text-ink-soft">
             // side_projects.filter(built_for_fun)
           </div>
           <h2
-            className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 leading-tight"
-            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            className="type-title text-ink"
           >
-            Things I build <span className="text-brand-maroon underline decoration-amber-400 decoration-4">after hours.</span>
+            Things I build <span className="text-maroon underline decoration-amber decoration-4">after hours.</span>
           </h2>
-          <p className="text-base text-slate-700 font-sans leading-relaxed pt-1 font-semibold italic">
+          <p className="type-subheading text-ink-soft pt-1 italic">
             Five personal projects. All of them are live, so you can click around.
           </p>
         </div>
@@ -87,7 +86,7 @@ export default function PersonalProjects({ onUnlockAchievement }: PersonalProjec
           {PERSONAL_PROJECTS.map((project) => (
             <div
               key={project.title}
-              className={`${"featured" in project ? "md:col-span-2" : ""} group rounded-xl border-2 border-slate-900 bg-white shadow-[4px_4px_0px_#0F172A] hover:translate-y-[-4px] hover:shadow-[6px_6px_0px_#0F172A] transition-all flex flex-col overflow-hidden`}
+              className={`${"featured" in project ? "md:col-span-2" : ""} group rounded-lg border-2 border-ink bg-white shadow-pixel hover:translate-y-[-4px] hover:shadow-pixel-lg transition-all flex flex-col overflow-hidden`}
             >
               {/* Thumbnail */}
               <a
@@ -95,7 +94,7 @@ export default function PersonalProjects({ onUnlockAchievement }: PersonalProjec
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => handleOpen(project.title)}
-                className={`relative block ${"featured" in project ? "h-56 md:h-80" : "h-56"} overflow-hidden border-b-2 border-slate-900 bg-slate-100`}
+                className={`relative block ${"featured" in project ? "h-56 md:h-80" : "h-56"} overflow-hidden border-b-2 border-ink bg-parchment`}
               >
                 <img
                   src={project.imgUrl}
@@ -103,24 +102,23 @@ export default function PersonalProjects({ onUnlockAchievement }: PersonalProjec
                   loading="lazy"
                   className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                 />
-                <span className="absolute top-3 left-3 text-[10px] font-mono font-bold px-2.5 py-1 rounded border border-slate-900 text-white bg-slate-900/90 shadow-xs">
+                <span className="absolute top-3 left-3 type-micro px-3 py-1 rounded border border-ink text-white bg-ink/90 shadow-pixel-sm">
                   {project.kind}
                 </span>
-                <span className="absolute bottom-3 right-3 text-[10px] font-mono font-bold px-2.5 py-1 rounded border border-slate-900 bg-amber-300 text-slate-900">
+                <span className="absolute bottom-3 right-3 type-micro px-3 py-1 rounded border border-ink bg-amber text-ink">
                   {project.tagline}
                 </span>
               </a>
 
               {/* Card Body */}
-              <div className="p-6 sm:p-7 flex flex-col justify-between flex-1 gap-5">
+              <div className="p-6 sm:p-8 flex flex-col justify-between flex-1 gap-6">
                 <div className="space-y-2">
                   <h3
-                    className="text-lg font-bold text-slate-900 leading-snug group-hover:text-brand-tosca transition-colors"
-                    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                    className="type-subheading text-ink group-hover:text-tosca transition-colors"
                   >
                     {project.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-sans pt-1">
+                  <p className="type-body text-ink-soft pt-1">
                     {project.description}
                   </p>
                 </div>
@@ -130,7 +128,7 @@ export default function PersonalProjects({ onUnlockAchievement }: PersonalProjec
                     {project.tech.map((t) => (
                       <span
                         key={t}
-                        className="text-[11px] font-mono font-bold px-2.5 py-0.5 rounded border border-slate-900 bg-slate-100 text-slate-800"
+                        className="type-micro px-3 py-0.5 rounded border border-ink bg-parchment text-ink-soft"
                       >
                         {t}
                       </span>
@@ -143,7 +141,7 @@ export default function PersonalProjects({ onUnlockAchievement }: PersonalProjec
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => handleOpen(project.title)}
-                      className="px-4 py-2 rounded border-2 border-slate-900 bg-brand-tosca hover:bg-teal-700 text-white font-mono text-xs font-bold cyber-button"
+                      className="px-4 py-2 rounded border-2 border-ink bg-tosca hover:bg-tosca-dark text-white type-label cyber-button"
                     >
                       OPEN LIVE ↗
                     </a>
@@ -152,7 +150,7 @@ export default function PersonalProjects({ onUnlockAchievement }: PersonalProjec
                         href={project.repoUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-4 py-2 rounded border-2 border-slate-900 bg-white hover:bg-amber-100 text-slate-900 font-mono text-xs font-bold cyber-button"
+                        className="px-4 py-2 rounded border-2 border-ink bg-white hover:bg-amber-tint text-ink type-label cyber-button"
                       >
                         SOURCE {"</>"}
                       </a>

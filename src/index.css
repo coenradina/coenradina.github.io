@@ -1,24 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=VT323&family=Silkscreen:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&family=VT323&display=swap');
 @import 'tailwindcss';
+@import './styles/tokens.css';
 
-@theme inline {
-  --color-solarized-bg: #FDF6E3;
-  --color-solarized-panel: #EEE8D5;
-  --color-brand-yellow: #E5A93C;
-  --color-brand-yellow-dark: #B58900;
-  --color-brand-maroon: #881337;
-  --color-brand-maroon-dark: #6B0F1A;
-  --color-brand-navy: #0F172A;
-  --color-brand-navy-light: #1E293B;
-  --color-brand-tosca: #0D9488;
-  --color-brand-tosca-light: #2DD4BF;
-
-  --font-sans: 'Space Grotesk', sans-serif;
-  --font-display: 'Space Grotesk', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-  --font-arcade: 'VT323', monospace;
-  --font-pixel: 'Silkscreen', monospace;
-}
 
 * {
   box-sizing: border-box;
@@ -26,15 +9,15 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: #FDF6E3;
-  color: #0F172A;
+  background-color: var(--color-cream);
+  color: var(--color-ink);
   font-size: 16px;
 }
 
 body {
-  font-family: 'Space Grotesk', sans-serif;
-  background-color: #FDF6E3;
-  color: #0F172A;
+  font-family: var(--font-sans);
+  background-color: var(--color-cream);
+  color: var(--color-ink);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
@@ -46,29 +29,29 @@ body {
   height: 9px;
 }
 ::-webkit-scrollbar-track {
-  background: #EEE8D5;
+  background: var(--color-parchment);
 }
 ::-webkit-scrollbar-thumb {
-  background: #0D9488;
+  background: var(--color-tosca);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #881337;
+  background: var(--color-maroon);
 }
 
 /* Solarized Light Grid pattern (airy & subtle) */
 .solarized-grid {
   background-image: 
-    linear-gradient(to right, rgba(13, 148, 136, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(13, 148, 136, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, var(--fx-grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--fx-grid) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 
 /* Cyber Retro Scanlines effect (subtle) */
 .scanlines {
   background: linear-gradient(
-    rgba(253, 246, 227, 0) 50%, 
-    rgba(15, 23, 42, 0.02) 50%
+    transparent 50%,
+    var(--fx-grid-ink) 50%
   );
   background-size: 100% 4px;
 }
@@ -93,37 +76,27 @@ body {
   50%       { transform: translateY(-5px); }
 }
 
-@keyframes pulse-border {
-  0%, 100% { border-color: rgba(13, 148, 136, 0.4); }
-  50% { border-color: rgba(229, 169, 60, 0.8); }
-}
-
 .animate-fade-up    { animation: fade-up 0.5s cubic-bezier(0.4,0,0.2,1) forwards; }
 .animate-float      { animation: float-gentle 3.5s ease-in-out infinite; }
 .cursor-blink       { animation: cursor-blink 0.9s step-end infinite; }
+/* Diagonal shine on XP bars */
+.xp-stripes {
+  background-image: linear-gradient(45deg, color-mix(in srgb, var(--color-white) 20%, transparent) 25%, transparent 50%, 75%, transparent);
+  background-size: 16px 16px;
+}
 .xp-bar-fill        { animation: xp-fill 1.2s cubic-bezier(0.4,0,0.2,1) forwards; }
-.animate-pulse-border { animation: pulse-border 2.5s ease-in-out infinite; }
-
-/* Cyber retro card hover micro-animations */
-.cyber-card {
-  transition: transform 0.2s cubic-bezier(0.4,0,0.2,1), box-shadow 0.2s cubic-bezier(0.4,0,0.2,1);
-}
-.cyber-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 4px 4px 0px #0F172A;
-}
 
 .cyber-button {
   transition: all 0.15s ease;
-  box-shadow: 3px 3px 0px #0F172A;
+  box-shadow: var(--shadow-pixel-sm);
 }
 .cyber-button:hover {
   transform: translate(-2px, -2px);
-  box-shadow: 4px 4px 0px #0F172A;
+  box-shadow: var(--shadow-pixel);
 }
 .cyber-button:active {
-  transform: translate(1px, 1px);
-  box-shadow: 1px 1px 0px #0F172A;
+  transform: translate(2px, 2px);
+  box-shadow: none;
 }
 
 /* Flip card styling */
@@ -154,11 +127,11 @@ body {
    Easter egg: fake breach. Movement stays under 3 changes a second, and it
    all switches off for reduced motion. */
 .hack-scanlines {
-  background: repeating-linear-gradient(0deg, rgba(15, 23, 42, 0.08) 0 2px, transparent 2px 4px);
+  background: repeating-linear-gradient(0deg, var(--fx-scanline) 0 2px, transparent 2px 4px);
 }
 .is-hacked main h1,
 .is-hacked main h2 {
-  text-shadow: 3px 0 rgba(239, 68, 68, 0.75), -3px 0 rgba(6, 182, 212, 0.75);
+  text-shadow: 3px 0 var(--fx-glitch-red), -3px 0 var(--fx-glitch-cyan);
   animation: hack-shift 0.9s steps(2, jump-none) infinite;
 }
 .is-hacked main img { filter: hue-rotate(95deg) saturate(1.5); transition: filter 0.3s; }

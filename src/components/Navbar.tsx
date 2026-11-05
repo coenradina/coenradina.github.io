@@ -31,31 +31,25 @@ export default function Navbar({ activeSection, onOpenTerminal }: NavbarProps) {
 
   return (
     <nav
-      className="fixed top-0 left-0 right-0 z-40 transition-all duration-200"
-      style={{
-        backgroundColor: scrolled ? "#FDF6E3F2" : "#FDF6E3DD",
-        backdropFilter: "blur(10px)",
-        borderBottom: "2px solid #0F172A",
-      }}
+      className={`fixed top-0 left-0 right-0 z-nav border-b-2 border-ink backdrop-blur-md transition-all duration-200 ${scrolled ? "bg-cream/90" : "bg-cream/80"}`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         {/* Logo */}
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="flex items-center gap-2.5 text-left group cursor-pointer select-none"
+          className="flex items-center gap-3 text-left group cursor-pointer select-none"
         >
-          <div className="w-8 h-8 rounded border-2 border-slate-900 bg-brand-tosca text-white flex items-center justify-center font-mono font-bold text-sm shadow-[2px_2px_0px_#0F172A]">
+          <div className="w-8 h-8 rounded border-2 border-ink bg-tosca text-white flex items-center justify-center type-button shadow-pixel-sm">
             AC
           </div>
           <div>
             <span
-              className="text-base font-bold tracking-tight block text-slate-900 leading-tight group-hover:text-brand-tosca transition-colors"
-              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+              className="type-subheading block text-ink group-hover:text-tosca transition-colors"
             >
               Astrid Coenrad
             </span>
             <span
-              className="text-[10px] font-mono font-bold text-brand-maroon uppercase tracking-wider block"
+              className="type-eyebrow text-maroon block lg:whitespace-nowrap"
             >
               Software Engineer & Tech Mentor
             </span>
@@ -70,17 +64,13 @@ export default function Navbar({ activeSection, onOpenTerminal }: NavbarProps) {
               <button
                 key={link.href}
                 onClick={() => handleNav(link.href)}
-                className="relative text-xs font-mono font-semibold transition-colors duration-150 cursor-pointer"
-                style={{
-                  color: isActive ? "#0D9488" : "#0F172A",
-                }}
+                className={`relative type-label whitespace-nowrap transition-colors duration-150 cursor-pointer ${isActive ? "text-tosca" : "text-ink"}`}
               >
-                <span className="text-brand-yellow font-bold mr-1">//</span>
+                <span className="text-amber font-bold mr-1">//</span>
                 {link.label}
                 {isActive && (
                   <span
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full"
-                    style={{ backgroundColor: "#0D9488" }}
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-tosca"
                   />
                 )}
               </button>
@@ -90,14 +80,14 @@ export default function Navbar({ activeSection, onOpenTerminal }: NavbarProps) {
           {/* Terminal Launcher button */}
           <button
             onClick={onOpenTerminal}
-            className="px-3 py-1.5 rounded border-2 border-slate-900 font-mono text-xs font-bold text-slate-900 bg-amber-400 hover:bg-amber-300 transition-all cyber-button cursor-pointer flex items-center gap-1.5"
+            className="px-3 py-1.5 rounded border-2 border-ink type-button text-ink bg-amber hover:bg-amber-tint transition-all cyber-button cursor-pointer flex items-center gap-1.5"
           >
             <span>[~] TERMINAL</span>
           </button>
 
           <button
             onClick={() => handleNav("#contact")}
-            className="px-4 py-1.5 rounded border-2 border-slate-900 font-mono text-xs font-bold text-white bg-brand-maroon hover:bg-rose-900 transition-all cyber-button cursor-pointer"
+            className="px-4 py-1.5 rounded border-2 border-ink type-button text-white bg-maroon hover:bg-maroon-dark transition-all cyber-button cursor-pointer"
           >
             WORK WITH ME ↵
           </button>
@@ -107,18 +97,18 @@ export default function Navbar({ activeSection, onOpenTerminal }: NavbarProps) {
         <div className="md:hidden flex items-center gap-2">
           <button
             onClick={onOpenTerminal}
-            className="px-2.5 py-1 rounded border-2 border-slate-900 font-mono text-xs font-bold text-slate-900 bg-amber-400"
+            className="px-3 py-1 rounded border-2 border-ink type-label text-ink bg-amber"
           >
             [~]
           </button>
           <button
-            className="flex flex-col gap-1.5 p-2 rounded border border-slate-900 bg-slate-100"
+            className="flex flex-col gap-1.5 p-2 rounded border border-ink bg-parchment"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
           >
-            <span className="block h-0.5 w-5 bg-slate-900" />
-            <span className="block h-0.5 w-5 bg-slate-900" />
-            <span className="block h-0.5 w-5 bg-slate-900" />
+            <span className="block h-0.5 w-5 bg-ink" />
+            <span className="block h-0.5 w-5 bg-ink" />
+            <span className="block h-0.5 w-5 bg-ink" />
           </button>
         </div>
       </div>
@@ -126,22 +116,21 @@ export default function Navbar({ activeSection, onOpenTerminal }: NavbarProps) {
       {/* Mobile Menu */}
       {menuOpen && (
         <div
-          className="md:hidden border-t-2 border-slate-900 px-6 py-4 flex flex-col gap-3"
-          style={{ backgroundColor: "#EEE8D5" }}
+          className="md:hidden border-t-2 border-ink px-6 py-4 flex flex-col gap-3 bg-parchment"
         >
           {NAV_LINKS.map((link) => (
             <button
               key={link.href}
               onClick={() => handleNav(link.href)}
-              className="text-left font-mono text-xs font-bold py-1.5 text-slate-900 flex items-center gap-2"
+              className="text-left type-label py-1.5 text-ink flex items-center gap-2"
             >
-              <span className="text-brand-tosca">//</span>
+              <span className="text-tosca">//</span>
               {link.label}
             </button>
           ))}
           <button
             onClick={() => handleNav("#contact")}
-            className="mt-2 text-xs font-mono font-bold px-4 py-2.5 rounded border-2 border-slate-900 text-center text-white bg-brand-maroon"
+            className="mt-2 type-label px-4 py-3 rounded border-2 border-ink text-center text-white bg-maroon"
           >
             WORK WITH ME ↵
           </button>

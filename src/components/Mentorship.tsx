@@ -94,25 +94,24 @@ export default function Mentorship({ onUnlockAchievement }: MentorshipProps) {
   const t = TESTIMONIALS[current];
 
   return (
-    <section id="mentorship" className="py-28 px-4 sm:px-6 lg:px-8 border-t-2 border-slate-900" style={{ backgroundColor: "#EEE8D5" }}>
+    <section id="mentorship" className="py-28 px-4 sm:px-6 lg:px-8 border-t-2 border-ink bg-parchment">
       <div className="max-w-6xl mx-auto space-y-12">
         {/* Header */}
         <div className="space-y-3 max-w-3xl">
           <div className="flex items-center gap-3 mb-2">
             <span
-              className="text-xs font-mono font-bold uppercase tracking-wider text-brand-tosca"
+              className="type-eyebrow text-tosca"
             >
               // side_quest: educator_hub()
             </span>
             <AchievementBadge icon="🧭" label="Tech Mentor Mode: ACTIVE" />
           </div>
           <h2
-            className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 leading-tight"
-            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            className="type-title text-ink"
           >
-            I teach by making people <span className="text-brand-maroon underline decoration-amber-400 decoration-4">make things.</span>
+            I teach by making people <span className="text-maroon underline decoration-amber decoration-4">make things.</span>
           </h2>
-          <p className="text-base sm:text-lg text-slate-700 font-sans leading-relaxed pt-1 font-medium italic">
+          <p className="type-lead text-ink-soft pt-1 italic">
             Lectures have their place. Day one is rarely it.
           </p>
         </div>
@@ -122,19 +121,18 @@ export default function Mentorship({ onUnlockAchievement }: MentorshipProps) {
           {/* Left Column: Stats & Skill Matrix */}
           <div className="flex flex-col gap-8">
             {/* Stats Grid */}
-            <div className="grid grid-cols-2 gap-4 sm:gap-5">
+            <div className="grid grid-cols-2 gap-4 sm:gap-6">
               {STATS.map(({ value, label }) => (
                 <div
                   key={label}
-                  className="rounded-xl p-6 border-2 border-slate-900 bg-white shadow-[4px_4px_0px_#0F172A]"
+                  className="rounded-lg p-6 border-2 border-ink bg-white shadow-pixel"
                 >
                   <div
-                    className="text-3xl sm:text-4xl font-bold text-slate-900 leading-none"
-                    style={{ fontFamily: "'VT323', monospace" }}
+                    className="type-pixel-lg text-ink"
                   >
                     {value}
                   </div>
-                  <div className="mt-2 text-xs font-mono font-bold text-slate-700 uppercase tracking-tight">
+                  <div className="mt-2 type-eyebrow text-ink-soft">
                     {label}
                   </div>
                 </div>
@@ -142,17 +140,17 @@ export default function Mentorship({ onUnlockAchievement }: MentorshipProps) {
             </div>
 
             {/* Character Intro */}
-            <div data-perch="character" className="rounded-xl border-2 border-slate-900 bg-white shadow-[4px_4px_0px_#0F172A] overflow-hidden">
-              <div className="flex items-center justify-between border-b-2 border-slate-900 px-5 py-3 bg-slate-900">
-                <span className="text-xs font-mono font-bold text-amber-300 uppercase tracking-wider">
+            <div data-perch="character" className="rounded-lg border-2 border-ink bg-white shadow-pixel overflow-hidden">
+              <div className="flex items-center justify-between border-b-2 border-ink px-6 py-3 bg-ink">
+                <span className="type-eyebrow text-amber">
                   ▸ Player 1
                 </span>
-                <span className="text-[11px] font-mono font-bold text-slate-300">
+                <span className="type-micro text-parchment">
                   Jakarta, ID
                 </span>
               </div>
 
-              <div className="p-6 sm:p-7 flex flex-col sm:flex-row gap-6">
+              <div className="p-6 sm:p-8 flex flex-col sm:flex-row gap-6">
                 <button
                   type="button"
                   onClick={() => {
@@ -166,38 +164,37 @@ export default function Mentorship({ onUnlockAchievement }: MentorshipProps) {
                   <img
                   src={`${import.meta.env.BASE_URL}avatar.png`}
                   alt="Pixel art portrait of Astrid"
-                  className="block w-28 h-28 sm:w-32 sm:h-32 shrink-0 rounded-lg border-2 border-slate-900 shadow-[3px_3px_0px_#0F172A] self-start"
+                  className="block w-28 h-28 sm:w-32 sm:h-32 shrink-0 rounded-lg border-2 border-ink shadow-pixel-sm self-start"
                 />
                 </button>
                 <div className="space-y-2">
                   <h3
-                    className="text-2xl font-bold text-slate-900 leading-none"
-                    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                    className="type-heading text-ink"
                   >
                     Astrid
                   </h3>
-                  <p className="text-xs font-mono font-bold text-brand-tosca uppercase">
+                  <p className="type-eyebrow text-tosca">
                     Class: Engineer / Educator
                   </p>
-                  <p className="text-sm text-slate-700 font-sans leading-relaxed">
+                  <p className="type-body text-ink-soft">
                     Writes code, designs curriculums, and keeps programs on schedule.
                   </p>
                 </div>
               </div>
 
-              <div className="px-6 sm:px-7 pb-7 space-y-3">
-                <div className="text-[11px] font-mono font-bold text-slate-600 uppercase tracking-wider">
+              <div className="px-6 sm:px-8 pb-8 space-y-3">
+                <div className="type-eyebrow text-ink-muted">
                   Skills
                 </div>
                 <ul className="space-y-3">
                   {SKILLS.map((s) => (
                     <li key={s.label} className="flex gap-3 items-start">
-                      <span className="w-7 h-7 shrink-0 rounded border-2 border-slate-900 bg-amber-300 flex items-center justify-center text-xs font-bold text-slate-900">
+                      <span className="w-7 h-7 shrink-0 rounded border-2 border-ink bg-amber flex items-center justify-center type-label text-ink">
                         {s.icon}
                       </span>
                       <div>
-                        <div className="text-xs sm:text-sm font-mono font-bold text-slate-900">{s.label}</div>
-                        <div className="text-xs text-slate-700 font-sans mt-0.5">{s.detail}</div>
+                        <div className="type-button text-ink">{s.label}</div>
+                        <div className="type-caption text-ink-soft mt-0.5">{s.detail}</div>
                       </div>
                     </li>
                   ))}
@@ -206,21 +203,21 @@ export default function Mentorship({ onUnlockAchievement }: MentorshipProps) {
             </div>
 
             {/* Quick Action Banner */}
-            <div className="p-5 rounded-xl border-2 border-slate-900 bg-amber-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-[4px_4px_0px_#0F172A]">
-              <div className="flex items-center gap-3.5">
-                <span className="text-3xl">🎓</span>
+            <div className="p-6 rounded-lg border-2 border-ink bg-amber-tint flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-pixel">
+              <div className="flex items-center gap-4">
+                <span className="text-icon-lg">🎓</span>
                 <div>
-                  <p className="text-xs sm:text-sm font-bold font-mono text-slate-900">
+                  <p className="type-button text-ink">
                     PLANNING A WORKSHOP OR CURRICULUM?
                   </p>
-                  <p className="text-xs text-slate-800 font-sans mt-0.5">
+                  <p className="type-caption text-ink-soft mt-0.5">
                     I work on STEM learning, EdTech strategy, and product delivery.
                   </p>
                 </div>
               </div>
               <button
                 onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
-                className="px-4 py-2 rounded border-2 border-slate-900 bg-brand-maroon text-white font-mono text-xs font-bold cyber-button cursor-pointer min-w-max self-start sm:self-center"
+                className="px-4 py-2 rounded border-2 border-ink bg-maroon text-white type-label cyber-button cursor-pointer min-w-max self-start sm:self-center"
               >
                 TELL ME ABOUT IT ↵
               </button>
@@ -230,26 +227,25 @@ export default function Mentorship({ onUnlockAchievement }: MentorshipProps) {
           {/* Right Column: Testimonials & Feedback */}
           <div className="flex flex-col gap-6">
             <div data-perch="quotes"
-              className="rounded-xl p-8 sm:p-10 border-2 border-slate-900 bg-white shadow-[6px_6px_0px_#0F172A] flex flex-col justify-between lg:sticky lg:top-24"
-              style={{ backgroundColor: "#EEE8D5" }}
+              className="rounded-lg p-8 sm:p-10 border-2 border-ink shadow-pixel-lg flex flex-col justify-between lg:sticky lg:top-24 bg-parchment"
             >
               <div className="space-y-6">
-                <div className="flex items-center justify-between border-b-2 border-slate-900 pb-4">
-                  <span className="text-xs font-mono font-bold text-brand-maroon uppercase">
+                <div className="flex items-center justify-between border-b-2 border-ink pb-4">
+                  <span className="type-eyebrow text-maroon">
                     // FROM PEOPLE I HAVE WORKED WITH
                   </span>
                   <a
                     href="https://www.linkedin.com/in/astridcoenrad/details/recommendations/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[11px] font-mono font-bold text-slate-700 underline hover:text-brand-tosca"
+                    className="type-micro text-ink-soft underline hover:text-tosca"
                   >
                     via LinkedIn ↗
                   </a>
                 </div>
 
                 <p
-                  className="text-base sm:text-xl leading-relaxed text-slate-900 font-sans font-medium"
+                  className="type-lead text-ink"
                 >
                   "{t.quote}"
                 </p>
@@ -258,7 +254,7 @@ export default function Mentorship({ onUnlockAchievement }: MentorshipProps) {
                   {t.highlights.map((h) => (
                     <span
                       key={h}
-                      className="text-[11px] font-mono font-bold px-2.5 py-0.5 rounded border border-slate-900 bg-white text-slate-800"
+                      className="type-micro px-3 py-0.5 rounded border border-ink bg-white text-ink-soft"
                     >
                       {h}
                     </span>
@@ -267,35 +263,35 @@ export default function Mentorship({ onUnlockAchievement }: MentorshipProps) {
               </div>
 
               <div className="pt-8">
-                <div className="pt-5 border-t-2 border-slate-900 flex items-center justify-between gap-4">
+                <div className="pt-6 border-t-2 border-ink flex items-center justify-between gap-4">
                   <div>
-                    <div className="font-bold text-base text-slate-900" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                    <div className="type-subheading text-ink">
                       {t.name}
                     </div>
                     <div
-                      className="text-xs text-brand-tosca font-mono font-bold mt-0.5"
+                      className="type-label text-tosca mt-0.5"
                     >
                       {t.role}
                     </div>
-                    <div className="text-xs text-slate-600 font-sans mt-1">
+                    <div className="type-caption text-ink-muted mt-1">
                       {t.context}
                     </div>
                   </div>
 
                   {/* Swiper Controls */}
-                  <div className="flex items-center gap-2.5">
+                  <div className="flex items-center gap-3">
                     <button
                       onClick={prev}
-                      className="w-9 h-9 rounded border-2 border-slate-900 bg-white flex items-center justify-center font-mono font-bold hover:bg-amber-100 cyber-button cursor-pointer"
+                      className="w-9 h-9 rounded border-2 border-ink bg-white flex items-center justify-center font-mono font-bold hover:bg-amber-tint cyber-button cursor-pointer"
                     >
                       ←
                     </button>
-                    <span className="text-xs font-mono font-bold text-slate-800 px-1">
+                    <span className="type-label text-ink-soft px-1">
                       {current + 1}/{TESTIMONIALS.length}
                     </span>
                     <button
                       onClick={next}
-                      className="w-9 h-9 rounded border-2 border-slate-900 bg-white flex items-center justify-center font-mono font-bold hover:bg-amber-100 cyber-button cursor-pointer"
+                      className="w-9 h-9 rounded border-2 border-ink bg-white flex items-center justify-center font-mono font-bold hover:bg-amber-tint cyber-button cursor-pointer"
                     >
                       →
                     </button>

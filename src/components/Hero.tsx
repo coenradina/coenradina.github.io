@@ -11,7 +11,7 @@ const TABS = [
   {
     id: "AstridProfile.ts",
     lang: "TypeScript",
-    color: "#0D9488",
+    dot: "text-tosca",
     code: `// Astrid: Software Engineer & Tech Mentor
 
 export const Profile = {
@@ -31,7 +31,7 @@ export const Profile = {
   {
     id: "AI_Class_ASEAN.kt",
     lang: "Kotlin",
-    color: "#881337",
+    dot: "text-maroon",
     code: `// Binar Academy: AI Class ASEAN Initiative
 // Lead Learning Experience Designer
 
@@ -44,7 +44,7 @@ fun deployASEANCurriculum() {
   {
     id: "GenerationGirl.py",
     lang: "Python",
-    color: "#B58900",
+    dot: "text-gold",
     code: `# Generation Girl STEM Empowerment
 # Head of Education
 
@@ -58,7 +58,7 @@ class GenGirlImpact:
   {
     id: "SemestaIntegrasi.go",
     lang: "Go",
-    color: "#0F172A",
+    dot: "text-ink",
     code: `// PT Semesta Integrasi Digital
 // Technical Program Manager
 
@@ -109,10 +109,10 @@ function Typewriter({ words }: { words: string[] }) {
   return (
     <span className="whitespace-nowrap">
       <span className="sr-only">{words.join(" ")}</span>
-      <span aria-hidden="true" className={wordIndex % 2 === 0 ? "text-brand-tosca" : "text-brand-maroon"}>
+      <span aria-hidden="true" className={wordIndex % 2 === 0 ? "text-tosca" : "text-maroon"}>
         {shown}
       </span>
-      <span aria-hidden="true" className="cursor-blink inline-block w-[0.08em] h-[0.9em] ml-1 align-[-0.08em] bg-slate-900" />
+      <span aria-hidden="true" className="cursor-blink inline-block w-[0.08em] h-[0.9em] ml-1 align-baseline bg-ink" />
     </span>
   );
 }
@@ -146,24 +146,21 @@ export default function Hero({ onUnlockAchievement, onOpenTerminal }: HeroProps)
   return (
     <section
       id="hero"
-      className="relative min-h-screen pt-28 pb-20 px-4 sm:px-6 lg:px-8 flex flex-col justify-center solarized-grid overflow-hidden"
-      style={{ backgroundColor: "#FDF6E3" }}
+      className="relative min-h-screen pt-28 pb-20 px-4 sm:px-6 lg:px-8 flex flex-col justify-center solarized-grid overflow-hidden bg-cream"
     >
       {/* Subtle ambient accent glow */}
       <div 
-        className="absolute top-24 right-12 w-80 h-80 rounded-full pointer-events-none opacity-15 blur-3xl"
-        style={{ backgroundColor: "#0D9488" }}
+        className="absolute top-24 right-12 w-80 h-80 rounded-full pointer-events-none opacity-15 blur-3xl bg-tosca"
       />
       <div 
-        className="absolute bottom-12 left-12 w-96 h-96 rounded-full pointer-events-none opacity-10 blur-3xl"
-        style={{ backgroundColor: "#E5A93C" }}
+        className="absolute bottom-12 left-12 w-96 h-96 rounded-full pointer-events-none opacity-10 blur-3xl bg-amber"
       />
 
-      <div className="relative z-10 max-w-5xl mx-auto w-full space-y-10">
+      <div className="relative z-raised max-w-5xl mx-auto w-full space-y-10">
         {/* Top Header Row */}
         <div className="flex flex-wrap items-center justify-between gap-4">
-          <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded border-2 border-slate-900 bg-amber-300 font-mono text-xs font-bold text-slate-900 shadow-[3px_3px_0px_#0F172A]">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-600 animate-pulse" />
+          <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded border-2 border-ink bg-amber type-label text-ink shadow-pixel-sm">
+            <span className="w-2.5 h-2.5 rounded-full bg-tosca animate-pulse" />
             CURRENTLY: FULL-STACK + GENERATION GIRL
           </div>
 
@@ -177,25 +174,22 @@ export default function Hero({ onUnlockAchievement, onOpenTerminal }: HeroProps)
         {/* Main Headline & Intro */}
         <div className="space-y-4 max-w-4xl">
           <h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 leading-[1.12]"
-            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            className="type-display text-ink"
           >
             I build <Typewriter key={hacked ? "hacked" : "normal"} words={hacked ? HACKED_WORDS : BUILD_WORDS} />
           </h1>
-          <p className="max-w-2xl text-base sm:text-lg text-slate-700 font-sans leading-relaxed pt-1">
-            <strong className="text-slate-900 underline decoration-amber-400 decoration-4">Astrid</strong> here. TLDR; i code and teach. if you ever need a software engineer, tech mentor or program manager (or all three), you are in the right place.
+          <p className="max-w-2xl type-lead text-ink-soft pt-1">
+            <strong className="text-ink underline decoration-amber decoration-4">Astrid</strong> here. TLDR; i code and teach. if you ever need a software engineer, tech mentor or program manager (or all three), you are in the right place.
           </p>
         </div>
 
         {/* Solarized Code Editor Box */}
         <div data-perch="hero" 
-          className="rounded-xl border-2 border-slate-900 shadow-[6px_6px_0px_#0F172A] overflow-hidden"
-          style={{ backgroundColor: "#EEE8D5" }}
+          className="rounded-lg border-2 border-ink shadow-pixel-lg overflow-hidden bg-parchment"
         >
           {/* Editor Tabs Bar */}
           <div 
-            className="flex items-center justify-between border-b-2 border-slate-900 px-4 py-2.5 overflow-x-auto"
-            style={{ backgroundColor: "#FDF6E3" }}
+            className="flex items-center justify-between border-b-2 border-ink px-4 py-3 overflow-x-auto bg-cream"
           >
             <div className="flex items-center gap-2 min-w-max">
               {TABS.map((tab, idx) => (
@@ -205,25 +199,23 @@ export default function Hero({ onUnlockAchievement, onOpenTerminal }: HeroProps)
                     setActiveTab(idx);
                     setExecutionLog(null);
                   }}
-                  className={`px-3.5 py-1.5 rounded-t text-xs font-mono font-bold transition-all border border-b-0 cursor-pointer ${
-                    activeTab === idx
-                      ? "bg-[#EEE8D5] text-slate-900 border-slate-900 -mb-3 pb-3 z-10 shadow-xs"
-                      : "bg-slate-200/80 text-slate-700 border-transparent hover:bg-slate-200"
+                  className={`px-4 py-1.5 rounded-t type-label transition-all border border-b-0 cursor-pointer ${activeTab === idx ? "bg-parchment text-ink border-ink -mb-3 pb-3 z-raised shadow-pixel-sm"
+                      : "bg-parchment/80 text-ink-soft border-transparent hover:bg-parchment"
                   }`}
                 >
-                  <span className="mr-2" style={{ color: tab.color }}>●</span>
+                  <span className={`mr-2 ${tab.dot}`}>●</span>
                   {tab.id}
                 </button>
               ))}
             </div>
 
-            <div className="hidden sm:flex items-center gap-2 text-[11px] font-mono text-slate-600 font-bold ml-4">
+            <div className="hidden sm:flex items-center gap-2 type-micro text-ink-muted ml-4">
               <span>SOLARIZED LIGHT v2.4</span>
             </div>
           </div>
 
           {/* Code Window */}
-          <div className="p-5 font-mono text-xs sm:text-sm leading-relaxed overflow-x-auto text-slate-900" style={{ backgroundColor: "#EEE8D5" }}>
+          <div className="p-6 type-mono overflow-x-auto text-ink bg-parchment">
             <pre className="whitespace-pre">
               <code>{currentTab.code}</code>
             </pre>
@@ -231,18 +223,17 @@ export default function Hero({ onUnlockAchievement, onOpenTerminal }: HeroProps)
 
           {/* Interactive Console Footer Bar */}
           <div 
-            className="px-4 py-3 border-t-2 border-slate-900 flex flex-wrap items-center justify-between gap-3 text-xs font-mono"
-            style={{ backgroundColor: "#FDF6E3" }}
+            className="px-4 py-3 border-t-2 border-ink flex flex-wrap items-center justify-between gap-3 type-mono bg-cream"
           >
-            <div className="flex items-center gap-2 text-slate-800">
-              <span className="text-brand-tosca font-bold">➜</span>
-              <span className="font-semibold">{executionLog || `Selected: ${currentTab.id} [${currentTab.lang}]`}</span>
+            <div className="flex items-center gap-2 text-ink-soft">
+              <span className="text-tosca font-bold">➜</span>
+              <span className="font-bold">{executionLog || `Selected: ${currentTab.id} [${currentTab.lang}]`}</span>
             </div>
 
             <button
               onClick={handleRunCode}
               disabled={isExecuting}
-              className="px-4 py-2 rounded border-2 border-slate-900 bg-teal-600 hover:bg-teal-700 text-white font-mono font-bold cyber-button cursor-pointer flex items-center gap-2"
+              className="px-4 py-2 rounded border-2 border-ink bg-tosca hover:bg-tosca-dark text-white font-mono font-bold cyber-button cursor-pointer flex items-center gap-2"
             >
               {isExecuting ? (
                 <>
@@ -263,20 +254,20 @@ export default function Hero({ onUnlockAchievement, onOpenTerminal }: HeroProps)
           <div className="flex flex-wrap items-center gap-4">
             <button
               onClick={() => handleScrollTo("#projects")}
-              className="px-6 py-3.5 rounded border-2 border-slate-900 bg-brand-maroon hover:bg-rose-900 text-white font-mono text-xs font-bold cyber-button cursor-pointer"
+              className="px-6 py-4 rounded border-2 border-ink bg-maroon hover:bg-maroon-dark text-white type-label cyber-button cursor-pointer"
             >
               SEE THE WORK ➔
             </button>
             <button
               onClick={() => handleScrollTo("#contact")}
-              className="px-6 py-3.5 rounded border-2 border-slate-900 bg-white hover:bg-amber-100 text-slate-900 font-mono text-xs font-bold cyber-button cursor-pointer"
+              className="px-6 py-4 rounded border-2 border-ink bg-white hover:bg-amber-tint text-ink type-label cyber-button cursor-pointer"
             >
               WRITE TO ME ✉
             </button>
           </div>
 
           {/* Quick Stats Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {[
               { label: "Engineering", val: "Full-stack" },
               { label: "Education Home", val: "GenGirl" },
@@ -285,15 +276,14 @@ export default function Hero({ onUnlockAchievement, onOpenTerminal }: HeroProps)
             ].map((item, idx) => (
               <div
                 key={idx}
-                className="p-3.5 rounded-lg border-2 border-slate-900 bg-white text-center shadow-[3px_3px_0px_#0F172A]"
+                className="p-4 rounded-lg border-2 border-ink bg-white text-center shadow-pixel-sm"
               >
                 <div 
-                  className="text-xl sm:text-2xl font-bold text-slate-900 leading-none"
-                  style={{ fontFamily: "'VT323', monospace" }}
+                  className="type-pixel text-ink"
                 >
                   {item.val}
                 </div>
-                <div className="text-[10px] font-mono font-bold text-slate-600 mt-1 uppercase tracking-tight">
+                <div className="type-eyebrow text-ink-muted mt-1">
                   {item.label}
                 </div>
               </div>
