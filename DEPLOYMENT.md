@@ -30,7 +30,12 @@ Secrets live in Google Secret Manager and never go in the repo. Set them from a 
 firebase functions:secrets:set TURNSTILE_SECRET
 firebase functions:secrets:set SMTP_PASSWORD
 openssl rand -hex 32 | firebase functions:secrets:set IP_HASH_SALT --data-file=-
+firebase functions:secrets:set GROQ_API_KEY
 ```
+
+## Prompt Analyzer proxy
+
+The `analyzePrompt` function in the same file holds the Groq key for https://aastr.id/prompt-analyzer/. The browser never sees the key. The function accepts only `{ prompt, framework, lang }` from `https://aastr.id`, builds the system prompt itself, and allows 3 analyses per hashed IP per day and 300 per day in total. It counts usage in the Firestore `analyzeLimits` collection and never stores or logs the prompt. The framework component lists in `functions/analyze.js` must match `src/frameworks.js` in the prompt-analyzer repo.
 
 ### Deploying the function
 
