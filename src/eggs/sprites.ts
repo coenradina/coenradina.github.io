@@ -34,8 +34,21 @@ const BODY = ["kssgggwggssk", "kssggggggssk", ".kkggggggkk."];
 const LEGS_STAND = ["..kppppppk..", "..kppkkppk..", "..kppk.kppk.", "..kbbk.kbbk."];
 const LEGS_WALK_A = ["..kppppppk..", ".kppk..kppk.", ".kppk..kppk.", ".kbbk..kbbk."];
 const LEGS_WALK_B = ["..kppppppk..", "...kppkppk..", "...kppkppk..", "...kbbkbbk.."];
+// Airborne and landing poses
+const LEGS_TUCK = ["..kppppppk..", ".kpppkkpppk.", ".kbbk..kbbk.", "............"];
+const LEGS_SPREAD = ["..kppppppk..", ".kppk..kppk.", "kppk....kppk", "kbbk....kbbk"];
+const LEGS_DANGLE = ["..kppppppk..", "...kppppk...", "...kppppk...", "...kbbbbk..."];
+const LEGS_CROUCH = [".kpppppppk..", "kppkkkkkppk.", "kbbk...kbbk."];
 
-export const ASTRID: Record<"stand" | "blink" | "walkA" | "walkB" | "wave" | "sit", SpriteFrame> = {
+export const ASTRID: Record<"stand" | "blink" | "walkA" | "walkB" | "wave" | "sit" | "crouch" | "jump" | "fall" | "dangle", SpriteFrame> = {
+  // Knees bent, one row lower: before a jump and right after landing
+  crouch: ["............", ...HEAD, ...BODY, ...LEGS_CROUCH],
+  // Going up: knees tucked
+  jump: [...HEAD, ...BODY, ...LEGS_TUCK],
+  // Coming down: legs out for the landing
+  fall: [...HEAD, ...BODY, ...LEGS_SPREAD],
+  // Picked up by the cursor
+  dangle: [...BLINK_HEAD, ...BODY, ...LEGS_DANGLE],
   stand: [...HEAD, ...BODY, ...LEGS_STAND],
   blink: [...BLINK_HEAD, ...BODY, ...LEGS_STAND],
   walkA: [...HEAD, ...BODY, ...LEGS_WALK_A],
