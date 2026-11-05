@@ -6,6 +6,17 @@ const BASE = import.meta.env.BASE_URL;
 
 const PERSONAL_PROJECTS = [
   {
+    title: "Kotakata",
+    kind: "Learning Game",
+    tagline: "stack blocks, train an AI",
+    description: "A pixel-art block-coding game for learning machine learning terms, in Indonesian and English. Snap blocks together to collect data, train a small robot and test it, then watch its \"brain\" learn on a live plot. Each term gets explained the moment you run into it, and pop quizzes earn stars on your term cards.",
+    tech: ["React", "TypeScript", "Blockly", "Phaser", "ML Literacy"],
+    liveUrl: "https://aastr.id/kotakata/",
+    repoUrl: "https://github.com/coenradina/kotakata",
+    imgUrl: `${BASE}projects/kotakata.png`,
+    featured: true,
+  },
+  {
     title: "ccode",
     kind: "Dev Tool",
     tagline: "no dress code, just code code",
@@ -67,7 +78,7 @@ export default function PersonalProjects({ onUnlockAchievement }: PersonalProjec
             Things I build <span className="text-brand-maroon underline decoration-amber-400 decoration-4">after hours.</span>
           </h2>
           <p className="text-base text-slate-700 font-sans leading-relaxed pt-1 font-semibold italic">
-            Four personal projects. All of them are live, so you can click around.
+            Five personal projects. All of them are live, so you can click around.
           </p>
         </div>
 
@@ -76,7 +87,7 @@ export default function PersonalProjects({ onUnlockAchievement }: PersonalProjec
           {PERSONAL_PROJECTS.map((project) => (
             <div
               key={project.title}
-              className="group rounded-xl border-2 border-slate-900 bg-white shadow-[4px_4px_0px_#0F172A] hover:translate-y-[-4px] hover:shadow-[6px_6px_0px_#0F172A] transition-all flex flex-col overflow-hidden"
+              className={`${"featured" in project ? "md:col-span-2" : ""} group rounded-xl border-2 border-slate-900 bg-white shadow-[4px_4px_0px_#0F172A] hover:translate-y-[-4px] hover:shadow-[6px_6px_0px_#0F172A] transition-all flex flex-col overflow-hidden`}
             >
               {/* Thumbnail */}
               <a
@@ -84,7 +95,7 @@ export default function PersonalProjects({ onUnlockAchievement }: PersonalProjec
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => handleOpen(project.title)}
-                className="relative block h-56 overflow-hidden border-b-2 border-slate-900 bg-slate-100"
+                className={`relative block ${"featured" in project ? "h-56 md:h-80" : "h-56"} overflow-hidden border-b-2 border-slate-900 bg-slate-100`}
               >
                 <img
                   src={project.imgUrl}
