@@ -1,5 +1,6 @@
 import { useState } from "react";
 import AchievementBadge from "./ui/AchievementBadge";
+import { summonPet } from "../eggs/events";
 
 interface MentorshipProps {
   onUnlockAchievement: (title: string, xp: number) => void;
@@ -152,11 +153,22 @@ export default function Mentorship({ onUnlockAchievement }: MentorshipProps) {
               </div>
 
               <div className="p-6 sm:p-7 flex flex-col sm:flex-row gap-6">
-                <img
+                <button
+                  type="button"
+                  onClick={() => {
+                    summonPet();
+                    onUnlockAchievement("Summoned pixel Astrid (+150 XP)", 150);
+                  }}
+                  title="Psst. Click me."
+                  aria-label="Summon pixel Astrid onto the page"
+                  className="shrink-0 self-start cursor-pointer rounded-lg transition-transform hover:-rotate-3 hover:scale-105"
+                >
+                  <img
                   src={`${import.meta.env.BASE_URL}avatar.png`}
                   alt="Pixel art portrait of Astrid"
-                  className="w-28 h-28 sm:w-32 sm:h-32 shrink-0 rounded-lg border-2 border-slate-900 shadow-[3px_3px_0px_#0F172A] self-start"
+                  className="block w-28 h-28 sm:w-32 sm:h-32 shrink-0 rounded-lg border-2 border-slate-900 shadow-[3px_3px_0px_#0F172A] self-start"
                 />
+                </button>
                 <div className="space-y-2">
                   <h3
                     className="text-2xl font-bold text-slate-900 leading-none"

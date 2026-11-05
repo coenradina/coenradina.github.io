@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { startHack, summonPet } from "../eggs/events";
 
 interface TerminalModalProps {
   isOpen: boolean;
@@ -123,11 +124,37 @@ export default function TerminalModal({ isOpen, onClose, onUnlockAchievement }: 
 
       case "easteregg":
         outputNode = (
-          <div className="text-xs sm:text-sm text-brand-maroon font-mono font-bold">
-            👾 "Compilers don't judge. Students notice when the coffee runs out." - Astrid
+          <div className="text-xs sm:text-sm font-mono space-y-1">
+            <p className="text-brand-maroon font-bold">👾 Two secrets live here. I'll give you hints, not answers.</p>
+            <p className="text-slate-700">1. Something about sudo. Not the hiring one.</p>
+            <p className="text-slate-700">2. My portrait in the Mentorship section is clickable.</p>
           </div>
         );
-        onUnlockAchievement("Found the coffee footnote (+250 XP)", 250);
+        onUnlockAchievement("Asked nicely for secrets (+250 XP)", 250);
+        break;
+
+      case "sudo hack":
+      case "hack":
+        outputNode = (
+          <p className="text-xs sm:text-sm font-mono font-bold text-lime-600">
+            {cmd === "hack" ? "Permission denied. Have you tried sudo?" : "Okay. You asked for it..."}
+          </p>
+        );
+        if (cmd === "sudo hack") {
+          setTimeout(() => {
+            onClose();
+            startHack("terminal");
+          }, 700);
+        }
+        break;
+
+      case "summon astrid":
+      case "summon":
+        outputNode = <p className="text-xs sm:text-sm font-mono font-bold text-brand-tosca">Summoning pixel Astrid. Look down. 👇</p>;
+        setTimeout(() => {
+          onClose();
+          summonPet();
+        }, 600);
         break;
 
       case "clear":

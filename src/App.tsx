@@ -7,6 +7,8 @@ import PersonalProjects from "./components/PersonalProjects";
 import Mentorship from "./components/Mentorship";
 import Contact from "./components/Contact";
 import TerminalModal from "./components/TerminalModal";
+import HackSequence from "./eggs/HackSequence";
+import PixelPet from "./eggs/PixelPet";
 
 const SECTIONS = ["hero", "about", "projects", "side-projects", "mentorship", "contact"];
 
@@ -76,6 +78,9 @@ export default function App() {
       </main>
 
       {/* Interactive CLI Terminal Modal */}
+      <HackSequence onUnlockAchievement={handleUnlockAchievement} />
+      <PixelPet />
+
       <TerminalModal
         isOpen={isTerminalOpen}
         onClose={() => setIsTerminalOpen(false)}

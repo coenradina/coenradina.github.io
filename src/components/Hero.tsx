@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import AchievementBadge from "./ui/AchievementBadge";
+import { onHackPhase } from "../eggs/events";
 
 interface HeroProps {
   onUnlockAchievement: (title: string, xp: number) => void;
@@ -71,6 +72,7 @@ func DeliverPlatforms() {
 ];
 
 const BUILD_WORDS = ["apps.", "curriculums."];
+const HACKED_WORDS = ["bugs."];
 
 function Typewriter({ words }: { words: string[] }) {
   const [wordIndex, setWordIndex] = useState(0);
@@ -117,6 +119,9 @@ function Typewriter({ words }: { words: string[] }) {
 
 export default function Hero({ onUnlockAchievement, onOpenTerminal }: HeroProps) {
   const [activeTab, setActiveTab] = useState(0);
+  // During the fake breach, the headline briefly claims I build bugs.
+  const [hacked, setHacked] = useState(false);
+  useEffect(() => onHackPhase((phase) => setHacked(phase === "breach")), []);
   const [isExecuting, setIsExecuting] = useState(false);
   const [executionLog, setExecutionLog] = useState<string | null>(null);
 
@@ -175,7 +180,7 @@ export default function Hero({ onUnlockAchievement, onOpenTerminal }: HeroProps)
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 leading-[1.12]"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
-            I build <Typewriter words={BUILD_WORDS} />
+            I build <Typewriter key={hacked ? "hacked" : "normal"} words={hacked ? HACKED_WORDS : BUILD_WORDS} />
           </h1>
           <p className="max-w-2xl text-base sm:text-lg text-slate-700 font-sans leading-relaxed pt-1">
             <strong className="text-slate-900 underline decoration-amber-400 decoration-4">Astrid</strong> here. TLDR; i code and teach. if you ever need a software engineer, tech mentor or program manager (or all three), you are in the right place.

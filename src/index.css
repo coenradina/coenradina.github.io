@@ -149,3 +149,41 @@ body {
 }
 
 
+
+/* ---------------------------------------------------------------------------
+   Easter egg: fake breach. Movement stays under 3 changes a second, and it
+   all switches off for reduced motion. */
+.hack-scanlines {
+  background: repeating-linear-gradient(0deg, rgba(15, 23, 42, 0.08) 0 2px, transparent 2px 4px);
+}
+.is-hacked main h1,
+.is-hacked main h2 {
+  text-shadow: 3px 0 rgba(239, 68, 68, 0.75), -3px 0 rgba(6, 182, 212, 0.75);
+  animation: hack-shift 0.9s steps(2, jump-none) infinite;
+}
+.is-hacked main img { filter: hue-rotate(95deg) saturate(1.5); transition: filter 0.3s; }
+.is-patching main h1,
+.is-patching main h2 { animation: none; text-shadow: none; transition: text-shadow 0.6s; }
+.is-patching main img { filter: none; }
+@keyframes hack-shift {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-3px, 1px) skewX(-3deg); }
+}
+.hack-bug { animation: hack-bug 2.4s ease-in-out infinite alternate; }
+@keyframes hack-bug {
+  from { transform: translate(-90%, 0) rotate(-6deg); }
+  to { transform: translate(-10%, 12px) rotate(6deg); }
+}
+
+/* Pixel Astrid */
+.pixel-pet .pet-close { opacity: 0; transition: opacity 0.15s; }
+.pixel-pet:hover .pet-close,
+.pixel-pet:focus-within .pet-close { opacity: 1; }
+@media (hover: none) { .pixel-pet .pet-close { opacity: 1; } }
+
+@keyframes card-in-pop { from { transform: translateY(8px); opacity: 0; } to { transform: none; opacity: 1; } }
+.card-in { animation: card-in-pop 0.3s steps(5) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .is-hacked main h1, .is-hacked main h2, .hack-bug, .card-in { animation: none; }
+}
