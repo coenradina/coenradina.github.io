@@ -35,7 +35,7 @@ generate nothing, and the check reports them.
 | `maroon-tint` | `#ffe4e6` | Maroon background tint |
 | `amber` | `#e5a93c` | Highlights, badges, warnings |
 | `amber-tint` | `#fef3c7` | Amber background tint, hover on amber |
-| `gold` | `#b58900` | Amber as text on light surfaces |
+| `gold` | `#8a6a00` | Amber as text on light surfaces. Passes AA on cream, white and amber-tint. |
 
 Rules:
 

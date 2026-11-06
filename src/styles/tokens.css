@@ -23,7 +23,7 @@
   --color-maroon-tint: #ffe4e6; /* maroon background tint */
   --color-amber: #e5a93c; /* highlight, warning, focus ring */
   --color-amber-tint: #fef3c7; /* amber background tint */
-  --color-gold: #b58900; /* amber as text on light surfaces */
+  --color-gold: #8a6a00; /* amber as text on light surfaces (4.7:1 on cream) */
 
   /* Type families and weights. Sizes come from the type-* roles below. */
   --font-*: initial;
