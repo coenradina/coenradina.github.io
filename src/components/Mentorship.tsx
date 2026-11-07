@@ -219,7 +219,7 @@ export default function Mentorship({ onUnlockAchievement }: MentorshipProps) {
                 onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
                 className="px-4 py-2 rounded border-2 border-ink bg-maroon text-white type-label cyber-button cursor-pointer min-w-max self-start sm:self-center"
               >
-                TELL ME ABOUT IT ↵
+                WRITE TO ME ✉
               </button>
             </div>
           </div>

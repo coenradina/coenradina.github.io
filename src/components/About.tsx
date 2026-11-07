@@ -14,7 +14,7 @@ const ROLES = [
     text: "text-gold",
     surface: "bg-amber-tint",
     anecdote:
-      "My engineering background runs from Kotlin and Clean Architecture at Female Daily to encryption biometric verification BCA. Full-stack work keeps the list growing.",
+      "My engineering background runs from Kotlin and Clean Architecture at Female Daily to encryption and biometric verification at BCA. Full-stack work keeps the list growing.",
     achievement: "Full-stack · Kotlin · Clean Architecture · Security",
   },
   {

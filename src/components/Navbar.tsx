@@ -5,7 +5,7 @@ const NAV_LINKS = [
   { label: "Selected Work", href: "#projects" },
   { label: "Side Projects", href: "#side-projects" },
   { label: "Mentorship", href: "#mentorship" },
-  { label: "Say Hello", href: "#contact" },
+  { label: "Contact", href: "#contact" },
 ];
 
 interface NavbarProps {
@@ -89,7 +89,7 @@ export default function Navbar({ activeSection, onOpenTerminal }: NavbarProps) {
             onClick={() => handleNav("#contact")}
             className="px-4 py-1.5 rounded border-2 border-ink type-button text-white bg-maroon hover:bg-maroon-dark transition-all cyber-button cursor-pointer"
           >
-            WORK WITH ME ↵
+            WRITE TO ME ✉
           </button>
         </div>
 
@@ -132,7 +132,7 @@ export default function Navbar({ activeSection, onOpenTerminal }: NavbarProps) {
             onClick={() => handleNav("#contact")}
             className="mt-2 type-label px-4 py-3 rounded border-2 border-ink text-center text-white bg-maroon"
           >
-            WORK WITH ME ↵
+            WRITE TO ME ✉
           </button>
         </div>
       )}
