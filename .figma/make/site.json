@@ -1,5 +1,5 @@
 {
-  "description": "Showcase professional skills and projects through an engaging, interactive portfolio with gamified elements that highlight expertise and mentorship impact.",
+  "description": "Astrid Coenrad is a software engineer, tech mentor and program manager. Selected work, side projects like the Kotakata game, and a way to get in touch.",
   "robots": {
     "index": true
   },
@@ -9,5 +9,8 @@
   },
   "icons": {
     "icon": "/favicon.svg"
+  },
+  "openGraph": {
+    "image": "https://aastr.id/og-image.png"
   }
 }

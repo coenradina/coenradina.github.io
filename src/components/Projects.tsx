@@ -1,5 +1,4 @@
 import { useState } from "react";
-import XPBar from "./ui/XPBar";
 
 type Category = "All" | "Product & EdTech" | "STEM & AI" | "Software & Mobile";
 
@@ -14,9 +13,8 @@ const PROJECTS = [
     company: "Binar Academy",
     description: "Led the curriculum team for 70+ AI modules used by students, parents, educators, and master trainers across ASEAN. One explanation did not fit all. We tried several.",
     tech: ["70+ AI Modules", "20+ Regional Partners", "ASEAN Reach"],
-    xpLabel: "Beneficiaries",
-    xpValue: 98,
-    xp: "Millions of Learners",
+    resultLabel: "Reach",
+    result: "Millions of learners",
     tone: "tosca" as const,
     imgUrl: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=350&fit=crop&auto=format",
   },
@@ -26,9 +24,8 @@ const PROJECTS = [
     company: "PT Semesta Integrasi Digital",
     description: "Led Scrum delivery for payment and recruitment modules across Sekolah.mu, Karier.mu, and Talentics. Much of the work happened between the tickets.",
     tech: ["Payment Modules", "Recruitment Modules", "Scrum Delivery", "ISO Compliance"],
-    xpLabel: "Scrum Delivery Metric",
-    xpValue: 95,
-    xp: "Payment & Recruitment",
+    resultLabel: "Delivered",
+    result: "Payment & recruitment",
     tone: "ink" as const,
     imgUrl: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=600&h=350&fit=crop&auto=format",
   },
@@ -38,9 +35,8 @@ const PROJECTS = [
     company: "Generation Girl",
     description: "Managed 50+ STEM curricula and trained 200+ mentors. Mentor retention improved by 57% after we changed how mentors were prepared and supported.",
     tech: ["50+ Curriculums", "200+ Mentors", "LMS Architecture", "Data Tools"],
-    xpLabel: "Mentor Retention Boost",
-    xpValue: 92,
-    xp: "+57% Retention",
+    resultLabel: "Mentor retention",
+    result: "+57%",
     tone: "maroon" as const,
     imgUrl: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=350&fit=crop&auto=format",
   },
@@ -50,11 +46,11 @@ const PROJECTS = [
     company: "Generation Girl",
     description: "Manage the mentor pool at Generation Girl: 300+ volunteer mentors teaching across 50+ curriculums, reaching 20,000+ learners. Most of the job is matching the right mentor to the right class, then making sure they want to come back.",
     tech: ["300+ Mentors", "50+ Curriculums", "20,000+ Learners", "Community Ops"],
-    xpLabel: "Learners Reached",
-    xpValue: 94,
-    xp: "20,000+ Learners",
+    resultLabel: "Learners Reached",
+    result: "20,000+",
     tone: "tosca" as const,
     imgUrl: `${import.meta.env.BASE_URL}projects/gengirl-mentors.webp`,
+    imgAlt: "About twenty Generation Girl mentors posing indoors, each holding up a small hand-painted dish",
   },
   {
     title: "Female Daily Community Android App",
@@ -62,9 +58,8 @@ const PROJECTS = [
     company: "Female Daily",
     description: "Built Android features in Kotlin for Female Daily's community app. Clean Architecture was useful. So was remembering that real people tap buttons in strange orders.",
     tech: ["Kotlin", "Clean Architecture", "Android SDK", "REST APIs"],
-    xpLabel: "App Stability",
-    xpValue: 90,
-    xp: "99.9% Crash Free",
+    resultLabel: "App Stability",
+    result: "99.9% crash-free",
     tone: "gold" as const,
     imgUrl: "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&h=350&fit=crop&auto=format",
   },
@@ -73,14 +68,15 @@ const PROJECTS = [
     category: "Software & Mobile" as Category,
     company: "Bank Central Asia (BCA)",
     description: "Worked on data encryption and biometric verification at BCA. Banking software has a useful way of discouraging improvisation.",
-    xpLabel: "Security Rating",
+    resultLabel: "Worked on",
     tech: ["Data Encryption", "Biometric Verification", "Banking Security", "Clean Code"],
-    xpValue: 96,
-    xp: "Banking Grade Shield",
+    result: "Encryption & biometrics",
     tone: "ink" as const,
     imgUrl: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=350&fit=crop&auto=format",
   },
 ];
+
+const RESULT_TONES = { tosca: "text-tosca", maroon: "text-maroon", gold: "text-gold", ink: "text-ink" };
 
 const CATEGORIES: Category[] = ["All", "Product & EdTech", "STEM & AI", "Software & Mobile"];
 
@@ -144,7 +140,7 @@ export default function Projects({ onUnlockAchievement }: ProjectsProps) {
               <div className="relative h-48 overflow-hidden border-b-2 border-ink bg-parchment">
                 <img
                   src={project.imgUrl}
-                  alt={project.title}
+                  alt={"imgAlt" in project ? project.imgAlt : ""}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <span
@@ -185,12 +181,10 @@ export default function Projects({ onUnlockAchievement }: ProjectsProps) {
                     ))}
                   </div>
 
-                  <XPBar
-                    label={project.xpLabel}
-                    value={project.xpValue}
-                    xp={project.xp}
-                    tone={project.tone}
-                  />
+                  <div className="flex items-baseline justify-between gap-4 border-t-2 border-ink/10 pt-3">
+                    <span className="type-eyebrow text-ink">{project.resultLabel}</span>
+                    <span className={`type-label text-right ${RESULT_TONES[project.tone]}`}>{project.result}</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -228,8 +222,8 @@ export default function Projects({ onUnlockAchievement }: ProjectsProps) {
                   <span className="text-tosca">{selectedProject.company}</span>
                 </div>
                 <div className="flex items-center justify-between type-button text-ink-soft">
-                  <span>RESULT:</span>
-                  <span className="text-maroon">{selectedProject.xp}</span>
+                  <span>{selectedProject.resultLabel.toUpperCase()}:</span>
+                  <span className="text-maroon">{selectedProject.result}</span>
                 </div>
               </div>
 
